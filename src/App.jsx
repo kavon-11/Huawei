@@ -3,19 +3,19 @@ import {
   RouterProvider,
   Navigate,
 } from "react-router-dom";
-import Login from "./pages/Login";
+import Auth  from "./pages/Login";
 import Error from "./pages/Error";
 
 const router = createBrowserRouter(
   [
     {
-      path: "/login",
-      element: <Login />,
+      path: "/auth",
+      element: <Auth />,
       errorElement: <Error />,
     },
     {
       path: "/",
-      element: <Navigate to="/login" replace />,
+      element: <Navigate to="/auth" replace />,
       errorElement: <Error />,
     },
   ],
