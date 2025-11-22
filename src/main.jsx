@@ -4,6 +4,10 @@ import App from "./App.jsx";
 import "./index.css";
 import { Provider } from "react-redux";
 import store from "./Store";
+import { loadUserFromStorage } from "./Store";
+
+// Load user from localStorage on app initialization
+store.dispatch(loadUserFromStorage());
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

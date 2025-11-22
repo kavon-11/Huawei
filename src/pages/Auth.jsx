@@ -1,8 +1,16 @@
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
 import { useState } from "react";
-//import { useSelector , useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { loginUser, registerUser, clearError } from "../Store";
+
 export default function Auth() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { loading, error, isAuthenticated, user } = useSelector(
+    (state) => state.auth
+  );
+
   const [isSignUp, setIsSignUp] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
@@ -10,14 +18,24 @@ export default function Auth() {
     firstName: "",
     lastName: "",
   });
-  const [errors, setErrors] = useState({});
+  const [validationErrors, setValidationErrors] = useState({});
+
+  // Log authentication status for testing (runs on every render when authenticated)
+  if (isAuthenticated) {
+    console.log("✅ User is authenticated!");
+    console.log("User data:", user);
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    // Clear error when user types
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: "" }));
+    // Clear validation error when user types
+    if (validationErrors[name]) {
+      setValidationErrors((prev) => ({ ...prev, [name]: "" }));
+    }
+    // Clear API errors when user starts typing
+    if (error) {
+      dispatch(clearError());
     }
   };
 
@@ -38,22 +56,29 @@ export default function Auth() {
       if (!formData.lastName) newErrors.lastName = "Last name is required";
     }
 
-    setErrors(newErrors);
+    setValidationErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validate()) {
-      console.log(isSignUp ? "Signing up" : "Logging in", formData);
-      // Add your login/signup logic here
+      if (isSignUp) {
+        await dispatch(registerUser(formData));
+      } else {
+        await dispatch(
+          loginUser({ email: formData.email, password: formData.password })
+        );
+      }
     }
   };
 
   const toggleMode = () => {
     setIsSignUp(!isSignUp);
-    setErrors({});
+    setValidationErrors({});
     setFormData({ email: "", password: "", firstName: "", lastName: "" });
+    // Clear API errors when switching modes
+    dispatch(clearError());
   };
 
   return (
@@ -71,6 +96,13 @@ export default function Auth() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+          {/* Show API errors */}
+          {error && (
+            <div className="mb-4 p-3 rounded-md bg-red-500/10 border border-red-500/50">
+              <p className="text-red-400 text-sm text-center">{error}</p>
+            </div>
+          )}
+
           <form onSubmit={handleSubmit} className="space-y-6">
             {isSignUp && (
               <>
@@ -88,11 +120,12 @@ export default function Auth() {
                       type="text"
                       value={formData.firstName}
                       onChange={handleChange}
-                      className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
+                      disabled={loading}
+                      className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6 disabled:opacity-50"
                     />
-                    {errors.firstName && (
+                    {validationErrors.firstName && (
                       <p className="text-red-500 text-xs mt-1">
-                        {errors.firstName}
+                        {validationErrors.firstName}
                       </p>
                     )}
                   </div>
@@ -111,11 +144,12 @@ export default function Auth() {
                       type="text"
                       value={formData.lastName}
                       onChange={handleChange}
-                      className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
+                      disabled={loading}
+                      className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6 disabled:opacity-50"
                     />
-                    {errors.lastName && (
+                    {validationErrors.lastName && (
                       <p className="text-red-500 text-xs mt-1">
-                        {errors.lastName}
+                        {validationErrors.lastName}
                       </p>
                     )}
                   </div>
@@ -138,10 +172,13 @@ export default function Auth() {
                   autoComplete="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
+                  disabled={loading}
+                  className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6 disabled:opacity-50"
                 />
-                {errors.email && (
-                  <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+                {validationErrors.email && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {validationErrors.email}
+                  </p>
                 )}
               </div>
             </div>
@@ -173,10 +210,13 @@ export default function Auth() {
                   autoComplete="current-password"
                   value={formData.password}
                   onChange={handleChange}
-                  className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
+                  disabled={loading}
+                  className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6 disabled:opacity-50"
                 />
-                {errors.password && (
-                  <p className="text-red-500 text-xs mt-1">{errors.password}</p>
+                {validationErrors.password && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {validationErrors.password}
+                  </p>
                 )}
               </div>
             </div>
@@ -184,20 +224,29 @@ export default function Auth() {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                disabled={loading}
+                className="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isSignUp ? "Sign up" : "Sign in"}
+                {loading ? (
+                  <span className="flex items-center gap-2">
+                    <Loader />
+                    {isSignUp ? "Signing up..." : "Signing in..."}
+                  </span>
+                ) : (
+                  <span>{isSignUp ? "Sign up" : "Sign in"}</span>
+                )}
               </button>
             </div>
             <div className="text-sm text-center">
               <button
                 type="button"
                 onClick={toggleMode}
-                className="font-semibold text-indigo-400 hover:text-indigo-300 bg-transparent border-none cursor-pointer"
+                disabled={loading}
+                className="font-semibold text-indigo-400 hover:text-indigo-300 bg-transparent border-none cursor-pointer disabled:opacity-50"
               >
                 {isSignUp
-                  ? "Already have an account ? Sign in"
-                  : "Don't have an account ? Sign up"}
+                  ? "Already have an account? Sign in"
+                  : "Don't have an account? Sign up"}
               </button>
             </div>
           </form>
