@@ -2,49 +2,58 @@ import { NavLink, Link } from "react-router-dom";
 import Loader from "../components/Loader";
 import { useState } from "react";
 //import { useSelector , useDispatch } from "react-redux";
-export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+export default function Auth() {
+  const [isSignUp, setIsSignUp] = useState(false);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+  });
+  const [errors, setErrors] = useState({});
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError(null);
-
-    try {
-      const response = await fetch("http://localhost:3000/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      });
-
-      const data = await response.json();
-
-      // Console log the response
-      console.log("Login Response:", data);
-
-      if (response.ok) {
-        console.log("Login successful!");
-        console.log("JWT Token:", data.access_token);
-        // You can store the token in localStorage or context/redux here
-        // localStorage.setItem('token', data.access_token);
-      } else {
-        console.error("Login failed:", data);
-        setError(data.message || "Login failed");
-      }
-    } catch (err) {
-      console.error("Error during login:", err);
-      setError("Network error. Please try again.");
-    } finally {
-      setLoading(false);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    // Clear error when user types
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
+  };
+
+  const validate = () => {
+    const newErrors = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!formData.email) newErrors.email = "Email is required";
+    else if (!emailRegex.test(formData.email))
+      newErrors.email = "Invalid email address";
+
+    if (!formData.password) newErrors.password = "Password is required";
+    else if (formData.password.length < 8)
+      newErrors.password = "Password must be at least 8 characters";
+
+    if (isSignUp) {
+      if (!formData.firstName) newErrors.firstName = "First name is required";
+      if (!formData.lastName) newErrors.lastName = "Last name is required";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validate()) {
+      console.log(isSignUp ? "Signing up" : "Logging in", formData);
+      // Add your login/signup logic here
+    }
+  };
+
+  const toggleMode = () => {
+    setIsSignUp(!isSignUp);
+    setErrors({});
+    setFormData({ email: "", password: "", firstName: "", lastName: "" });
   };
 
   return (
@@ -57,12 +66,63 @@ export default function Login() {
             className="mx-auto h-10 w-auto"
           />
           <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">
-            Sign in to your account
+            {isSignUp ? "Create your account" : "Sign in to your account"}
           </h2>
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form onSubmit={handleSubmit} className="space-y-6">
+            {isSignUp && (
+              <>
+                <div>
+                  <label
+                    htmlFor="firstName"
+                    className="block text-sm/6 font-medium text-gray-100"
+                  >
+                    First Name
+                  </label>
+                  <div className="mt-2">
+                    <input
+                      id="firstName"
+                      name="firstName"
+                      type="text"
+                      value={formData.firstName}
+                      onChange={handleChange}
+                      className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
+                    />
+                    {errors.firstName && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.firstName}
+                      </p>
+                    )}
+                  </div>
+                </div>
+                <div>
+                  <label
+                    htmlFor="lastName"
+                    className="block text-sm/6 font-medium text-gray-100"
+                  >
+                    Last Name
+                  </label>
+                  <div className="mt-2">
+                    <input
+                      id="lastName"
+                      name="lastName"
+                      type="text"
+                      value={formData.lastName}
+                      onChange={handleChange}
+                      className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
+                    />
+                    {errors.lastName && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.lastName}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </>
+            )}
+
             <div>
               <label
                 htmlFor="email"
@@ -75,12 +135,14 @@ export default function Login() {
                   id="email"
                   name="email"
                   type="email"
-                  required
                   autoComplete="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={formData.email}
+                  onChange={handleChange}
                   className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
                 />
+                {errors.email && (
+                  <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+                )}
               </div>
             </div>
 
@@ -92,49 +154,51 @@ export default function Login() {
                 >
                   Password
                 </label>
-                <div className="text-sm">
-                  <Link
-                    to="#"
-                    className="font-semibold text-indigo-400 hover:text-indigo-300"
-                  >
-                    Forgot password?
-                  </Link>
-                </div>
+                {!isSignUp && (
+                  <div className="text-sm">
+                    <Link
+                      to="#"
+                      className="font-semibold text-indigo-400 hover:text-indigo-300"
+                    >
+                      Forgot password?
+                    </Link>
+                  </div>
+                )}
               </div>
               <div className="mt-2">
                 <input
                   id="password"
                   name="password"
                   type="password"
-                  required
                   autoComplete="current-password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={formData.password}
+                  onChange={handleChange}
                   className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
                 />
+                {errors.password && (
+                  <p className="text-red-500 text-xs mt-1">{errors.password}</p>
+                )}
               </div>
             </div>
-
-            {error && (
-              <div className="text-red-400 text-sm text-center">{error}</div>
-            )}
 
             <div>
               <button
                 type="submit"
-                disabled={loading}
-                className="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
               >
-                {loading ? "Signing in..." : "Sign in"}
+                {isSignUp ? "Sign up" : "Sign in"}
               </button>
             </div>
-            <div className="text-sm">
-              <Link
-                to="#"
-                className="font-semibold text-indigo-400 hover:text-indigo-300"
+            <div className="text-sm text-center">
+              <button
+                type="button"
+                onClick={toggleMode}
+                className="font-semibold text-indigo-400 hover:text-indigo-300 bg-transparent border-none cursor-pointer"
               >
-                Don't have an account ? Sign up
-              </Link>
+                {isSignUp
+                  ? "Already have an account ? Sign in"
+                  : "Don't have an account ? Sign up"}
+              </button>
             </div>
           </form>
         </div>
