@@ -3,6 +3,7 @@ import Loader from "../components/Loader";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { loginUser, registerUser, clearError } from "../Store";
+import { motion } from "framer-motion";
 
 export default function Auth() {
   const navigate = useNavigate();
@@ -62,6 +63,7 @@ export default function Auth() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (validate()) {
       if (isSignUp) {
         await dispatch(registerUser(formData));
@@ -235,7 +237,7 @@ export default function Auth() {
                 ) : (
                   <span>{isSignUp ? "Sign up" : "Sign in"}</span>
                 )}
-              </button>
+              </motion.button>
             </div>
             <div className="text-sm text-center">
               <motion.button
@@ -247,7 +249,7 @@ export default function Auth() {
                 {isSignUp
                   ? "Already have an account? Sign in"
                   : "Don't have an account? Sign up"}
-              </button>
+              </motion.button>
             </div>
           </form>
         </div>
