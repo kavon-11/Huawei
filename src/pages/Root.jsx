@@ -1,15 +1,15 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import MainNav from '../components/MainNav.jsx'
 
-
-const Root = () => {
+export default function Root () {
     return (
             <div >
+                <MainNav />
                 <main>
-                    <Outlet />
+                    {/* <Outlet /> */}
                 </main>
             </div>
     );
 };
 
-export default Root;

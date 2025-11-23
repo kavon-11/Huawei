@@ -1,6 +1,7 @@
 import { NavLink, Link } from "react-router-dom";
-import Loader from "../components/Loader";
+import Loader from "../components/ui/Loader";
 import { useState } from "react";
+import {motion} from 'framer-motion';
 //import { useSelector , useDispatch } from "react-redux";
 export default function Auth() {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -182,23 +183,27 @@ export default function Auth() {
             </div>
 
             <div>
-              <button
+              <motion.button
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-              >
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+             >
                 {isSignUp ? "Sign up" : "Sign in"}
-              </button>
+              </motion.button>
             </div>
             <div className="text-sm text-center">
-              <button
+              <motion.button
                 type="button"
                 onClick={toggleMode}
                 className="font-semibold text-indigo-400 hover:text-indigo-300 bg-transparent border-none cursor-pointer"
-              >
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+             >
                 {isSignUp
                   ? "Already have an account ? Sign in"
                   : "Don't have an account ? Sign up"}
-              </button>
+              </motion.button>
             </div>
           </form>
         </div>

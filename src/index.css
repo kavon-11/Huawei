@@ -6,3 +6,6 @@
   background-color: #561e8a; 
   color: #ffffff;          
 }
+svg:hover {
+  cursor: pointer;
+}
