@@ -8,8 +8,31 @@ import Step4 from "./Step4";
 export default function MainOnboarding() {
   const [currentStep, setCurrentStep] = React.useState(1);
   const [isStepValid, setIsStepValid] = React.useState(false);
+  const [stepValidity, setStepValidity] = React.useState({
+    1: false,
+    2: false,
+    3: false,
+    4: true,
+  });
   // Calculate progress based on current step (1=25%, 2=50%, 3=75%, 4=100%)
   const barValue = currentStep * 25;
+
+  const updateStepValidity = React.useCallback(
+    (step, value) => {
+      setStepValidity((prev) => {
+        if (prev[step] === value) return prev;
+        return { ...prev, [step]: value };
+      });
+      if (step === currentStep) {
+        setIsStepValid(value);
+      }
+    },
+    [currentStep]
+  );
+
+  React.useEffect(() => {
+    setIsStepValid(stepValidity[currentStep] ?? false);
+  }, [currentStep, stepValidity]);
 
   const handleNext = () => {
     if (!isStepValid) {
@@ -20,36 +43,24 @@ export default function MainOnboarding() {
     }
   };
 
-  React.useEffect(() => {
-    if (currentStep !== 1) {
-      setIsStepValid(true);
-    }
-  }, [currentStep]);
-
   const handleBack = () => {
     if (currentStep > 1) {
-      setCurrentStep((prev) => {
-        const previous = prev - 1;
-        if (previous === 1) {
-          setIsStepValid(false);
-        }
-        return previous;
-      });
+      setCurrentStep((prev) => prev - 1);
     }
   };
 
   const renderStep = () => {
     switch (currentStep) {
       case 1:
-        return <Step1 setStepValid={setIsStepValid} />;
+        return <Step1 setStepValid={(value) => updateStepValidity(1, value)} />;
       case 2:
-        return <Step2 />;
+        return <Step2 setStepValid={(value) => updateStepValidity(2, value)} />;
       case 3:
-        return <Step3 />;
+        return <Step3 setStepValid={(value) => updateStepValidity(3, value)} />;
       case 4:
         return <Step4 />;
       default:
-        return <Step1 setStepValid={setIsStepValid} />;
+        return <Step1 setStepValid={(value) => updateStepValidity(1, value)} />;
     }
   };
 

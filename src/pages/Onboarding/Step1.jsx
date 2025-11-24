@@ -1,5 +1,4 @@
 import React from "react";
-import "./step1.css";
 
 const STORAGE_KEY = "onboarding_step1";
 
@@ -99,7 +98,7 @@ export default function Step1({ setStepValid }) {
   };
 
   return (
-    <section className="step1-container" style={containerStyle}>
+    <section style={containerStyle}>
       <header style={headerStyle}>
         <p
           style={{
