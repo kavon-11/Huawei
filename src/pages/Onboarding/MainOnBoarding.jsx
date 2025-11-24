@@ -7,25 +7,41 @@ import Step4 from "./Step4";
 
 export default function MainOnboarding() {
   const [currentStep, setCurrentStep] = React.useState(1);
+  const [isStepValid, setIsStepValid] = React.useState(false);
   // Calculate progress based on current step (1=25%, 2=50%, 3=75%, 4=100%)
   const barValue = currentStep * 25;
 
   const handleNext = () => {
+    if (!isStepValid) {
+      return;
+    }
     if (currentStep < 4) {
       setCurrentStep((prev) => prev + 1);
     }
   };
 
+  React.useEffect(() => {
+    if (currentStep !== 1) {
+      setIsStepValid(true);
+    }
+  }, [currentStep]);
+
   const handleBack = () => {
     if (currentStep > 1) {
-      setCurrentStep((prev) => prev - 1);
+      setCurrentStep((prev) => {
+        const previous = prev - 1;
+        if (previous === 1) {
+          setIsStepValid(false);
+        }
+        return previous;
+      });
     }
   };
 
   const renderStep = () => {
     switch (currentStep) {
       case 1:
-        return <Step1 />;
+        return <Step1 setStepValid={setIsStepValid} />;
       case 2:
         return <Step2 />;
       case 3:
@@ -33,7 +49,7 @@ export default function MainOnboarding() {
       case 4:
         return <Step4 />;
       default:
-        return <Step1 />;
+        return <Step1 setStepValid={setIsStepValid} />;
     }
   };
 
@@ -58,25 +74,27 @@ export default function MainOnboarding() {
             borderRadius: "4px",
             border: "1px solid #ccc",
             backgroundColor: "transparent",
+            color: "#1f2937",
             cursor: currentStep === 1 ? "default" : "pointer",
             opacity: currentStep === 1 ? 0 : 1,
             visibility: currentStep === 1 ? "hidden" : "visible",
-             backgroundColor: "#007bff",
-            color: "#fff",
+            transition: "all 0.2s ease",
           }}
         >
           Back
         </button>
         <button
           onClick={handleNext}
+          disabled={!isStepValid}
           style={{
             padding: "0.5rem 1.5rem",
             borderRadius: "4px",
             border: "none",
             backgroundColor: "#007bff",
             color: "#fff",
-            cursor: "pointer",
-            opacity: 1,
+            cursor: !isStepValid ? "not-allowed" : "pointer",
+            opacity: !isStepValid ? 0.5 : 1,
+            transition: "all 0.2s ease",
           }}
         >
           {currentStep === 4 ? "Finish" : "Next"}

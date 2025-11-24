@@ -6,9 +6,6 @@ export default function Root() {
   return (
     <div>
       <MainNav />
-      <main>
-        <Outlet />
-      </main>
     </div>
   );
 }
