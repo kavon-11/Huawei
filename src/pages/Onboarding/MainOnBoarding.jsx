@@ -61,6 +61,8 @@ export default function MainOnboarding() {
             cursor: currentStep === 1 ? "default" : "pointer",
             opacity: currentStep === 1 ? 0 : 1,
             visibility: currentStep === 1 ? "hidden" : "visible",
+             backgroundColor: "#007bff",
+            color: "#fff",
           }}
         >
           Back
