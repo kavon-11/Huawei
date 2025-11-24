@@ -1,15 +1,14 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
-import MainNav from '../components/MainNav.jsx'
+import React from "react";
+import { Outlet } from "react-router-dom";
+import MainNav from "../components/MainNav.jsx";
 
-export default function Root () {
-    return (
-            <div >
-                <MainNav />
-                <main>
-                    {/* <Outlet /> */}
-                </main>
-            </div>
-    );
-};
-
+export default function Root() {
+  return (
+    <div>
+      <MainNav />
+      <main>
+        <Outlet />
+      </main>
+    </div>
+  );
+}

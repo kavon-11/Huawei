@@ -6,8 +6,8 @@ import {
 import Auth  from "./pages/Login";
 import Error from "./pages/Error";
 import Root from "./pages/Root";
-
-// import { checkAuthLoader } from "./util/checkAuthLoader";
+import MainOnboarding from "./pages/Onboarding/mainOnBoarding";
+// import { checkAuthLoader } from "./util/AuthCheckerLoader";
 
 const router = createBrowserRouter(
   [ {
@@ -15,7 +15,11 @@ const router = createBrowserRouter(
       element: <Root />,
       errorElement: <Error />,
       // loader : checkAuthLoader, // lw el user msh logged in yro7 l page el auth
-      //children
+      children : [{
+        path : "onBoarding",
+        element: <MainOnboarding />
+        // loader : checkAuthLoader
+      }]
    }
     ,
     {
