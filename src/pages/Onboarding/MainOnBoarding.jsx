@@ -1,12 +1,15 @@
 import ProgressBar from "../../components/ui/ProgressBar";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
 
 export default function MainOnboarding() {
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = React.useState(1);
+  const [isComplete, setIsComplete] = React.useState(false);
   const [isStepValid, setIsStepValid] = React.useState(false);
   const [stepValidity, setStepValidity] = React.useState({
     1: false,
@@ -38,9 +41,11 @@ export default function MainOnboarding() {
     if (!isStepValid) {
       return;
     }
-    if (currentStep < 4) {
-      setCurrentStep((prev) => prev + 1);
+    if (currentStep === 4) {
+      setIsComplete(true);
+      return;
     }
+    setCurrentStep((prev) => prev + 1);
   };
 
   const handleBack = () => {
@@ -50,6 +55,42 @@ export default function MainOnboarding() {
   };
 
   const renderStep = () => {
+    if (isComplete) {
+      return (
+        <div
+          style={{
+            backgroundColor: "#0f172a",
+            borderRadius: "12px",
+            padding: "2rem",
+            textAlign: "center",
+            color: "#e2e8f0",
+            boxShadow: "0 18px 40px rgba(8, 15, 31, 0.35)",
+          }}
+        >
+          <h2 style={{ fontSize: "1.35rem", marginBottom: "0.75rem" }}>
+            Setup Complete!
+          </h2>
+          <p style={{ color: "#94a3b8", marginBottom: "1.5rem" }}>
+            Your onboarding is done. You can jump into the dashboard to start
+            working with your AI assistant.
+          </p>
+          <button
+            onClick={() => navigate("/dashboard")}
+            style={{
+              padding: "0.65rem 1.8rem",
+              borderRadius: "6px",
+              border: "none",
+              backgroundColor: "#22c55e",
+              color: "#0f172a",
+              fontWeight: 600,
+              cursor: "pointer",
+            }}
+          >
+            Go to Dashboard
+          </button>
+        </div>
+      );
+    }
     switch (currentStep) {
       case 1:
         return <Step1 setStepValid={(value) => updateStepValidity(1, value)} />;
@@ -58,7 +99,7 @@ export default function MainOnboarding() {
       case 3:
         return <Step3 setStepValid={(value) => updateStepValidity(3, value)} />;
       case 4:
-        return <Step4 />;
+        return <Step4 setStepValid={(value) => updateStepValidity(4, value)} />;
       default:
         return <Step1 setStepValid={(value) => updateStepValidity(1, value)} />;
     }
@@ -77,39 +118,43 @@ export default function MainOnboarding() {
         className="onboarding-controls"
         style={{ display: "flex", justifyContent: "space-between" }}
       >
-        <button
-          onClick={handleBack}
-          disabled={currentStep === 1}
-          style={{
-            padding: "0.5rem 1.5rem",
-            borderRadius: "4px",
-            border: "1px solid #ccc",
-             backgroundColor: "#007bff",
-            color: "#fff",
-            cursor: currentStep === 1 ? "default" : "pointer",
-            opacity: currentStep === 1 ? 0 : 1,
-            visibility: currentStep === 1 ? "hidden" : "visible",
-            transition: "all 0.2s ease",
-          }}
-        >
-          Back
-        </button>
-        <button
-          onClick={handleNext}
-          disabled={!isStepValid}
-          style={{
-            padding: "0.5rem 1.5rem",
-            borderRadius: "4px",
-            border: "none",
-            backgroundColor: "#007bff",
-            color: "#fff",
-            cursor: !isStepValid ? "not-allowed" : "pointer",
-            opacity: !isStepValid ? 0.5 : 1,
-            transition: "all 0.2s ease",
-          }}
-        >
-          {currentStep === 4 ? "Finish" : "Next"}
-        </button>
+        {!isComplete && (
+          <>
+            <button
+              onClick={handleBack}
+              disabled={currentStep === 1}
+              style={{
+                padding: "0.5rem 1.5rem",
+                borderRadius: "4px",
+                border: "1px solid #ccc",
+                backgroundColor: "#007bff",
+                color: "#fff",
+                cursor: currentStep === 1 ? "default" : "pointer",
+                opacity: currentStep === 1 ? 0 : 1,
+                visibility: currentStep === 1 ? "hidden" : "visible",
+                transition: "all 0.2s ease",
+              }}
+            >
+              Back
+            </button>
+            <button
+              onClick={handleNext}
+              disabled={!isStepValid}
+              style={{
+                padding: "0.5rem 1.5rem",
+                borderRadius: "4px",
+                border: "none",
+                backgroundColor: "#007bff",
+                color: "#fff",
+                cursor: !isStepValid ? "not-allowed" : "pointer",
+                opacity: !isStepValid ? 0.5 : 1,
+                transition: "all 0.2s ease",
+              }}
+            >
+              {currentStep === 4 ? "Finish" : "Next"}
+            </button>
+          </>
+        )}
       </div>
     </div>
   );
