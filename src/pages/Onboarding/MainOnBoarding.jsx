@@ -1,6 +1,8 @@
 import ProgressBar from "../../components/ui/ProgressBar";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
@@ -42,6 +44,7 @@ export default function MainOnboarding() {
       return;
     }
     if (currentStep === 4) {
+      toast.success("Setup Complete!", { position: "top-center" });
       setIsComplete(true);
       return;
     }
@@ -106,56 +109,68 @@ export default function MainOnboarding() {
   };
 
   return (
-    <div style={{ maxWidth: "600px", margin: "2rem auto", padding: "0 1rem" }}>
-      <ProgressBar value={barValue} />
+    <>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar
+        closeOnClick
+        pauseOnHover={false}
+        theme="dark"
+      />
       <div
-        className="onboarding-content"
-        style={{ padding: "2rem 0", minHeight: "150px" }}
+        style={{ maxWidth: "600px", margin: "2rem auto", padding: "0 1rem" }}
       >
-        {renderStep()}
+        <ProgressBar value={barValue} />
+        <div
+          className="onboarding-content"
+          style={{ padding: "2rem 0", minHeight: "150px" }}
+        >
+          {renderStep()}
+        </div>
+        <div
+          className="onboarding-controls"
+          style={{ display: "flex", justifyContent: "space-between" }}
+        >
+          {!isComplete && (
+            <>
+              <button
+                onClick={handleBack}
+                disabled={currentStep === 1}
+                style={{
+                  padding: "0.5rem 1.5rem",
+                  borderRadius: "4px",
+                  border: "1px solid #ccc",
+                  backgroundColor: "#007bff",
+                  color: "#fff",
+                  cursor: currentStep === 1 ? "default" : "pointer",
+                  opacity: currentStep === 1 ? 0 : 1,
+                  visibility: currentStep === 1 ? "hidden" : "visible",
+                  transition: "all 0.2s ease",
+                }}
+              >
+                Back
+              </button>
+              <button
+                onClick={handleNext}
+                disabled={!isStepValid}
+                style={{
+                  padding: "0.5rem 1.5rem",
+                  borderRadius: "4px",
+                  border: "none",
+                  backgroundColor: "#007bff",
+                  color: "#fff",
+                  cursor: !isStepValid ? "not-allowed" : "pointer",
+                  opacity: !isStepValid ? 0.5 : 1,
+                  transition: "all 0.2s ease",
+                }}
+              >
+                {currentStep === 4 ? "Finish" : "Next"}
+              </button>
+            </>
+          )}
+        </div>
       </div>
-      <div
-        className="onboarding-controls"
-        style={{ display: "flex", justifyContent: "space-between" }}
-      >
-        {!isComplete && (
-          <>
-            <button
-              onClick={handleBack}
-              disabled={currentStep === 1}
-              style={{
-                padding: "0.5rem 1.5rem",
-                borderRadius: "4px",
-                border: "1px solid #ccc",
-                backgroundColor: "#007bff",
-                color: "#fff",
-                cursor: currentStep === 1 ? "default" : "pointer",
-                opacity: currentStep === 1 ? 0 : 1,
-                visibility: currentStep === 1 ? "hidden" : "visible",
-                transition: "all 0.2s ease",
-              }}
-            >
-              Back
-            </button>
-            <button
-              onClick={handleNext}
-              disabled={!isStepValid}
-              style={{
-                padding: "0.5rem 1.5rem",
-                borderRadius: "4px",
-                border: "none",
-                backgroundColor: "#007bff",
-                color: "#fff",
-                cursor: !isStepValid ? "not-allowed" : "pointer",
-                opacity: !isStepValid ? 0.5 : 1,
-                transition: "all 0.2s ease",
-              }}
-            >
-              {currentStep === 4 ? "Finish" : "Next"}
-            </button>
-          </>
-        )}
-      </div>
-    </div>
+    </>
   );
 }
