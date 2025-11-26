@@ -9,6 +9,8 @@ import Root from "./pages/Root";
 import MainOnboarding from "./pages/Onboarding/mainOnBoarding";
 import OverView from "./pages/Dashboard/OverView";
 import AIConf from "./pages/Dashboard/AI-Conf";
+import KnowledgeBase from "./pages/Dashboard/KnowledgeBase";
+import CallHistory from "./pages/Dashboard/CallHistory";
 // import { checkAuthLoader } from "./util/AuthCheckerLoader";
 
 const router = createBrowserRouter(
@@ -35,6 +37,14 @@ const router = createBrowserRouter(
             {
               path: "ai-config",
               element: <AIConf />,
+            },
+            {
+              path: "knowledge",
+              element: <KnowledgeBase />,
+            },
+            {
+              path: "history",
+              element: <CallHistory />,
             },
           ],
         },

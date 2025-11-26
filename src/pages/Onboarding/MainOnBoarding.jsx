@@ -117,6 +117,7 @@ export default function MainOnboarding() {
         closeOnClick
         pauseOnHover={false}
         theme="dark"
+        limit={1}
       />
       <div
         style={{ maxWidth: "600px", margin: "2rem auto", padding: "0 1rem" }}

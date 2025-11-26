@@ -287,7 +287,14 @@ export default function AIConf() {
   return (
     <div style={containerStyle}>
       <header style={headerStyle}>
-        <h1 style={{ fontSize: "1.8rem", fontWeight: "700", color: "#f8fafc", margin: 0 }}>
+        <h1
+          style={{
+            fontSize: "1.8rem",
+            fontWeight: "700",
+            color: "#f8fafc",
+            margin: 0,
+          }}
+        >
           AI Configuration
         </h1>
         <p style={{ color: "#94a3b8", marginTop: "0.5rem" }}>
@@ -323,7 +330,13 @@ export default function AIConf() {
                 style={inputStyle}
                 placeholder="e.g., Reception Bot"
               />
-              <p style={{ fontSize: "0.8rem", color: "#94a3b8", marginTop: "0.25rem" }}>
+              <p
+                style={{
+                  fontSize: "0.8rem",
+                  color: "#94a3b8",
+                  marginTop: "0.25rem",
+                }}
+              >
                 What should your customers call your AI?
               </p>
             </div>
@@ -332,7 +345,16 @@ export default function AIConf() {
               <label style={labelStyle}>AI Personality Tone</label>
               <div style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap" }}>
                 {["Professional", "Friendly", "Casual"].map((tone) => (
-                  <label key={tone} style={{ display: "flex", alignItems: "center", gap: "0.5rem", color: "#e2e8f0", cursor: "pointer" }}>
+                  <label
+                    key={tone}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.5rem",
+                      color: "#e2e8f0",
+                      cursor: "pointer",
+                    }}
+                  >
                     <input
                       type="radio"
                       name="personality"
@@ -360,7 +382,13 @@ export default function AIConf() {
                   style={textAreaStyle}
                   maxLength={300}
                 />
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
                   <span style={{ fontSize: "0.8rem", color: "#94a3b8" }}>
                     {basicSettings[field.key].length}/300
                   </span>
@@ -376,37 +404,98 @@ export default function AIConf() {
 
             <div style={fieldGroupStyle}>
               <label style={labelStyle}>Business Hours</label>
-              {Object.entries(basicSettings.businessHours).map(([day, hours]) => (
-                <div key={day} style={{ ...rowStyle, justifyContent: "space-between", padding: "0.5rem 0", borderBottom: "1px solid #334155" }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: "1rem", minWidth: "120px" }}>
-                    <input
-                      type="checkbox"
-                      checked={hours.active}
-                      onChange={(e) => handleBusinessHoursChange(day, "active", e.target.checked)}
-                    />
-                    <span style={{ textTransform: "capitalize", color: hours.active ? "#e2e8f0" : "#64748b" }}>{day}</span>
-                  </div>
-                  {hours.active ? (
-                    <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", flexWrap: "wrap" }}>
+              {Object.entries(basicSettings.businessHours).map(
+                ([day, hours]) => (
+                  <div
+                    key={day}
+                    style={{
+                      ...rowStyle,
+                      justifyContent: "space-between",
+                      padding: "0.5rem 0",
+                      borderBottom: "1px solid #334155",
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "1rem",
+                        minWidth: "120px",
+                      }}
+                    >
                       <input
-                        type="time"
-                        value={hours.open}
-                        onChange={(e) => handleBusinessHoursChange(day, "open", e.target.value)}
-                        style={{ ...inputStyle, width: "auto", padding: "0.4rem", minWidth: "100px" }}
+                        type="checkbox"
+                        checked={hours.active}
+                        onChange={(e) =>
+                          handleBusinessHoursChange(
+                            day,
+                            "active",
+                            e.target.checked
+                          )
+                        }
                       />
-                      <span>to</span>
-                      <input
-                        type="time"
-                        value={hours.close}
-                        onChange={(e) => handleBusinessHoursChange(day, "close", e.target.value)}
-                        style={{ ...inputStyle, width: "auto", padding: "0.4rem", minWidth: "100px" }}
-                      />
+                      <span
+                        style={{
+                          textTransform: "capitalize",
+                          color: hours.active ? "#e2e8f0" : "#64748b",
+                        }}
+                      >
+                        {day}
+                      </span>
                     </div>
-                  ) : (
-                    <span style={{ color: "#64748b", fontStyle: "italic" }}>Closed</span>
-                  )}
-                </div>
-              ))}
+                    {hours.active ? (
+                      <div
+                        style={{
+                          display: "flex",
+                          gap: "0.5rem",
+                          alignItems: "center",
+                          flexWrap: "wrap",
+                        }}
+                      >
+                        <input
+                          type="time"
+                          value={hours.open}
+                          onChange={(e) =>
+                            handleBusinessHoursChange(
+                              day,
+                              "open",
+                              e.target.value
+                            )
+                          }
+                          style={{
+                            ...inputStyle,
+                            width: "auto",
+                            padding: "0.4rem",
+                            minWidth: "100px",
+                          }}
+                        />
+                        <span>to</span>
+                        <input
+                          type="time"
+                          value={hours.close}
+                          onChange={(e) =>
+                            handleBusinessHoursChange(
+                              day,
+                              "close",
+                              e.target.value
+                            )
+                          }
+                          style={{
+                            ...inputStyle,
+                            width: "auto",
+                            padding: "0.4rem",
+                            minWidth: "100px",
+                          }}
+                        />
+                      </div>
+                    ) : (
+                      <span style={{ color: "#64748b", fontStyle: "italic" }}>
+                        Closed
+                      </span>
+                    )}
+                  </div>
+                )
+              )}
             </div>
 
             <button style={buttonStyle}>
@@ -435,7 +524,9 @@ export default function AIConf() {
             </div>
 
             <div style={fieldGroupStyle}>
-              <label style={labelStyle}>Voice Speed: {voiceSettings.speed}x</label>
+              <label style={labelStyle}>
+                Voice Speed: {voiceSettings.speed}x
+              </label>
               <input
                 type="range"
                 name="speed"
@@ -446,7 +537,14 @@ export default function AIConf() {
                 onChange={handleVoiceChange}
                 style={{ width: "100%", accentColor: "#3b82f6" }}
               />
-              <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.8rem", color: "#94a3b8" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  fontSize: "0.8rem",
+                  color: "#94a3b8",
+                }}
+              >
                 <span>Slow</span>
                 <span>Normal</span>
                 <span>Fast</span>
@@ -468,10 +566,27 @@ export default function AIConf() {
               </select>
             </div>
 
-            <div style={{ ...fieldGroupStyle, textAlign: "center", padding: "2rem", backgroundColor: "#0f172a", borderRadius: "8px" }}>
+            <div
+              style={{
+                ...fieldGroupStyle,
+                textAlign: "center",
+                padding: "2rem",
+                backgroundColor: "#0f172a",
+                borderRadius: "8px",
+              }}
+            >
               <button
-                style={{ ...buttonStyle, margin: "0 auto", fontSize: "1.1rem", padding: "1rem 2rem" }}
-                onClick={() => playPreview(`Hello, this is ${basicSettings.aiName}. How can I help you today?`)}
+                style={{
+                  ...buttonStyle,
+                  margin: "0 auto",
+                  fontSize: "1.1rem",
+                  padding: "1rem 2rem",
+                }}
+                onClick={() =>
+                  playPreview(
+                    `Hello, this is ${basicSettings.aiName}. How can I help you today?`
+                  )
+                }
               >
                 <FaPlay /> Click to hear a sample
               </button>
@@ -489,16 +604,35 @@ export default function AIConf() {
         {/* --- Tab 3: Response Settings --- */}
         {activeTab === "response" && (
           <div>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: "1.5rem",
+              }}
+            >
               <h3 style={{ margin: 0, color: "#f8fafc" }}>Intent Responses</h3>
-              <button style={{ ...buttonStyle, marginTop: 0, padding: "0.5rem 1rem" }} onClick={addIntent}>
+              <button
+                style={{ ...buttonStyle, marginTop: 0, padding: "0.5rem 1rem" }}
+                onClick={addIntent}
+              >
                 <FaPlus /> Add Intent
               </button>
             </div>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+            >
               {intents.map((intent) => (
-                <div key={intent.id} style={{ border: "1px solid #334155", borderRadius: "8px", overflow: "hidden" }}>
+                <div
+                  key={intent.id}
+                  style={{
+                    border: "1px solid #334155",
+                    borderRadius: "8px",
+                    overflow: "hidden",
+                  }}
+                >
                   <div
                     style={{
                       padding: "1rem",
@@ -512,34 +646,69 @@ export default function AIConf() {
                     }}
                     onClick={() => toggleIntentExpand(intent.id)}
                   >
-                    <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "1rem",
+                      }}
+                    >
                       {intent.expanded ? <FaChevronUp /> : <FaChevronDown />}
-                      <span style={{ fontWeight: "600", color: "#e2e8f0" }}>{intent.name}</span>
+                      <span style={{ fontWeight: "600", color: "#e2e8f0" }}>
+                        {intent.name}
+                      </span>
                     </div>
-                    <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-                      <span style={{ fontSize: "0.8rem", color: intent.active ? "#4ade80" : "#94a3b8" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "1rem",
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontSize: "0.8rem",
+                          color: intent.active ? "#4ade80" : "#94a3b8",
+                        }}
+                      >
                         {intent.active ? "Active" : "Inactive"}
                       </span>
                     </div>
                   </div>
 
                   {intent.expanded && (
-                    <div style={{ padding: "1.5rem", backgroundColor: "#1e293b" }}>
+                    <div
+                      style={{ padding: "1.5rem", backgroundColor: "#1e293b" }}
+                    >
                       <div style={fieldGroupStyle}>
                         <label style={labelStyle}>Intent Name</label>
                         <input
                           type="text"
                           value={intent.name}
-                          onChange={(e) => handleIntentChange(intent.id, "name", e.target.value)}
+                          onChange={(e) =>
+                            handleIntentChange(
+                              intent.id,
+                              "name",
+                              e.target.value
+                            )
+                          }
                           style={inputStyle}
                         />
                       </div>
                       <div style={fieldGroupStyle}>
-                        <label style={labelStyle}>Keywords (comma-separated)</label>
+                        <label style={labelStyle}>
+                          Keywords (comma-separated)
+                        </label>
                         <input
                           type="text"
                           value={intent.keywords}
-                          onChange={(e) => handleIntentChange(intent.id, "keywords", e.target.value)}
+                          onChange={(e) =>
+                            handleIntentChange(
+                              intent.id,
+                              "keywords",
+                              e.target.value
+                            )
+                          }
                           style={inputStyle}
                         />
                       </div>
@@ -547,21 +716,56 @@ export default function AIConf() {
                         <label style={labelStyle}>Response Template</label>
                         <textarea
                           value={intent.response}
-                          onChange={(e) => handleIntentChange(intent.id, "response", e.target.value)}
+                          onChange={(e) =>
+                            handleIntentChange(
+                              intent.id,
+                              "response",
+                              e.target.value
+                            )
+                          }
                           style={textAreaStyle}
                         />
                       </div>
-                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "1rem", flexWrap: "wrap", gap: "1rem" }}>
-                        <label style={{ display: "flex", alignItems: "center", gap: "0.5rem", color: "#e2e8f0", cursor: "pointer" }}>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          marginTop: "1rem",
+                          flexWrap: "wrap",
+                          gap: "1rem",
+                        }}
+                      >
+                        <label
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "0.5rem",
+                            color: "#e2e8f0",
+                            cursor: "pointer",
+                          }}
+                        >
                           <input
                             type="checkbox"
                             checked={intent.active}
-                            onChange={(e) => handleIntentChange(intent.id, "active", e.target.checked)}
+                            onChange={(e) =>
+                              handleIntentChange(
+                                intent.id,
+                                "active",
+                                e.target.checked
+                              )
+                            }
                           />
                           Enable this intent
                         </label>
                         <button
-                          style={{ ...buttonStyle, backgroundColor: "#ef4444", marginTop: 0, padding: "0.5rem 1rem", fontSize: "0.8rem" }}
+                          style={{
+                            ...buttonStyle,
+                            backgroundColor: "#ef4444",
+                            marginTop: 0,
+                            padding: "0.5rem 1rem",
+                            fontSize: "0.8rem",
+                          }}
                           onClick={() => deleteIntent(intent.id)}
                         >
                           <FaTrash /> Delete
@@ -583,7 +787,9 @@ export default function AIConf() {
         {activeTab === "escalation" && (
           <div>
             <div style={fieldGroupStyle}>
-              <label style={labelStyle}>Confidence Threshold: {escalationRules.confidenceThreshold}%</label>
+              <label style={labelStyle}>
+                Confidence Threshold: {escalationRules.confidenceThreshold}%
+              </label>
               <input
                 type="range"
                 name="confidenceThreshold"
@@ -593,7 +799,13 @@ export default function AIConf() {
                 onChange={handleEscalationChange}
                 style={{ width: "100%", accentColor: "#3b82f6" }}
               />
-              <p style={{ fontSize: "0.8rem", color: "#94a3b8", marginTop: "0.25rem" }}>
+              <p
+                style={{
+                  fontSize: "0.8rem",
+                  color: "#94a3b8",
+                  marginTop: "0.25rem",
+                }}
+              >
                 Transfer to human if AI confidence falls below this percentage.
               </p>
             </div>
@@ -607,13 +819,27 @@ export default function AIConf() {
                 style={textAreaStyle}
                 placeholder="e.g., angry, complaint, rude, urgent"
               />
-              <p style={{ fontSize: "0.8rem", color: "#94a3b8", marginTop: "0.25rem" }}>
+              <p
+                style={{
+                  fontSize: "0.8rem",
+                  color: "#94a3b8",
+                  marginTop: "0.25rem",
+                }}
+              >
                 Any call containing these words will be immediately escalated.
               </p>
             </div>
 
             <div style={fieldGroupStyle}>
-              <label style={{ ...labelStyle, display: "flex", alignItems: "center", gap: "0.5rem", cursor: "pointer" }}>
+              <label
+                style={{
+                  ...labelStyle,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  cursor: "pointer",
+                }}
+              >
                 <input
                   type="checkbox"
                   name="vipDetection"
@@ -623,8 +849,16 @@ export default function AIConf() {
                 Enable VIP Caller Handling
               </label>
               {escalationRules.vipDetection && (
-                <div style={{ marginTop: "1rem", paddingLeft: "1.5rem", borderLeft: "2px solid #3b82f6" }}>
-                  <label style={labelStyle}>VIP Phone Numbers (comma-separated)</label>
+                <div
+                  style={{
+                    marginTop: "1rem",
+                    paddingLeft: "1.5rem",
+                    borderLeft: "2px solid #3b82f6",
+                  }}
+                >
+                  <label style={labelStyle}>
+                    VIP Phone Numbers (comma-separated)
+                  </label>
                   <textarea
                     name="vipNumbers"
                     value={escalationRules.vipNumbers}
@@ -632,7 +866,13 @@ export default function AIConf() {
                     style={textAreaStyle}
                     placeholder="+15550001111, +15550002222"
                   />
-                  <p style={{ fontSize: "0.8rem", color: "#94a3b8", marginTop: "0.25rem" }}>
+                  <p
+                    style={{
+                      fontSize: "0.8rem",
+                      color: "#94a3b8",
+                      marginTop: "0.25rem",
+                    }}
+                  >
                     Default response: "Connecting you to our manager..."
                   </p>
                 </div>
@@ -651,13 +891,21 @@ export default function AIConf() {
                 <option>Never</option>
                 <option>After 2 attempts</option>
               </select>
-              <p style={{ fontSize: "0.8rem", color: "#94a3b8", marginTop: "0.25rem" }}>
+              <p
+                style={{
+                  fontSize: "0.8rem",
+                  color: "#94a3b8",
+                  marginTop: "0.25rem",
+                }}
+              >
                 When human agent is not available, offer a callback.
               </p>
             </div>
 
             <div style={fieldGroupStyle}>
-              <label style={labelStyle}>Maximum Retries Before Escalation</label>
+              <label style={labelStyle}>
+                Maximum Retries Before Escalation
+              </label>
               <input
                 type="number"
                 name="maxRetries"
@@ -667,7 +915,13 @@ export default function AIConf() {
                 min="0"
                 max="5"
               />
-              <p style={{ fontSize: "0.8rem", color: "#94a3b8", marginTop: "0.25rem" }}>
+              <p
+                style={{
+                  fontSize: "0.8rem",
+                  color: "#94a3b8",
+                  marginTop: "0.25rem",
+                }}
+              >
                 If AI can't understand caller, retry N times then escalate.
               </p>
             </div>
