@@ -8,6 +8,7 @@ import Error from "./pages/Error";
 import Root from "./pages/Root";
 import MainOnboarding from "./pages/Onboarding/mainOnBoarding";
 import OverView from "./pages/Dashboard/OverView";
+import AIConf from "./pages/Dashboard/AI-Conf";
 // import { checkAuthLoader } from "./util/AuthCheckerLoader";
 
 const router = createBrowserRouter(
@@ -30,6 +31,10 @@ const router = createBrowserRouter(
             {
               index: true,
               element: <OverView />,
+            },
+            {
+              path: "ai-config",
+              element: <AIConf />,
             },
           ],
         },

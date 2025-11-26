@@ -6,6 +6,11 @@
   background-color: #561e8a; 
   color: #ffffff;          
 }
-svg:hover {
+/* svg:hover {
   cursor: pointer;
-}
+} 
+feh icons tania lazm nn2l deh ll module bs ely 3aizizn feh keda   
+*/
+ ::-webkit-scrollbar{
+  display: none;
+ }
