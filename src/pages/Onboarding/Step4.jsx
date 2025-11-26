@@ -52,7 +52,9 @@ export default function Step4({ setStepValid }) {
   });
 
   const urlPattern = /^https?:\/\/[\w./?=&%\-#]+$/i;
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  // Robust email regex matching strict criteria
+  const emailPattern =
+    /^[a-zA-Z0-9_%+-]+(\.[a-zA-Z0-9_%+-]+)*@[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
   const validation = React.useMemo(() => {
     const issues = {
@@ -65,7 +67,9 @@ export default function Step4({ setStepValid }) {
         !urlPattern.test(integrations.crmWebhook.url || ""),
       emailNotifications:
         integrations.emailNotifications.enabled &&
-        !emailPattern.test(integrations.emailNotifications.email || ""),
+        (!integrations.emailNotifications.email ||
+          integrations.emailNotifications.email.length > 254 ||
+          !emailPattern.test(integrations.emailNotifications.email)),
     };
     return {
       issues,

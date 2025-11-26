@@ -11,6 +11,8 @@ import OverView from "./pages/Dashboard/OverView";
 import AIConf from "./pages/Dashboard/AI-Conf";
 import KnowledgeBase from "./pages/Dashboard/KnowledgeBase";
 import CallHistory from "./pages/Dashboard/CallHistory";
+import Analytics from "./pages/Dashboard/Analytics";
+import Settings from "./pages/Dashboard/Settings";
 // import { checkAuthLoader } from "./util/AuthCheckerLoader";
 
 const router = createBrowserRouter(
@@ -45,6 +47,14 @@ const router = createBrowserRouter(
             {
               path: "history",
               element: <CallHistory />,
+            },
+            {
+              path: "analytics",
+              element: <Analytics />,
+            },
+            {
+              path: "settings",
+              element: <Settings />,
             },
           ],
         },

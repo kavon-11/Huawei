@@ -31,10 +31,22 @@ export default function Step1({ setStepValid }) {
     if (typeof window !== "undefined") {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
     }
-    const isValid = Object.values(formData).every(
+
+    // Robust email regex:
+    // - Local part: allowed chars, no leading/trailing/consecutive dots
+    // - Domain part: labels 1-63 chars, no start/end hyphens, separated by dots
+    const emailPattern =
+      /^[a-zA-Z0-9_%+-]+(\.[a-zA-Z0-9_%+-]+)*@[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+
+    const isEmailValid =
+      formData.businessEmail.length <= 254 &&
+      emailPattern.test(formData.businessEmail);
+
+    const areFieldsFilled = Object.values(formData).every(
       (value) => value && value.toString().trim().length > 0
     );
-    setStepValid?.(isValid);
+
+    setStepValid?.(areFieldsFilled && isEmailValid);
   }, [formData, setStepValid]);
 
   const handleChange = (event) => {
