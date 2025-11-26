@@ -13,6 +13,7 @@ import KnowledgeBase from "./pages/Dashboard/KnowledgeBase";
 import CallHistory from "./pages/Dashboard/CallHistory";
 import Analytics from "./pages/Dashboard/Analytics";
 import Settings from "./pages/Dashboard/Settings";
+import LiveCalls from "./pages/Dashboard/LiveCalls";
 // import { checkAuthLoader } from "./util/AuthCheckerLoader";
 
 const router = createBrowserRouter(
@@ -53,8 +54,8 @@ const router = createBrowserRouter(
               element: <Analytics />,
             },
             {
-              path: "settings",
-              element: <Settings />,
+              path: "live-calls",
+              element: <LiveCalls />,
             },
           ],
         },
@@ -63,6 +64,11 @@ const router = createBrowserRouter(
     {
       path: "/auth",
       element: <Auth />,
+      errorElement: <Error />,
+    },
+    {
+      path: "/settings",
+      element: <Settings />,
       errorElement: <Error />,
     },
   ],
