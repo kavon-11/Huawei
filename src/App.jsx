@@ -3,25 +3,38 @@ import {
   RouterProvider,
   Navigate,
 } from "react-router-dom";
-import Auth  from "./pages/Login";
+import Auth from "./pages/Login";
 import Error from "./pages/Error";
 import Root from "./pages/Root";
 import MainOnboarding from "./pages/Onboarding/mainOnBoarding";
+import OverView from "./pages/Dashboard/OverView";
 // import { checkAuthLoader } from "./util/AuthCheckerLoader";
 
 const router = createBrowserRouter(
-  [ {
+  [
+    {
       path: "/",
       element: <Root />,
       errorElement: <Error />,
       // loader : checkAuthLoader, // lw el user msh logged in yro7 l page el auth
-      children : [{
-        path : "onBoarding",
-        element: <MainOnboarding />
-        // loader : checkAuthLoader
-      }]
-   }
-    ,
+      children: [
+        {
+          path: "onBoarding",
+          element: <MainOnboarding />,
+          // loader : checkAuthLoader
+        },
+        {
+          path: "dashboard",
+          // loader : checkAuthLoader
+          children: [
+            {
+              index: true,
+              element: <OverView />,
+            },
+          ],
+        },
+      ],
+    },
     {
       path: "/auth",
       element: <Auth />,
