@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import SideBar from "./SideBar";
 import Header from "./Header";
+import { Outlet } from "react-router-dom";
 
 export default function RootLayout() {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +31,7 @@ export default function RootLayout() {
         </header>
 
         <main className="flex-1 bg-[#111827] overflow-y-auto p-4">
-          {/* page content */}
+          <Outlet />
         </main>
       </div>
     </div>

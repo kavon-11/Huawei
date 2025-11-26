@@ -1,0 +1,6 @@
+/* Desktop screens and bigger */
+@media (min-width: 1024px) {
+  .step2-container {
+    overflow: hidden !important;
+  }
+}
