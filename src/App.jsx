@@ -1,11 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Auth from "./pages/Login";
+import Auth from "./pages/Auth";
 import Error from "./pages/Error";
 import Root from "./pages/Root";
 import Home from "./pages/Home"; // Import Home
-
-import MainOnboarding from "./pages/Onboarding/mainOnBoarding";
 
 import OverView from "./pages/Dashboard/OverView";
 import AIConf from "./pages/Dashboard/AI-Conf";
@@ -14,6 +12,7 @@ import CallHistory from "./pages/Dashboard/CallHistory";
 import Analytics from "./pages/Dashboard/Analytics";
 import Settings from "./pages/Dashboard/Settings";
 import LiveCalls from "./pages/Dashboard/LiveCalls";
+import MainOnboarding from "./pages/Onboarding/MainOnBoarding";
 
 const router = createBrowserRouter([
   {

@@ -10,7 +10,7 @@ export default function SideBar({ isOpen, setIsOpen }) {
       opacity: 1,
       width: "auto",
       display: "block",
-      transition: { delay: 0.1 },
+      transition: { delay: 0.3 },
     },
   };
 
@@ -200,7 +200,7 @@ export default function SideBar({ isOpen, setIsOpen }) {
                 className="flex flex-col"
               >
                 <p className=" text-sm font-medium text-gray-700 dark:text-gray-200">
-                  John Doe 
+                  John Doe
                 </p>
                 <span className="text-xs text-gray-500 dark:text-gray-400">
                   View Profile
