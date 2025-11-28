@@ -7,7 +7,7 @@ export default function Error() {
         <div style={styles.container}>
             <h1 >Oops!</h1>
             <h1>Sorry, an unexpected error has occurred.</h1>
-            <Link to="/Home" style={styles.link}>
+            <Link to="/dashboard" style={styles.link}>
                 Go back home
             </Link>
         </div>

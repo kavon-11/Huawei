@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Auth from "./pages/Login";
 import Error from "./pages/Error";
 import Root from "./pages/Root";
-import Home from "./pages/Home"; // Import Home
+import Home from "./pages/Home";
 
 import MainOnboarding from "./pages/Onboarding/mainOnBoarding";
 
@@ -17,65 +17,56 @@ import LiveCalls from "./pages/Dashboard/LiveCalls";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/dashboard",
     element: <Root />,
     errorElement: <Error />,
     children: [
       {
-        path: "onBoarding",
-        element: <MainOnboarding />,
+        index: true,
+        element: <OverView />,
       },
       {
-        path: "dashboard",
-        children: [
-          {
-            index: true,
-            element: <OverView />,
-          },
-          {
-            path: "ai-config",
-            element: <AIConf />,
-          },
-          {
-            path: "knowledge",
-            element: <KnowledgeBase />,
-          },
-          {
-            path: "history",
-            element: <CallHistory />,
-          },
-          {
-            path: "analytics",
-            element: <Analytics />,
-          },
-          {
-            path: "live-calls",
-            element: <LiveCalls />,
-          },
-          {
-            path: "*",
-            element: <Error />,
-          },
-        ],
-      },
-      // also root children
-      {
-        path: "auth",
-        element: <Auth />,
+        path: "ai-config",
+        element: <AIConf />,
       },
       {
-        path: "settings",
-        element: <Settings />,
+        path: "knowledge",
+        element: <KnowledgeBase />,
+      },
+      {
+        path: "history",
+        element: <CallHistory />,
+      },
+      {
+        path: "analytics",
+        element: <Analytics />,
+      },
+      {
+        path: "live-calls",
+        element: <LiveCalls />,
+      },
+      {
+        path: "*",
+        element: <Error />,
       },
     ],
   },
+
   {
     path: "auth",
     element: <Auth />,
   },
   {
-    path: "Home",
+    index: true,
     element: <Home />,
+  },
+  {
+    path: "settings",
+    element: <Settings />,
+  },
+  {
+    path: "onBoarding",
+    element: <MainOnboarding />,
   },
 
   // fallback
