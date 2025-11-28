@@ -1,7 +1,4 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Auth from "./pages/Login";
 import Error from "./pages/Error";
@@ -24,10 +21,6 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <Error />,
     children: [
-      {
-        index: true, // Set Home as the default page
-        element: <Home />,
-      },
       {
         path: "onBoarding",
         element: <MainOnboarding />,
@@ -59,9 +52,12 @@ const router = createBrowserRouter([
             path: "live-calls",
             element: <LiveCalls />,
           },
+          {
+            path: "*",
+            element: <Error />,
+          },
         ],
       },
-
       // also root children
       {
         path: "auth",
@@ -71,8 +67,15 @@ const router = createBrowserRouter([
         path: "settings",
         element: <Settings />,
       },
-      
     ],
+  },
+  {
+    path: "auth",
+    element: <Auth />,
+  },
+  {
+    path: "Home",
+    element: <Home />,
   },
 
   // fallback

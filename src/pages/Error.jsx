@@ -7,10 +7,7 @@ export default function Error() {
         <div style={styles.container}>
             <h1 >Oops!</h1>
             <h1>Sorry, an unexpected error has occurred.</h1>
-            <p style={styles.error}>
-                <i>{error.statusText || error.message}</i>
-            </p>
-            <Link to="/" style={styles.link}>
+            <Link to="/Home" style={styles.link}>
                 Go back home
             </Link>
         </div>
