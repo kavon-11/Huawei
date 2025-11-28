@@ -151,26 +151,6 @@ export default function OverView() {
     justifyContent: "space-between",
   };
 
-  const buttonGridStyle = {
-    display: "flex",
-    gap: "1rem",
-    flexWrap: "wrap",
-    marginBottom: "2rem",
-  };
-
-  const actionButtonStyle = {
-    padding: "0.75rem 1.5rem",
-    backgroundColor: "#3b82f6",
-    color: "white",
-    border: "none",
-    borderRadius: "8px",
-    cursor: "pointer",
-    fontWeight: "600",
-    fontSize: "0.9rem",
-    flex: "1 1 auto",
-    textAlign: "center",
-  };
-
   const widgetGridStyle = {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
@@ -276,34 +256,6 @@ export default function OverView() {
             </div>
           </div>
         ))}
-      </div>
-
-      {/* Quick Actions */}
-      <div style={buttonGridStyle}>
-        <button
-          style={actionButtonStyle}
-          onClick={() => navigate("/dashboard/history")}
-        >
-          View Call History
-        </button>
-        <button
-          style={actionButtonStyle}
-          onClick={() => navigate("/dashboard/ai-config")}
-        >
-          Configure AI
-        </button>
-        <button
-          style={actionButtonStyle}
-          onClick={() => navigate("/dashboard/knowledge")}
-        >
-          Manage Knowledge Base
-        </button>
-        <button
-          style={actionButtonStyle}
-          onClick={() => navigate("/dashboard/analytics")}
-        >
-          View Analytics
-        </button>
       </div>
 
       {/* Widgets */}

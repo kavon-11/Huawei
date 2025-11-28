@@ -1,6 +1,13 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
+import {
+  FaThLarge,
+  FaHistory,
+  FaRobot,
+  FaBook,
+  FaChartLine,
+} from "react-icons/fa";
 
 export default function SideBar({ isOpen, setIsOpen }) {
   // Helper to animate text labels
@@ -14,12 +21,40 @@ export default function SideBar({ isOpen, setIsOpen }) {
     },
   };
 
+  const menuItems = [
+    {
+      to: "/dashboard",
+      icon: <FaThLarge className="w-6 h-6" />,
+      label: "Overview",
+    },
+    {
+      to: "/dashboard/history",
+      icon: <FaHistory className="w-6 h-6" />,
+      label: "Call History",
+    },
+    {
+      to: "/dashboard/ai-config",
+      icon: <FaRobot className="w-6 h-6" />,
+      label: "Configure AI",
+    },
+    {
+      to: "/dashboard/knowledge",
+      icon: <FaBook className="w-6 h-6" />,
+      label: "Knowledge Base",
+    },
+    {
+      to: "/dashboard/analytics",
+      icon: <FaChartLine className="w-6 h-6" />,
+      label: "Analytics",
+    },
+  ];
+
   return (
     <div className="flex flex-col h-full py-8 overflow-y-auto overflow-x-hidden bg-white dark:bg-gray-900 w-full">
       <nav className="flex flex-col flex-1 space-y-6 px-2">
         {/* Logo & Toggle Area */}
         <div className="flex items-center justify-between px-2 mb-4">
-          <Link to="/" className="flex items-center gap-2 overflow-hidden">
+          <div className="flex items-center gap-2 overflow-hidden">
             <img
               className="w-auto h-6 flex-shrink-0"
               src="https://merakiui.com/images/logo.svg"
@@ -38,7 +73,7 @@ export default function SideBar({ isOpen, setIsOpen }) {
                 </motion.span>
               )}
             </AnimatePresence>
-          </Link>
+          </div>
 
           {/* Toggle Arrow Button */}
           {isOpen && (
@@ -90,20 +125,7 @@ export default function SideBar({ isOpen, setIsOpen }) {
         )}
 
         {/* Menu Items */}
-        {[
-          {
-            to: "/",
-            iconPath:
-              "M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25",
-            label: "Home",
-          },
-          {
-            to: "/dashboard",
-            iconPath:
-              "M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z",
-            label: "Dashboard",
-          },
-        ].map((item, idx) => (
+        {menuItems.map((item, idx) => (
           <Link
             key={idx}
             to={item.to}
@@ -111,20 +133,7 @@ export default function SideBar({ isOpen, setIsOpen }) {
               !isOpen ? "justify-center" : ""
             }`}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="w-6 h-6 flex-shrink-0"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d={item.iconPath}
-              />
-            </svg>
+            <div className="flex-shrink-0">{item.icon}</div>
             <AnimatePresence>
               {isOpen && (
                 <motion.span
@@ -200,7 +209,7 @@ export default function SideBar({ isOpen, setIsOpen }) {
                 className="flex flex-col"
               >
                 <p className=" text-sm font-medium text-gray-700 dark:text-gray-200">
-                  John Doe 
+                  John Doe
                 </p>
                 <span className="text-xs text-gray-500 dark:text-gray-400">
                   View Profile
