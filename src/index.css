@@ -3,14 +3,135 @@
 @tailwind utilities;
 
 ::selection {
-  background-color: #561e8a; 
-  color: #ffffff;          
+  background-color: #a93e17;
+  color: #ffffff;
 }
+
 /* svg:hover {
   cursor: pointer;
 } 
 feh icons tania lazm nn2l deh ll module bs ely 3aizizn feh keda   
 */
- ::-webkit-scrollbar{
+::-webkit-scrollbar {
   display: none;
- }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes float-slow {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes float-rotate {
+  0% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translateY(-15px) rotate(90deg) scale(1.05);
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg) scale(1);
+  }
+  75% {
+    transform: translateY(-15px) rotate(270deg) scale(1.05);
+  }
+  100% {
+    transform: translateY(0px) rotate(360deg) scale(1);
+  }
+}
+
+@keyframes float-rotate-reverse {
+  0% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translateY(-18px) rotate(-90deg) scale(0.95);
+  }
+  50% {
+    transform: translateY(-25px) rotate(-180deg) scale(1);
+  }
+  75% {
+    transform: translateY(-18px) rotate(-270deg) scale(0.95);
+  }
+  100% {
+    transform: translateY(0px) rotate(-360deg) scale(1);
+  }
+}
+
+@keyframes float-spin {
+  0% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) translateX(5px) rotate(120deg);
+  }
+  50% {
+    transform: translateY(-15px) translateX(0px) rotate(240deg);
+  }
+  75% {
+    transform: translateY(-10px) translateX(-5px) rotate(300deg);
+  }
+  100% {
+    transform: translateY(0px) translateX(0px) rotate(360deg);
+  }
+}
+
+@keyframes float-spin-reverse {
+  0% {
+    transform: translateY(0px) translateX(0px) rotate(360deg);
+  }
+  25% {
+    transform: translateY(-12px) translateX(-8px) rotate(240deg);
+  }
+  50% {
+    transform: translateY(-22px) translateX(0px) rotate(120deg);
+  }
+  75% {
+    transform: translateY(-12px) translateX(8px) rotate(60deg);
+  }
+  100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+
+.animate-float-rotate {
+  animation: float-rotate 8s ease-in-out infinite;
+}
+
+.animate-float-rotate-reverse {
+  animation: float-rotate-reverse 10s ease-in-out infinite;
+}
+
+.animate-float-spin {
+  animation: float-spin 12s ease-in-out infinite;
+}
+
+.animate-float-spin-reverse {
+  animation: float-spin-reverse 9s ease-in-out infinite;
+}

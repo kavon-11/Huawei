@@ -1,0 +1,25 @@
+Brown Color Primary : #A93E17
+Blueish Color Secondary : #15399A
+Body Background DArk Color : #060606
+
+Font : Manrope Extra-Light
+
+General :
+    blob Cursor :
+        https://reactbits.dev/animations/blob-cursor
+
+
+------------
+
+About Us Section :
+
+    Text Fading on reveal :
+        https://reactbits.dev/text-animations/scroll-reveal
+
+
+
+    Count up :
+        https://reactbits.dev/text-animations/count-up
+
+    Cards Stagger Animation by GSAP
+
