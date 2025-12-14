@@ -1,0 +1,76 @@
+import ScrollAnimatedText from "./ScrollAnimatedText";
+import StatCard from "./StatCard";
+import img1 from "../../EchoAIAssets/about-item-image-1.png"
+import img2 from "../../EchoAIAssets/about-item-image-2.png"
+import img3 from "../../EchoAIAssets/about-item-image-3.png"
+import img4 from "../../EchoAIAssets/about-item-image-4.png"
+import {
+  FaCheckCircle,
+  FaProjectDiagram,
+  FaRobot,
+  FaRocket,
+} from "react-icons/fa";
+
+export default function AboutUs() {
+  return (
+    <section
+      className="relative w-full py-24 overflow-hidden"
+      style={{ backgroundColor: "#060606" }}
+    >
+      {/* ABOUT BADGE */}
+      <div className="relative z-10 flex justify-center mb-10">
+        <h1
+          className="
+            inline-flex items-center gap-2
+            font-manrope font-semibold text-[18px]
+            px-8 py-3
+            rounded-full
+            border border-white/10
+            bg-white/5 backdrop-blur-xl
+            shadow-[0_0_20px_rgba(255,255,255,0.05)]
+            text-white
+          "
+        >
+          ✦ About Us ✦
+        </h1>
+      </div>
+
+      {/* MAIN TEXT */}
+      <ScrollAnimatedText />
+
+      {/* STATS GRID */}
+      <div className="relative z-10 max-w-6xl mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <StatCard
+            title="Seamless Integration"
+            end={298}
+            suffix="+"
+            icon={<FaCheckCircle />}
+            image={img1}
+          />
+          <StatCard
+            title="AI Projects Delivered"
+            end={978}
+            suffix="+"
+            icon={<FaProjectDiagram />}
+            image={img2}
+          />
+          <StatCard
+            title="Handled by AI Bots"
+            end={300}
+            suffix="%"
+            icon={<FaRobot />}
+            image={img3}
+          />
+          <StatCard
+            title="Faster Time to Market"
+            end={95}
+            suffix="X"
+            icon={<FaRocket />}
+            image={img4}
+          />
+        </div>
+      </div>
+    </section>
+  );
+}

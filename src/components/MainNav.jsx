@@ -8,7 +8,7 @@ export default function RootLayout() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex h-screen overflow-hidden" data-lenis-prevent>
       {/* Sidebar Wrapper with Framer Motion */}
       <motion.div
         initial={{ width: "4rem" }} // Start collapsed (w-16 equivalent)
@@ -30,7 +30,10 @@ export default function RootLayout() {
           <Header />
         </header>
 
-        <main className="flex-1 bg-[#111827] overflow-y-auto p-4">
+        <main
+          className="flex-1 bg-[#111827] overflow-y-auto p-4"
+          data-lenis-prevent
+        >
           <Outlet />
         </main>
       </div>

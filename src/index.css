@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+body {
+  scroll-behavior: smooth;
+}
+
 ::selection {
   background-color: #a93e17;
   color: #ffffff;
@@ -14,6 +21,10 @@ feh icons tania lazm nn2l deh ll module bs ely 3aizizn feh keda
 */
 ::-webkit-scrollbar {
   display: none;
+}
+body {
+  background-color: black;
+  overflow-x: hidden;
 }
 
 @keyframes float {

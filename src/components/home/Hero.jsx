@@ -10,12 +10,10 @@ export default function Hero() {
       bg-[url('/src/EchoAIAssets/hero-bg.webp')] bg-cover bg-center bg-no-repeat"
       style={{ backgroundColor: "#060606" }}
     >
-      
       <div className="absolute inset-0 bg-gradient-to-br from-[#A93E17]/10 via-transparent to-[#15399A]/20"></div>
 
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/square-bg.png')] opacity-[0.03]"></div>
 
-    
       <Shape1 />
       <Shape2 />
       <Shape3 />
@@ -24,11 +22,11 @@ export default function Hero() {
       {/* Text + Buttons */}
       <div className="relative z-10 max-w-3xl">
         <h1 className="text-white text-5xl md:text-6xl font-bold leading-tight font-manrope group">
-  Transform your business
-  <br />
-  with the{" "}
-  <span
-    className="
+          Transform your business
+          <br />
+          with the{" "}
+          <span
+            className="
       text-transparent 
       bg-clip-text 
       bg-gradient-to-r 
@@ -39,11 +37,10 @@ export default function Hero() {
       group-hover:from-[#A93E17] 
       group-hover:to-[#15399A]
     "
-  >
-    power of AI
-  </span>
-</h1>
-
+          >
+            power of AI
+          </span>
+        </h1>
 
         <p className="text-gray-300 mt-6 text-lg max-w-2xl mx-auto font-manrope">
           In a world where cyberattacks are becoming more sophisticated, your
@@ -74,8 +71,10 @@ export default function Hero() {
             Join Now
           </button>
         </div>
+      </div>
 
-        </div>
+      {/* Gradient fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#060606] via-[#060606]/80 "></div>
     </section>
   );
 }
