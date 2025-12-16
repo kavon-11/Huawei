@@ -10,6 +10,10 @@ import {
   FaRobot,
   FaRocket,
 } from "react-icons/fa";
+import Shape2 from "../shapes/shape2";
+import Shape4 from "../shapes/shape4";
+
+
 
 export default function AboutUs() {
   return (
@@ -36,7 +40,7 @@ export default function AboutUs() {
       </div>
 
       {/* MAIN TEXT */}
-      <ScrollAnimatedText />
+      <ScrollAnimatedText text="Our team of data scientists, engineers, and designers work at the intersection technology and strategy turning complex challenges into simple, AI powered solutions." />
 
       {/* STATS GRID */}
       <div className="relative z-10 max-w-6xl mx-auto px-6">
@@ -71,6 +75,8 @@ export default function AboutUs() {
           />
         </div>
       </div>
+      <Shape2 />
+      <Shape4 />
     </section>
   );
 }

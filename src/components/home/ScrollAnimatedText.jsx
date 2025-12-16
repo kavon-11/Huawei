@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
-function ScrollAnimatedText() {
+function ScrollAnimatedText({text}) {
   const ref = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -9,8 +9,6 @@ function ScrollAnimatedText() {
     offset: ["start 80%", "start 20%"],
   });
 
-  const text =
-    "Our team of data scientists, engineers, and designers work at the intersection technology and strategy turning complex challenges into simple, AI powered solutions.";
   const words = text.split(" ");
 
   return (
