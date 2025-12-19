@@ -5,6 +5,8 @@ import AboutUs from "@/components/home/AboutUs.jsx";
 import Services from "@/components/home/Services.jsx";
 import StickyVideoLayout from "@/components/home/StickyVideoLayout.jsx";
 import FAQ from "@/components/home/FAQ.jsx";
+import Footer from "@/components/home/Footer.jsx";
+
 export default function Home() {
   return (
     <>
@@ -14,8 +16,7 @@ export default function Home() {
       <Services />
       <StickyVideoLayout />
       <FAQ />
-      
-      
+      <Footer />
     </>
   );
 }
