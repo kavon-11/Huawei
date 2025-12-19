@@ -2,6 +2,7 @@ import Shape1 from "../shapes/shape1";
 import Shape2 from "../shapes/shape2";
 import Shape3 from "../shapes/shape3";
 import Shape4 from "../shapes/shape4";
+import GradientText from "../GradientText";
 
 export default function Hero() {
   return (
@@ -21,25 +22,10 @@ export default function Hero() {
 
       {/* Text + Buttons */}
       <div className="relative z-10 max-w-3xl">
-        <h1 className="text-white text-5xl md:text-6xl font-bold leading-tight font-manrope group">
+        <h1 className="text-white text-5xl md:text-6xl font-bold leading-tight font-manrope">
           Transform your business
           <br />
-          with the{" "}
-          <span
-            className="
-      text-transparent 
-      bg-clip-text 
-      bg-gradient-to-r 
-      from-[#15399A] 
-      to-[#A93E17] 
-      transition-all 
-      duration-500 
-      group-hover:from-[#A93E17] 
-      group-hover:to-[#15399A]
-    "
-          >
-            power of AI
-          </span>
+          with the <GradientText>power of AI</GradientText>
         </h1>
 
         <p className="text-gray-300 mt-6 text-lg max-w-2xl mx-auto font-manrope">

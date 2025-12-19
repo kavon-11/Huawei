@@ -120,7 +120,7 @@ export default function MainOnboarding() {
         limit={1}
       />
       <div
-        style={{ maxWidth: "600px", margin: "2rem auto", padding: "0 1rem" }}
+        style={{ maxWidth: "100%", height: "100vh", margin: "2rem auto", padding: "0 1rem" }}
       >
         <ProgressBar value={barValue} />
         <div

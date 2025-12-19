@@ -4,6 +4,7 @@ import { FaBolt, FaLayerGroup, FaRobot } from "react-icons/fa";
 import img1 from "@/EchoAIAssets/service-item-1.png"
 import img2 from "@/EchoAIAssets/service-item-2.png"
 import img3 from "@/EchoAIAssets/service-item-3.png"
+import GradientText from "../GradientText";
 import ScrollAnimatedText from "./ScrollAnimatedText";
 
 export default function Services() {
@@ -43,7 +44,7 @@ export default function Services() {
         "
       >
         AI-driven design services for future{" "}
-        <span className="text-orange-500">innovations</span>
+        <GradientText>innovations</GradientText>
       </motion.h2>
 
       {/* Cards */}
