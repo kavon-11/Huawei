@@ -5,6 +5,8 @@ import img1 from "@/EchoAIAssets/service-item-1.png"
 import img2 from "@/EchoAIAssets/service-item-2.png"
 import img3 from "@/EchoAIAssets/service-item-3.png"
 import GradientText from "../GradientText";
+import Shape4 from "../shapes/shape4";
+
 import ScrollAnimatedText from "./ScrollAnimatedText";
 
 export default function Services() {
@@ -73,6 +75,7 @@ export default function Services() {
           image={img3}
         />
       </div>
+      <Shape4 />
     </section>
   );
 }
