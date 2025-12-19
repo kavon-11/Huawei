@@ -3,6 +3,7 @@ import Shape2 from "../shapes/shape2";
 import Shape3 from "../shapes/shape3";
 import Shape4 from "../shapes/shape4";
 import GradientText from "../GradientText";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
@@ -35,27 +36,16 @@ export default function Hero() {
         </p>
 
         <div className="flex flex-wrap justify-center gap-4 mt-10">
-          <button
-            className="px-7 py-3 rounded-full text-white border-2 transition hover:scale-105 font-manrope font-bold"
-            style={{ borderColor: "#A93E17" }}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.backgroundColor = "#A93E17")
-            }
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.backgroundColor = "transparent")
-            }
-          >
-            Get Started Today
-          </button>
-
-          <button
-            className="px-7 py-3 rounded-full text-white transition hover:scale-105 hover:opacity-90 font-manrope font-bold"
-            style={{
-              background: "linear-gradient(90deg, #15399A 0%, #A93E17 100%)",
-            }}
-          >
-            Join Now
-          </button>
+          <Link to="/auth">
+            <button
+              className="px-7 py-3 rounded-full text-white transition hover:scale-105 font-manrope font-bold"
+              style={{
+                background: "linear-gradient(90deg, #A93E17 0%, #15399A 100%)",
+              }}
+            >
+              Get Started Today
+            </button>
+          </Link>
         </div>
       </div>
 

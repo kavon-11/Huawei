@@ -32,7 +32,6 @@ const faqs = [
 ];
 
 export default function FAQSection() {
-
   const [open, setOpen] = useState(null);
 
   return (
@@ -40,7 +39,6 @@ export default function FAQSection() {
       className="text-white py-28"
       style={{ backgroundColor: "#060606" }}
     >
-        
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
         {/* LEFT — STICKY CONTENT */}
         <div className="sticky top-28 self-start space-y-8">
@@ -52,15 +50,6 @@ export default function FAQSection() {
             Your AI questions, expertly{" "}
             <GradientText>answered here</GradientText>
           </h2>
-
-          <button
-            className="text-white px-6 py-3 rounded-full text-sm font-medium transition-all hover:scale-105"
-            style={{
-              background: "linear-gradient(90deg, #A93E17 0%, #15399A 100%)",
-            }}
-          >
-            View All FAQs
-          </button>
         </div>
 
         {/* RIGHT — FAQ ACCORDION */}
@@ -91,7 +80,7 @@ export default function FAQSection() {
           ))}
         </div>
       </div>
-        <Shape3 />
+      <Shape3 />
     </section>
   );
 }

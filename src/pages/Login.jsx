@@ -1,9 +1,10 @@
-import { NavLink, Link } from "react-router-dom";
-import Loader from "../components/ui/Loader";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import {motion} from 'framer-motion';
-//import { useSelector , useDispatch } from "react-redux";
+import { motion } from "framer-motion";
+import GradientText from "../components/GradientText";
+
 export default function Auth() {
+  const navigate = useNavigate();
   const [isSignUp, setIsSignUp] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
@@ -47,7 +48,8 @@ export default function Auth() {
     e.preventDefault();
     if (validate()) {
       console.log(isSignUp ? "Signing up" : "Logging in", formData);
-      // Add your login/signup logic here
+      // Navigate to dashboard after successful login/signup
+      navigate("/dashboard");
     }
   };
 
@@ -58,156 +60,185 @@ export default function Auth() {
   };
 
   return (
-    <>
-      <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <img
-            alt="Your Company"
-            src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-            className="mx-auto h-10 w-auto"
-          />
-          <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">
-            {isSignUp ? "Create your account" : "Sign in to your account"}
+    <div
+      className="min-h-screen flex items-center justify-center px-6 py-12 font-manrope overflow-auto"
+      style={{ backgroundColor: "#060606" }}
+    >
+      <div className="w-full max-w-md">
+        {/* Header */}
+        <div className="text-center mb-10">
+          <Link to="/" className="inline-block mb-6">
+            <img
+              src="/src/EchoAIAssets/real-impact-image-2.png"
+              alt="Echo AI Logo"
+              className="w-16 h-16 mx-auto object-contain"
+            />
+          </Link>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
+            {isSignUp ? (
+              <>
+                Create your <GradientText>account</GradientText>
+              </>
+            ) : (
+              <>
+                Welcome <GradientText>back</GradientText>
+              </>
+            )}
           </h2>
+          <p className="text-white/70">
+            {isSignUp
+              ? "Start your AI journey today"
+              : "Sign in to access your dashboard"}
+          </p>
         </div>
 
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Form */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-8"
+        >
+          <form onSubmit={handleSubmit} className="space-y-5">
             {isSignUp && (
-              <>
+              <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label
                     htmlFor="firstName"
-                    className="block text-sm/6 font-medium text-gray-100"
+                    className="block text-sm font-medium text-white/90 mb-2"
                   >
                     First Name
                   </label>
-                  <div className="mt-2">
-                    <input
-                      id="firstName"
-                      name="firstName"
-                      type="text"
-                      value={formData.firstName}
-                      onChange={handleChange}
-                      className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
-                    />
-                    {errors.firstName && (
-                      <p className="text-red-500 text-xs mt-1">
-                        {errors.firstName}
-                      </p>
-                    )}
-                  </div>
+                  <input
+                    id="firstName"
+                    name="firstName"
+                    type="text"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    className="w-full rounded-lg bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:border-orange-500/50 focus:ring-2 focus:ring-orange-500/20 transition"
+                    placeholder="John"
+                  />
+                  {errors.firstName && (
+                    <p className="text-red-400 text-xs mt-1">
+                      {errors.firstName}
+                    </p>
+                  )}
                 </div>
                 <div>
                   <label
                     htmlFor="lastName"
-                    className="block text-sm/6 font-medium text-gray-100"
+                    className="block text-sm font-medium text-white/90 mb-2"
                   >
                     Last Name
                   </label>
-                  <div className="mt-2">
-                    <input
-                      id="lastName"
-                      name="lastName"
-                      type="text"
-                      value={formData.lastName}
-                      onChange={handleChange}
-                      className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
-                    />
-                    {errors.lastName && (
-                      <p className="text-red-500 text-xs mt-1">
-                        {errors.lastName}
-                      </p>
-                    )}
-                  </div>
+                  <input
+                    id="lastName"
+                    name="lastName"
+                    type="text"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    className="w-full rounded-lg bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:border-orange-500/50 focus:ring-2 focus:ring-orange-500/20 transition"
+                    placeholder="Doe"
+                  />
+                  {errors.lastName && (
+                    <p className="text-red-400 text-xs mt-1">
+                      {errors.lastName}
+                    </p>
+                  )}
                 </div>
-              </>
+              </div>
             )}
 
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm/6 font-medium text-gray-100"
+                className="block text-sm font-medium text-white/90 mb-2"
               >
                 Email address
               </label>
-              <div className="mt-2">
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
-                />
-                {errors.email && (
-                  <p className="text-red-500 text-xs mt-1">{errors.email}</p>
-                )}
-              </div>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full rounded-lg bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:border-orange-500/50 focus:ring-2 focus:ring-orange-500/20 transition"
+                placeholder="you@example.com"
+              />
+              {errors.email && (
+                <p className="text-red-400 text-xs mt-1">{errors.email}</p>
+              )}
             </div>
 
             <div>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between mb-2">
                 <label
                   htmlFor="password"
-                  className="block text-sm/6 font-medium text-gray-100"
+                  className="block text-sm font-medium text-white/90"
                 >
                   Password
                 </label>
                 {!isSignUp && (
-                  <div className="text-sm">
-                    <Link
-                      to="#"
-                      className="font-semibold text-indigo-400 hover:text-indigo-300"
-                    >
-                      Forgot password?
-                    </Link>
-                  </div>
+                  <Link
+                    to="#"
+                    className="text-sm text-orange-500 hover:text-orange-400 transition"
+                  >
+                    Forgot?
+                  </Link>
                 )}
               </div>
-              <div className="mt-2">
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
-                />
-                {errors.password && (
-                  <p className="text-red-500 text-xs mt-1">{errors.password}</p>
-                )}
-              </div>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                autoComplete="current-password"
+                value={formData.password}
+                onChange={handleChange}
+                className="w-full rounded-lg bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:border-orange-500/50 focus:ring-2 focus:ring-orange-500/20 transition"
+                placeholder="••••••••"
+              />
+              {errors.password && (
+                <p className="text-red-400 text-xs mt-1">{errors.password}</p>
+              )}
             </div>
 
-            <div>
-              <motion.button
-                type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-             >
-                {isSignUp ? "Sign up" : "Sign in"}
-              </motion.button>
-            </div>
-            <div className="text-sm text-center">
-              <motion.button
+            <motion.button
+              type="submit"
+              className="w-full py-3 px-4 rounded-full text-white font-bold text-sm transition-all"
+              style={{
+                background: "linear-gradient(90deg, #A93E17 0%, #15399A 100%)",
+              }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              {isSignUp ? "Create Account" : "Sign In"}
+            </motion.button>
+          </form>
+
+          <div className="mt-6 text-center">
+            <p className="text-white/60 text-sm">
+              {isSignUp ? "Already have an account?" : "Don't have an account?"}{" "}
+              <button
                 type="button"
                 onClick={toggleMode}
-                className="font-semibold text-indigo-400 hover:text-indigo-300 bg-transparent border-none cursor-pointer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-             >
-                {isSignUp
-                  ? "Already have an account ? Sign in"
-                  : "Don't have an account ? Sign up"}
-              </motion.button>
-            </div>
-          </form>
-        </div>
+                className="text-orange-500 hover:text-orange-400 font-semibold transition"
+              >
+                {isSignUp ? "Sign in" : "Sign up"}
+              </button>
+            </p>
+          </div>
+
+          <div className="mt-6 text-center">
+            <Link
+              to="/"
+              className="text-white/60 hover:text-white text-sm transition"
+            >
+              ← Back to Home
+            </Link>
+          </div>
+        </motion.div>
       </div>
-    </>
+    </div>
   );
 }

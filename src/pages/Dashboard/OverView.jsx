@@ -10,6 +10,9 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { FaPhone, FaBullseye, FaCalendarAlt, FaUser } from "react-icons/fa";
+import DashboardCard from "../../components/DashboardCard";
+import Badge from "../../components/Badge";
+import GradientText from "../../components/GradientText";
 
 export default function OverView() {
   const navigate = useNavigate();
@@ -20,7 +23,6 @@ export default function OverView() {
     day: "numeric",
   });
 
-  // Mock Data
   const stats = [
     {
       label: "Calls Today",
@@ -115,299 +117,192 @@ export default function OverView() {
 
   const rawChartData = [65, 72, 68, 75, 82, 85, 87];
   const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-
   const data = days.map((day, index) => ({
     name: day,
     accuracy: rawChartData[index],
   }));
 
-  // Styles
-  const containerStyle = {
-    padding: "2rem",
-    backgroundColor: "#0f172a",
-    minHeight: "100vh",
-    color: "#e2e8f0",
-    fontFamily: "'Inter', sans-serif",
-  };
-
-  const headerStyle = {
-    marginBottom: "2rem",
-  };
-
-  const gridStyle = {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-    gap: "1.5rem",
-    marginBottom: "2rem",
-  };
-
-  const cardStyle = {
-    backgroundColor: "#1e293b",
-    borderRadius: "12px",
-    padding: "1.5rem",
-    border: "1px solid #334155",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-  };
-
-  const widgetGridStyle = {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-    gap: "1.5rem",
-  };
-
-  const widgetStyle = {
-    backgroundColor: "#1e293b",
-    borderRadius: "12px",
-    padding: "1.5rem",
-    border: "1px solid #334155",
-  };
-
-  const tableStyle = {
-    width: "100%",
-    borderCollapse: "collapse",
-    fontSize: "0.85rem",
-  };
-
-  const thStyle = {
-    textAlign: "left",
-    padding: "0.75rem 0",
-    color: "#94a3b8",
-    borderBottom: "1px solid #334155",
-  };
-
-  const tdStyle = {
-    padding: "0.75rem 0",
-    borderBottom: "1px solid #334155",
-    color: "#e2e8f0",
-  };
-
   return (
-    <div style={containerStyle}>
-      <header style={headerStyle}>
-        <h1
-          style={{
-            fontSize: "1.8rem",
-            fontWeight: "700",
-            color: "#f8fafc",
-            margin: 0,
-          }}
-        >
-          Welcome back, kokoooo
+    <div className="p-8 font-manrope">
+      {/* Header */}
+      <header className="mb-8">
+        <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
+          Welcome back, <GradientText>User</GradientText>
         </h1>
-        <p style={{ color: "#94a3b8", marginTop: "0.5rem" }}>{currentDate}</p>
+        <p className="text-white/60">{currentDate}</p>
       </header>
 
       {/* Stats Grid */}
-      <div style={gridStyle}>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         {stats.map((stat, index) => (
-          <div key={index} style={cardStyle}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "flex-start",
-              }}
-            >
+          <DashboardCard key={index}>
+            <div className="flex justify-between items-start mb-4">
               <div>
-                <p style={{ color: "#94a3b8", fontSize: "0.85rem", margin: 0 }}>
-                  {stat.label}
-                </p>
-                <h2
-                  style={{
-                    fontSize: "2rem",
-                    fontWeight: "700",
-                    margin: "0.5rem 0",
-                    color: "#f8fafc",
-                  }}
-                >
-                  {stat.value}
-                </h2>
+                <p className="text-white/60 text-sm mb-1">{stat.label}</p>
+                <h2 className="text-3xl font-bold text-white">{stat.value}</h2>
               </div>
-              <span
-                style={{
-                  fontSize: "1.2rem",
-                  backgroundColor: "#334155",
-                  padding: "0.75rem",
-                  borderRadius: "8px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "#60a5fa",
-                }}
-              >
+              <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500/20 to-blue-500/20 text-orange-500 text-xl">
                 {stat.icon}
-              </span>
+              </div>
             </div>
-            <div style={{ fontSize: "0.8rem", color: "#cbd5f5" }}>
+            <div className="text-sm">
               {stat.trend && (
                 <span
-                  style={{
-                    color: stat.trendUp ? "#4ade80" : "#f87171",
-                    fontWeight: "600",
-                    marginRight: "0.25rem",
-                  }}
+                  className={`font-semibold mr-1 ${
+                    stat.trendUp ? "text-green-400" : "text-red-400"
+                  }`}
                 >
                   {stat.trendUp ? "↑" : "↓"} {stat.trend}
                 </span>
               )}
-              {stat.detail}
+              <span className="text-white/50">{stat.detail}</span>
             </div>
-          </div>
+          </DashboardCard>
         ))}
       </div>
 
-      {/* Widgets */}
-      <div style={widgetGridStyle}>
+      {/* Content Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
         {/* Recent Calls */}
-        <div style={widgetStyle}>
-          <h3 style={{ margin: "0 0 1rem 0", color: "#f8fafc" }}>
+        <DashboardCard className="lg:col-span-1 xl:col-span-2">
+          <h3 className="text-xl font-semibold text-white mb-4">
             Recent Calls
           </h3>
-          <table style={tableStyle}>
-            <thead>
-              <tr>
-                <th style={thStyle}>Time</th>
-                <th style={thStyle}>Caller</th>
-                <th style={thStyle}>Intent</th>
-                <th style={thStyle}>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {recentCalls.map((call, i) => (
-                <tr
-                  key={i}
-                  style={{ cursor: "pointer" }}
-                  onClick={() => navigate("/dashboard/history")}
-                >
-                  <td style={tdStyle}>{call.time}</td>
-                  <td style={tdStyle}>{call.caller}</td>
-                  <td style={tdStyle}>{call.intent}</td>
-                  <td style={tdStyle}>
-                    <span
-                      style={{
-                        padding: "0.2rem 0.5rem",
-                        borderRadius: "4px",
-                        backgroundColor:
-                          call.status === "Completed"
-                            ? "rgba(74, 222, 128, 0.1)"
-                            : "rgba(248, 113, 113, 0.1)",
-                        color:
-                          call.status === "Completed" ? "#4ade80" : "#f87171",
-                        fontSize: "0.75rem",
-                      }}
-                    >
-                      {call.status}
-                    </span>
-                  </td>
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="text-left border-b border-white/10">
+                  <th className="pb-3 text-white/60 font-medium text-sm">
+                    Time
+                  </th>
+                  <th className="pb-3 text-white/60 font-medium text-sm">
+                    Caller
+                  </th>
+                  <th className="pb-3 text-white/60 font-medium text-sm">
+                    Intent
+                  </th>
+                  <th className="pb-3 text-white/60 font-medium text-sm">
+                    Status
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {recentCalls.map((call, i) => (
+                  <tr
+                    key={i}
+                    className="border-b border-white/5 hover:bg-white/5 cursor-pointer transition"
+                    onClick={() => navigate("/dashboard/history")}
+                  >
+                    <td className="py-3 text-white/80 text-sm">{call.time}</td>
+                    <td className="py-3 text-white/80 text-sm">
+                      {call.caller}
+                    </td>
+                    <td className="py-3 text-white/80 text-sm">
+                      {call.intent}
+                    </td>
+                    <td className="py-3">
+                      <Badge
+                        variant={
+                          call.status === "Completed" ? "success" : "danger"
+                        }
+                      >
+                        {call.status}
+                      </Badge>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </DashboardCard>
 
         {/* Upcoming Appointments */}
-        <div style={widgetStyle}>
-          <h3 style={{ margin: "0 0 1rem 0", color: "#f8fafc" }}>
+        <DashboardCard>
+          <h3 className="text-xl font-semibold text-white mb-4">
             Upcoming Appointments
           </h3>
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
-          >
+          <div className="space-y-4">
             {upcomingAppointments.map((apt, i) => (
               <div
                 key={i}
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  borderBottom: "1px solid #334155",
-                  paddingBottom: "0.75rem",
-                }}
+                className="flex justify-between items-center pb-4 border-b border-white/10 last:border-0"
               >
                 <div>
-                  <p style={{ margin: 0, fontWeight: "600", color: "#e2e8f0" }}>
-                    {apt.name}
-                  </p>
-                  <p
-                    style={{
-                      margin: "0.25rem 0 0",
-                      fontSize: "0.8rem",
-                      color: "#94a3b8",
-                    }}
-                  >
+                  <p className="font-semibold text-white">{apt.name}</p>
+                  <p className="text-sm text-white/60 mt-1">
                     {apt.time} • {apt.type}
                   </p>
                 </div>
-                <span
-                  style={{
-                    fontSize: "0.75rem",
-                    color: apt.status === "Confirmed" ? "#4ade80" : "#fbbf24",
-                  }}
+                <Badge
+                  variant={apt.status === "Confirmed" ? "success" : "warning"}
                 >
                   {apt.status}
-                </span>
+                </Badge>
               </div>
             ))}
           </div>
-        </div>
+        </DashboardCard>
 
         {/* AI Performance Chart */}
-        <div style={widgetStyle}>
-          <h3 style={{ margin: "0 0 1rem 0", color: "#f8fafc" }}>
+        <DashboardCard className="lg:col-span-2 xl:col-span-3">
+          <h3 className="text-xl font-semibold text-white mb-4">
             AI Accuracy (Last 7 Days)
           </h3>
-          <div style={{ width: "100%", height: "200px" }}>
+          <div className="w-full h-64">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={data}>
                 <CartesianGrid
                   strokeDasharray="3 3"
-                  stroke="#334155"
+                  stroke="rgba(255,255,255,0.1)"
                   vertical={false}
                 />
                 <XAxis
                   dataKey="name"
-                  stroke="#94a3b8"
-                  tick={{ fill: "#94a3b8", fontSize: 12 }}
+                  stroke="rgba(255,255,255,0.5)"
+                  tick={{ fill: "rgba(255,255,255,0.6)", fontSize: 12 }}
                   tickLine={false}
                   axisLine={false}
-                  dy={10}
                 />
                 <YAxis
-                  stroke="#94a3b8"
-                  tick={{ fill: "#94a3b8", fontSize: 12 }}
+                  stroke="rgba(255,255,255,0.5)"
+                  tick={{ fill: "rgba(255,255,255,0.6)", fontSize: 12 }}
                   tickLine={false}
                   axisLine={false}
                   domain={[0, 100]}
                 />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: "#1e293b",
-                    border: "1px solid #334155",
+                    backgroundColor: "rgba(0,0,0,0.9)",
+                    border: "1px solid rgba(255,255,255,0.1)",
                     borderRadius: "8px",
-                    color: "#f8fafc",
+                    color: "#fff",
                   }}
-                  itemStyle={{ color: "#3b82f6" }}
-                  cursor={{ stroke: "#334155", strokeWidth: 1 }}
+                  itemStyle={{ color: "#A93E17" }}
+                  cursor={{ stroke: "rgba(255,255,255,0.1)", strokeWidth: 1 }}
                 />
                 <Line
                   type="monotone"
                   dataKey="accuracy"
-                  stroke="#3b82f6"
+                  stroke="url(#gradient)"
                   strokeWidth={3}
                   dot={{
-                    fill: "#3b82f6",
-                    stroke: "#1e293b",
+                    fill: "#A93E17",
+                    stroke: "#060606",
                     strokeWidth: 2,
                     r: 4,
                   }}
-                  activeDot={{ r: 6, fill: "#3b82f6" }}
+                  activeDot={{ r: 6, fill: "#A93E17" }}
                 />
+                <defs>
+                  <linearGradient id="gradient" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stopColor="#A93E17" />
+                    <stop offset="100%" stopColor="#15399A" />
+                  </linearGradient>
+                </defs>
               </LineChart>
             </ResponsiveContainer>
           </div>
-        </div>
+        </DashboardCard>
       </div>
     </div>
   );

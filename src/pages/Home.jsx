@@ -12,11 +12,19 @@ export default function Home() {
     <>
       <Header />
       <Hero />
-      <AboutUs />
-      <Services />
+      <div id="about">
+        <AboutUs />
+      </div>
+      <div id="services">
+        <Services />
+      </div>
       <StickyVideoLayout />
-      <FAQ />
-      <Footer />
+      <div id="faq">
+        <FAQ />
+      </div>
+      <div id="contact">
+        <Footer />
+      </div>
     </>
   );
 }

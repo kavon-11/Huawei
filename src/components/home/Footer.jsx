@@ -1,5 +1,6 @@
 import GradientText from "../GradientText";
 import footerBg from "@/EchoAIAssets/stylish-glowing-digital-red-lines-banner_1017-23964.avif";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -25,14 +26,17 @@ export default function Footer() {
           </p>
 
           <div className="flex justify-center mt-8">
-            <button
-              className="px-6 py-3 text-sm font-bold tracking-wide text-white capitalize transition-all duration-300 transform rounded-full hover:scale-105"
-              style={{
-                background: "linear-gradient(90deg, #A93E17 0%, #15399A 100%)",
-              }}
-            >
-              Get Started
-            </button>
+            <Link to="/auth">
+              <button
+                className="px-6 py-3 text-sm font-bold tracking-wide text-white capitalize transition-all duration-300 transform rounded-full hover:scale-105"
+                style={{
+                  background:
+                    "linear-gradient(90deg, #A93E17 0%, #15399A 100%)",
+                }}
+              >
+                Get Started
+              </button>
+            </Link>
           </div>
         </div>
 
@@ -44,13 +48,13 @@ export default function Footer() {
           </p>
 
           <div className="flex mt-3 -mx-2 sm:mt-0">
-            <a
-              href="#"
+            <Link
+              to="/dashboard"
               className="mx-2 text-sm text-white/60 transition-colors duration-300 hover:text-white"
-              aria-label="Teams"
+              aria-label="Dashboard"
             >
-              Teams
-            </a>
+              Dashboard
+            </Link>
 
             <a
               href="#"
@@ -63,9 +67,9 @@ export default function Footer() {
             <a
               href="#"
               className="mx-2 text-sm text-white/60 transition-colors duration-300 hover:text-white"
-              aria-label="Cookies"
+              aria-label="Terms"
             >
-              Cookies
+              Terms
             </a>
           </div>
         </div>
