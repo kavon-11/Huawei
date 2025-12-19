@@ -1,9 +1,10 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import StatCard from "./StatCard";
 import { FaBolt, FaLayerGroup, FaRobot } from "react-icons/fa";
-import img1 from "@/EchoAIAssets/service-item-1.png"
-import img2 from "@/EchoAIAssets/service-item-2.png"
-import img3 from "@/EchoAIAssets/service-item-3.png"
+import img1 from "@/EchoAIAssets/service-item-1.png";
+import img2 from "@/EchoAIAssets/service-item-2.png";
+import img3 from "@/EchoAIAssets/service-item-3.png";
+import servicesBg from "@/EchoAIAssets/gradient-abstract-wireframe-background_23-2149003418.avif";
 import GradientText from "../GradientText";
 import Shape4 from "../shapes/shape4";
 
@@ -18,11 +19,17 @@ export default function Services() {
 
   return (
     <section
-      className="relative w-full py-32 px-6"
-      style={{ backgroundColor: "#060606" }}
+      className="relative w-full py-32 px-6 bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundColor: "#060606",
+        backgroundImage: `url(${servicesBg})`,
+      }}
     >
+      {/* Gradient overlay for smooth blend */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#060606] via-black/40 to-[#060606]"></div>
+
       {/* Badge */}
-      <div className="flex justify-center mb-6">
+      <div className="relative z-10 flex justify-center mb-6">
         <span
           className="
             inline-flex items-center gap-2
@@ -40,6 +47,7 @@ export default function Services() {
       <motion.h2
         style={{ opacity, fontWeight }}
         className="
+          relative z-10
           text-center text-4xl md:text-5xl
           font-manrope text-white
           max-w-3xl mx-auto mb-20
@@ -50,7 +58,7 @@ export default function Services() {
       </motion.h2>
 
       {/* Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
         <StatCard
           title="AI Strategy & Consulting"
           end={120}

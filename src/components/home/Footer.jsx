@@ -1,12 +1,18 @@
 import GradientText from "../GradientText";
+import footerBg from "@/EchoAIAssets/stylish-glowing-digital-red-lines-banner_1017-23964.avif";
 
 export default function Footer() {
   return (
     <footer
-      className="text-white py-16 font-manrope"
-      style={{ backgroundColor: "#060606" }}
+      className="relative text-white py-16 font-manrope bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundColor: "#060606",
+        backgroundImage: `url(${footerBg})`,
+      }}
     >
-      <div className="container px-6 py-8 mx-auto">
+      {/* Gradient overlay for smooth blend */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#060606] via-black/40 to-[#060606]"></div>
+      <div className="container px-6 py-8 mx-auto relative z-10">
         <div className="flex flex-col items-center text-center">
           <h2 className="text-3xl md:text-4xl font-bold">
             Transform your business with{" "}
