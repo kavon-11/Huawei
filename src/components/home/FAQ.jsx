@@ -2,6 +2,7 @@ import GradientText from "../GradientText";
 import { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import Shape3 from "../shapes/shape3";
+import SectionBadge from "../SectionBadge";
 
 const faqs = [
   {
@@ -42,9 +43,7 @@ export default function FAQSection() {
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
         {/* LEFT — STICKY CONTENT */}
         <div className="sticky top-28 self-start space-y-8">
-          <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 text-sm text-white/80">
-            ✦ FAQ’s ✦
-          </span>
+          <SectionBadge text="FAQ" align="left" />
 
           <h2 className="text-4xl font-semibold leading-tight">
             Your AI questions, expertly{" "}
