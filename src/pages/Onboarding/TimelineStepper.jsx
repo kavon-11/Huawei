@@ -1,140 +1,93 @@
 import { FaQuestionCircle } from "react-icons/fa";
 
-export default function TimelineStepper() {
+export default function TimelineStepper({
+  currentStep = 1,
+  completedSteps = [],
+}) {
+  const steps = [
+    {
+      title: "Choose a shop system",
+      description: "What is the system of your store",
+    },
+    {
+      title: "Provide Industry",
+      description: "What is your industry of store",
+    },
+    {
+      title: "Provide domain",
+      description: "Provide your primary domain",
+    },
+    {
+      title: "Connect google accounts",
+      description: "Google ads, google analytics, google tag manager, etc...",
+    },
+    {
+      title: "Add product url",
+      description: "Dummy text of the printing",
+    },
+  ];
+
   return (
     <div className="flex flex-col justify-between ">
-      <ol class="relative text-body border-s border-default mt-32 h-fit mx-16">
-        <li class="mb-10 ms-7">
-          <span class="absolute flex items-center justify-center w-8 h-8 text-fg-success-strong bg-success-soft rounded-full -start-4 ring-4 ring-buffer">
-            <svg
-              class="w-5 h-5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="none"
-              viewBox="0 0 24 24"
+      <ol className="relative border-s border-gray-200 mt-32 h-fit mx-16">
+        {steps.map((step, idx) => {
+          const stepNumber = idx + 1;
+          const isCurrent = currentStep === stepNumber;
+          const isCompleted = completedSteps.includes(stepNumber);
+
+          const itemOpacity =
+            isCurrent || isCompleted ? "opacity-100" : "opacity-50";
+
+          const circleClass = isCompleted
+            ? "bg-green-500 text-white"
+            : isCurrent
+            ? "bg-black text-white"
+            : "bg-gray-300 text-gray-900";
+
+          return (
+            <li
+              key={step.title}
+              className={`${
+                idx === steps.length - 1 ? "" : "mb-10"
+              } ms-7 ${itemOpacity}`}
             >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M3 7v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2H5a2 2 0 0 0-2-2Z"
-              />
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M8 5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2H8V5Z"
-              />
-            </svg>
-          </span>
-          <h3 class="font-medium leading-tight">Choose a shop system</h3>
-          <p class="text-sm">What is the system of your store</p>
-        </li>
-        <li class="mb-10 ms-7">
-          <span class="absolute flex items-center justify-center w-8 h-8 bg-neutral-tertiary text-body rounded-full -start-4 ring-4 ring-buffer">
-            <svg
-              class="w-5 h-5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M3 7v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2H5a2 2 0 0 0-2-2Z"
-              />
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M8 5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2H8V5Z"
-              />
-            </svg>
-          </span>
-          <h3 class="font-medium leading-tight">Provide Industry</h3>
-          <p class="text-sm">What is your industry of store</p>
-        </li>
-        <li class="mb-10 ms-7">
-          <span class="absolute flex items-center justify-center w-8 h-8 bg-neutral-tertiary text-body rounded-full -start-4 ring-4 ring-buffer">
-            <svg
-              class="w-5 h-5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
-              />
-            </svg>
-          </span>
-          <h3 class="font-medium leading-tight">Provide domain</h3>
-          <p class="text-sm">Provide your primary domain</p>
-        </li>
-        <li class="mb-10 ms-7">
-          <span class="absolute flex items-center justify-center w-8 h-8 bg-neutral-tertiary text-body rounded-full -start-4 ring-4 ring-buffer">
-            <svg
-              class="w-5 h-5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
-              />
-            </svg>
-          </span>
-          <h3 class="font-medium leading-tight">Connect google accounts</h3>
-          <p class="text-sm">
-            Google ads, google analytics, google tag manager, etc...
-          </p>
-        </li>
-        <li class="ms-7">
-          <span class="absolute flex items-center justify-center w-8 h-8 bg-neutral-tertiary text-body rounded-full -start-4 ring-4 ring-buffer">
-            <svg
-              class="w-5 h-5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
-              />
-            </svg>
-          </span>
-          <h3 class="font-medium leading-tight">Add product url</h3>
-          <p class="text-sm">Dummy text of the printing</p>
-        </li>
+              <span
+                className={`absolute flex items-center justify-center w-8 h-8 ${circleClass} rounded-full -start-4 ring-4 ring-white`}
+              >
+                {isCompleted ? (
+                  <svg
+                    className="w-5 h-5"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M5 11.917 9.724 16.5 19 7.5"
+                    />
+                  </svg>
+                ) : (
+                  <span className="text-sm font-medium">{stepNumber}</span>
+                )}
+              </span>
+
+              <h3
+                className={`${
+                  isCurrent ? "font-semibold" : "font-medium"
+                } leading-tight`}
+              >
+                {step.title}
+              </h3>
+              <p className="text-sm">{step.description}</p>
+            </li>
+          );
+        })}
       </ol>
 
       {/* Contact Us */}
