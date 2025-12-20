@@ -2,6 +2,7 @@ export default function Step3({ data, updateSectionField }) {
   const caps = data?.onboardingCapabilities ?? {};
   const routing = data?.callRoutingPolicy ?? {};
   const goals = data?.callGoalsAndCaptureRules ?? {};
+  const telephony = data?.telephony ?? {}; // NEW: Telephony state
 
   const mainOutcomes = goals.mainOutcomes ?? {};
   const requiredFields = goals.requiredFields ?? {};
@@ -103,6 +104,73 @@ export default function Step3({ data, updateSectionField }) {
               className="h-4 w-4"
             />
           </label>
+        </div>
+      </div>
+
+      {/* NEW: Telephony Section */}
+      <div>
+        <h4 className="text-sm font-medium text-gray-700 mb-3">
+          Telephony setup (brief)
+        </h4>
+        <p className="text-xs text-gray-500 mb-4">
+          You'll complete this in Settings → Telephony after onboarding. For
+          now, select your preferred provider.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Preferred provider
+            </label>
+            <select
+              value={telephony.provider ?? "twilio"}
+              onChange={(e) =>
+                updateSectionField("telephony", "provider", e.target.value)
+              }
+              className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm focus:outline-none focus:border-black transition"
+            >
+              <option value="twilio">Twilio</option>
+              <option value="telnyx">Telnyx</option>
+              <option value="other-sip">Other (SIP)</option>
+            </select>
+            <p className="text-xs text-gray-500 mt-2">
+              We'll guide you through connecting your numbers after this step.
+            </p>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Allow SMS follow-up?
+            </label>
+            <div className="flex items-center gap-4">
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="smsFollowUp"
+                  checked={Boolean(telephony.allowSmsFollowUp)}
+                  onChange={() =>
+                    updateSectionField("telephony", "allowSmsFollowUp", true)
+                  }
+                  className="h-4 w-4"
+                />
+                <span className="text-sm">Yes</span>
+              </label>
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="smsFollowUp"
+                  checked={!Boolean(telephony.allowSmsFollowUp)}
+                  onChange={() =>
+                    updateSectionField("telephony", "allowSmsFollowUp", false)
+                  }
+                  className="h-4 w-4"
+                />
+                <span className="text-sm">No</span>
+              </label>
+            </div>
+            <p className="text-xs text-gray-500 mt-2">
+              Enable SMS follow-ups to callers after voicemail or missed calls.
+            </p>
+          </div>
         </div>
       </div>
 

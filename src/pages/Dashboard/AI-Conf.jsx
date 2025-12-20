@@ -91,6 +91,32 @@ export default function AIConf() {
     maxRetries: 2,
   });
 
+  // --- NEW: Tab 5: Call Goals & Capture Rules State ---
+  const [callGoals, setCallGoals] = useState({
+    mainOutcomes: {
+      leadCapture: true,
+      appointmentBooking: false,
+      supportTriage: false,
+      faqsOnly: false,
+    },
+    requiredFields: {
+      name: true,
+      phone: true,
+      email: false,
+      reasonForCall: true,
+      budget: false,
+    },
+    neverDoRules:
+      "Do not provide medical advice, do not confirm financial terms without a manager.",
+    escalationConditions: {
+      angryCaller: true,
+      legalIssue: true,
+      emergency: true,
+      vipNumbers: false,
+    },
+    vipNumbers: "+2010...",
+  });
+
   // --- Handlers ---
 
   const handleBasicChange = (e) => {
@@ -154,6 +180,22 @@ export default function AIConf() {
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
+  };
+
+  // NEW: Handler for call goals
+  const handleCallGoalsChange = (section, key, value) => {
+    if (
+      section === "mainOutcomes" ||
+      section === "requiredFields" ||
+      section === "escalationConditions"
+    ) {
+      setCallGoals((prev) => ({
+        ...prev,
+        [section]: { ...prev[section], [key]: value },
+      }));
+    } else {
+      setCallGoals((prev) => ({ ...prev, [section]: value }));
+    }
   };
 
   const playPreview = (text) => {
@@ -304,13 +346,16 @@ export default function AIConf() {
 
       {/* Tabs */}
       <div style={tabContainerStyle}>
-        {["basic", "voice", "response", "escalation"].map((tab) => (
+        {["basic", "voice", "response", "goals", "escalation"].map((tab) => (
           <button
             key={tab}
             style={tabStyle(activeTab === tab)}
             onClick={() => setActiveTab(tab)}
           >
-            {tab.charAt(0).toUpperCase() + tab.slice(1)} Settings
+            {tab === "goals"
+              ? "Call Goals"
+              : tab.charAt(0).toUpperCase() + tab.slice(1)}{" "}
+            Settings
           </button>
         ))}
       </div>
@@ -783,7 +828,240 @@ export default function AIConf() {
           </div>
         )}
 
-        {/* --- Tab 4: Escalation Rules --- */}
+        {/* --- NEW: Tab - Call Goals --- */}
+        {activeTab === "goals" && (
+          <div>
+            <div style={fieldGroupStyle}>
+              <h3 style={{ color: "#f8fafc", marginBottom: "1rem" }}>
+                Main Call Outcomes
+              </h3>
+              <p
+                style={{
+                  fontSize: "0.85rem",
+                  color: "#94a3b8",
+                  marginBottom: "1rem",
+                }}
+              >
+                Select what this agent should focus on during calls.
+              </p>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "1rem",
+                }}
+              >
+                {[
+                  "leadCapture",
+                  "appointmentBooking",
+                  "supportTriage",
+                  "faqsOnly",
+                ].map((outcome) => (
+                  <label
+                    key={outcome}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.75rem",
+                      padding: "0.75rem",
+                      border: "1px solid #334155",
+                      borderRadius: "6px",
+                      cursor: "pointer",
+                      color: "#e2e8f0",
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={callGoals.mainOutcomes[outcome]}
+                      onChange={(e) =>
+                        handleCallGoalsChange(
+                          "mainOutcomes",
+                          outcome,
+                          e.target.checked
+                        )
+                      }
+                      style={{
+                        width: "18px",
+                        height: "18px",
+                        cursor: "pointer",
+                      }}
+                    />
+                    <span style={{ fontWeight: "500" }}>
+                      {outcome === "leadCapture"
+                        ? "Lead Capture"
+                        : outcome === "appointmentBooking"
+                        ? "Appointment Booking"
+                        : outcome === "supportTriage"
+                        ? "Support Triage"
+                        : "FAQs Only"}
+                    </span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div style={fieldGroupStyle}>
+              <h3 style={{ color: "#f8fafc", marginBottom: "1rem" }}>
+                Required Fields to Collect
+              </h3>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "1rem",
+                }}
+              >
+                {["name", "phone", "email", "reasonForCall", "budget"].map(
+                  (field) => (
+                    <label
+                      key={field}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.75rem",
+                        padding: "0.75rem",
+                        border: "1px solid #334155",
+                        borderRadius: "6px",
+                        cursor: "pointer",
+                        color: "#e2e8f0",
+                      }}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={callGoals.requiredFields[field]}
+                        onChange={(e) =>
+                          handleCallGoalsChange(
+                            "requiredFields",
+                            field,
+                            e.target.checked
+                          )
+                        }
+                        style={{
+                          width: "18px",
+                          height: "18px",
+                          cursor: "pointer",
+                        }}
+                      />
+                      <span style={{ fontWeight: "500" }}>
+                        {field === "reasonForCall"
+                          ? "Reason for Call"
+                          : field.charAt(0).toUpperCase() + field.slice(1)}
+                      </span>
+                    </label>
+                  )
+                )}
+              </div>
+              <p
+                style={{
+                  fontSize: "0.8rem",
+                  color: "#94a3b8",
+                  marginTop: "1rem",
+                }}
+              >
+                The AI will ask for these fields during the call.
+              </p>
+            </div>
+
+            <div style={fieldGroupStyle}>
+              <label style={labelStyle}>Rules: Never Do (optional)</label>
+              <textarea
+                value={callGoals.neverDoRules}
+                onChange={(e) =>
+                  handleCallGoalsChange("neverDoRules", null, e.target.value)
+                }
+                style={textAreaStyle}
+                rows={4}
+                placeholder="Topics or actions the AI must avoid, e.g. 'Never offer discounts', 'Don't confirm medical diagnoses'"
+              />
+            </div>
+
+            <div style={fieldGroupStyle}>
+              <h3 style={{ color: "#f8fafc", marginBottom: "1rem" }}>
+                Escalation Triggers
+              </h3>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "1rem",
+                }}
+              >
+                {["angryCaller", "legalIssue", "emergency", "vipNumbers"].map(
+                  (trigger) => (
+                    <label
+                      key={trigger}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.75rem",
+                        padding: "0.75rem",
+                        border: "1px solid #334155",
+                        borderRadius: "6px",
+                        cursor: "pointer",
+                        color: "#e2e8f0",
+                      }}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={callGoals.escalationConditions[trigger]}
+                        onChange={(e) =>
+                          handleCallGoalsChange(
+                            "escalationConditions",
+                            trigger,
+                            e.target.checked
+                          )
+                        }
+                        style={{
+                          width: "18px",
+                          height: "18px",
+                          cursor: "pointer",
+                        }}
+                      />
+                      <span style={{ fontWeight: "500" }}>
+                        {trigger === "angryCaller"
+                          ? "Angry Caller"
+                          : trigger === "legalIssue"
+                          ? "Legal Issue"
+                          : trigger === "emergency"
+                          ? "Emergency"
+                          : "VIP Numbers"}
+                      </span>
+                    </label>
+                  )
+                )}
+              </div>
+            </div>
+
+            {callGoals.escalationConditions.vipNumbers && (
+              <div
+                style={{
+                  ...fieldGroupStyle,
+                  paddingLeft: "1.5rem",
+                  borderLeft: "2px solid #3b82f6",
+                }}
+              >
+                <label style={labelStyle}>
+                  VIP Phone Numbers (one per line)
+                </label>
+                <textarea
+                  value={callGoals.vipNumbers}
+                  onChange={(e) =>
+                    handleCallGoalsChange("vipNumbers", null, e.target.value)
+                  }
+                  style={textAreaStyle}
+                  rows={3}
+                  placeholder="+2010...\n+201..."
+                />
+              </div>
+            )}
+
+            <button style={buttonStyle}>
+              <FaSave /> Save Call Goals
+            </button>
+          </div>
+        )}
+
+        {/* --- Tab 5: Escalation Rules --- */}
         {activeTab === "escalation" && (
           <div>
             <div style={fieldGroupStyle}>

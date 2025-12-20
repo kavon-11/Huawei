@@ -270,6 +270,141 @@ export default function Step5({
         </div>
       </div>
 
+      {/* NEW: Notifications & Webhooks Section */}
+      <div className="space-y-6 border-t border-gray-200 pt-6">
+        <h4 className="text-sm font-medium text-gray-700">
+          Notifications & Webhooks (optional)
+        </h4>
+        <p className="text-xs text-gray-500">
+          Set up event notifications and n8n webhooks to trigger automations on
+          new leads or bookings.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input
+              type="checkbox"
+              name="notifyOnNewLead"
+              checked={Boolean(
+                data?.notificationsAndIntegrations?.notifyOnNewLead
+              )}
+              onChange={(e) =>
+                updateSectionField(
+                  "notificationsAndIntegrations",
+                  "notifyOnNewLead",
+                  e.target.checked
+                )
+              }
+              className="h-4 w-4"
+            />
+            <span className="text-sm font-medium">Notify on new lead</span>
+          </label>
+
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input
+              type="checkbox"
+              name="notifyOnNewBooking"
+              checked={Boolean(
+                data?.notificationsAndIntegrations?.notifyOnNewBooking
+              )}
+              onChange={(e) =>
+                updateSectionField(
+                  "notificationsAndIntegrations",
+                  "notifyOnNewBooking",
+                  e.target.checked
+                )
+              }
+              className="h-4 w-4"
+            />
+            <span className="text-sm font-medium">Notify on new booking</span>
+          </label>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Webhook URL for n8n / automations (optional)
+          </label>
+          <input
+            type="url"
+            value={data?.notificationsAndIntegrations?.outboundWebhookUrl ?? ""}
+            onChange={(e) =>
+              updateSectionField(
+                "notificationsAndIntegrations",
+                "outboundWebhookUrl",
+                e.target.value
+              )
+            }
+            placeholder="https://webhook.n8n.io/webhook/..."
+            className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm focus:outline-none focus:border-black transition"
+          />
+          <p className="text-xs text-gray-500 mt-2">
+            Paste your n8n webhook URL to send events like new leads or missed
+            calls.
+          </p>
+        </div>
+
+        <div className="space-y-2">
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input
+              type="checkbox"
+              name="sendEventNewLead"
+              checked={Boolean(
+                data?.notificationsAndIntegrations?.sendEventNewLead
+              )}
+              onChange={(e) =>
+                updateSectionField(
+                  "notificationsAndIntegrations",
+                  "sendEventNewLead",
+                  e.target.checked
+                )
+              }
+              className="h-4 w-4"
+            />
+            <span className="text-sm">Send webhook event on new lead</span>
+          </label>
+
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input
+              type="checkbox"
+              name="sendEventNewAppointment"
+              checked={Boolean(
+                data?.notificationsAndIntegrations?.sendEventNewAppointment
+              )}
+              onChange={(e) =>
+                updateSectionField(
+                  "notificationsAndIntegrations",
+                  "sendEventNewAppointment",
+                  e.target.checked
+                )
+              }
+              className="h-4 w-4"
+            />
+            <span className="text-sm">
+              Send webhook event on new appointment
+            </span>
+          </label>
+
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input
+              type="checkbox"
+              name="sendEventMissedCall"
+              checked={Boolean(
+                data?.notificationsAndIntegrations?.sendEventMissedCall
+              )}
+              onChange={(e) =>
+                updateSectionField(
+                  "notificationsAndIntegrations",
+                  "sendEventMissedCall",
+                  e.target.checked
+                )
+              }
+              className="h-4 w-4"
+            />
+            <span className="text-sm">Send webhook event on missed call</span>
+          </label>
+        </div>
+      </div>
+
       <div className="border border-gray-200 rounded-lg p-4 bg-white">
         <p className="text-sm font-medium mb-2">Summary</p>
         <p className="text-sm text-gray-600">

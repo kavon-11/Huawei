@@ -18,6 +18,8 @@ import {
   FaEnvelope,
   FaLink,
   FaDownload,
+  FaPhone,
+  FaBell,
 } from "react-icons/fa";
 
 export default function Settings() {
@@ -92,6 +94,14 @@ export default function Settings() {
     },
   ]);
 
+  // --- Tab 3b: Telephony Settings State (NEW) ---
+  const [telephonySettings, setTelephonySettings] = useState({
+    provider: "twilio", // "twilio" | "telnyx" | "other-sip"
+    mainNumber: "+20100000000", // E.164 format
+    additionalNumbers: ["+20200000001"], // Optional additional numbers
+    allowSmsFollowUp: true,
+  });
+
   // --- Tab 4: Team Management State ---
   const [teamMembers, setTeamMembers] = useState([
     {
@@ -113,6 +123,17 @@ export default function Settings() {
     { id: 1, email: "mike@example.com", role: "Viewer", status: "Pending" },
   ]);
   const [newMember, setNewMember] = useState({ email: "", role: "Viewer" });
+
+  // --- Tab 5b: Notifications & Webhooks (NEW) ---
+  const [notificationsSettings, setNotificationsSettings] = useState({
+    notifyOnNewLead: true,
+    notifyOnNewBooking: true,
+    notificationChannels: ["email"],
+    outboundWebhookUrl: "",
+    sendEventNewLead: true,
+    sendEventNewAppointment: true,
+    sendEventMissedCall: true,
+  });
 
   // New state for editing
   const [editingMember, setEditingMember] = useState(null);
@@ -138,6 +159,41 @@ export default function Settings() {
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
+  };
+
+  // NEW: Telephony handler
+  const handleTelephonyChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setTelephonySettings((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
+  // NEW: Notifications handler
+  const handleNotificationsChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    if (type === "checkbox") {
+      // For multi-select channels
+      if (name === "notificationChannels") {
+        setNotificationsSettings((prev) => ({
+          ...prev,
+          notificationChannels: checked
+            ? [...prev.notificationChannels, value]
+            : prev.notificationChannels.filter((ch) => ch !== value),
+        }));
+      } else {
+        setNotificationsSettings((prev) => ({
+          ...prev,
+          [name]: checked,
+        }));
+      }
+    } else {
+      setNotificationsSettings((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
   };
 
   const handleInvite = (e) => {
@@ -442,10 +498,22 @@ export default function Settings() {
           <FaBuilding /> Business
         </button>
         <button
+          style={tabStyle(activeTab === "telephony")}
+          onClick={() => setActiveTab("telephony")}
+        >
+          <FaPhone /> Telephony
+        </button>
+        <button
           style={tabStyle(activeTab === "integrations")}
           onClick={() => setActiveTab("integrations")}
         >
           <FaPlug /> Integrations
+        </button>
+        <button
+          style={tabStyle(activeTab === "notifications")}
+          onClick={() => setActiveTab("notifications")}
+        >
+          <FaBell /> Notifications
         </button>
         <button
           style={tabStyle(activeTab === "team")}
@@ -992,6 +1060,354 @@ export default function Settings() {
               }}
             >
               <FaPlus /> Add Custom Integration
+            </button>
+          </div>
+        )}
+
+        {/* --- NEW: Tab - Telephony --- */}
+        {activeTab === "telephony" && (
+          <div style={sectionStyle}>
+            <h3 style={{ margin: "0 0 1.5rem 0", color: "#f8fafc" }}>
+              Telephony Configuration
+            </h3>
+            <p
+              style={{
+                color: "#cbd5f5",
+                marginBottom: "1.5rem",
+                fontSize: "0.9rem",
+              }}
+            >
+              Configure your phone numbers and telephony provider for incoming
+              calls.
+            </p>
+
+            <div style={fieldGroupStyle}>
+              <label style={labelStyle}>Telephony Provider</label>
+              <select
+                name="provider"
+                value={telephonySettings.provider}
+                onChange={handleTelephonyChange}
+                style={inputStyle}
+              >
+                <option value="twilio">Twilio</option>
+                <option value="telnyx">Telnyx</option>
+                <option value="other-sip">Other (SIP)</option>
+              </select>
+              <p
+                style={{
+                  fontSize: "0.8rem",
+                  color: "#94a3b8",
+                  marginTop: "0.5rem",
+                }}
+              >
+                Select your VoIP provider for call handling.
+              </p>
+            </div>
+
+            <div style={fieldGroupStyle}>
+              <label style={labelStyle}>Main Business Number</label>
+              <input
+                type="tel"
+                name="mainNumber"
+                placeholder="+20100000000"
+                value={telephonySettings.mainNumber}
+                onChange={handleTelephonyChange}
+                style={inputStyle}
+              />
+              <p
+                style={{
+                  fontSize: "0.8rem",
+                  color: "#94a3b8",
+                  marginTop: "0.5rem",
+                }}
+              >
+                Primary number in E.164 format (e.g., +20100000000)
+              </p>
+            </div>
+
+            <div style={fieldGroupStyle}>
+              <label style={labelStyle}>Webhook URL (Read-only)</label>
+              <div
+                style={{
+                  padding: "0.75rem",
+                  backgroundColor: "#1e293b",
+                  borderRadius: "6px",
+                  border: "1px solid #334155",
+                  color: "#cbd5f5",
+                  fontSize: "0.85rem",
+                  wordBreak: "break-all",
+                }}
+              >
+                https://api.echoai.local/webhooks/voice
+              </div>
+              <p
+                style={{
+                  fontSize: "0.8rem",
+                  color: "#94a3b8",
+                  marginTop: "0.5rem",
+                }}
+              >
+                Configure your provider to send calls to this URL.
+              </p>
+            </div>
+
+            <div style={fieldGroupStyle}>
+              <label
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  color: "#e2e8f0",
+                  cursor: "pointer",
+                }}
+              >
+                <input
+                  type="checkbox"
+                  name="allowSmsFollowUp"
+                  checked={telephonySettings.allowSmsFollowUp}
+                  onChange={handleTelephonyChange}
+                />
+                Allow SMS follow-up messages
+              </label>
+              <p
+                style={{
+                  fontSize: "0.8rem",
+                  color: "#94a3b8",
+                  marginTop: "0.5rem",
+                }}
+              >
+                Enable sending SMS follow-ups to callers after voicemail or
+                missed calls.
+              </p>
+            </div>
+
+            <button
+              style={{ ...buttonStyle("primary"), marginTop: "1.5rem" }}
+              onClick={() => {
+                if (isToastActive) return;
+                setIsToastActive(true);
+                toast.success("Telephony settings saved.", {
+                  position: "top-center",
+                  onClose: () => setIsToastActive(false),
+                });
+              }}
+              disabled={isToastActive}
+            >
+              <FaSave /> Save Telephony Settings
+            </button>
+          </div>
+        )}
+
+        {/* --- NEW: Tab - Notifications & Webhooks --- */}
+        {activeTab === "notifications" && (
+          <div style={sectionStyle}>
+            <h3 style={{ margin: "0 0 1.5rem 0", color: "#f8fafc" }}>
+              Notifications & Webhooks
+            </h3>
+            <p
+              style={{
+                color: "#cbd5f5",
+                marginBottom: "1.5rem",
+                fontSize: "0.9rem",
+              }}
+            >
+              Configure event notifications and webhook integrations for n8n
+              automations.
+            </p>
+
+            <div>
+              <h4 style={{ color: "#e2e8f0", marginBottom: "1rem" }}>
+                Notification Events
+              </h4>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.75rem",
+                }}
+              >
+                <label
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    color: "#e2e8f0",
+                    cursor: "pointer",
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    name="notifyOnNewLead"
+                    checked={notificationsSettings.notifyOnNewLead}
+                    onChange={handleNotificationsChange}
+                  />
+                  Notify on new lead captured
+                </label>
+                <label
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    color: "#e2e8f0",
+                    cursor: "pointer",
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    name="notifyOnNewBooking"
+                    checked={notificationsSettings.notifyOnNewBooking}
+                    onChange={handleNotificationsChange}
+                  />
+                  Notify on new booking scheduled
+                </label>
+              </div>
+            </div>
+
+            <div style={{ marginTop: "1.5rem" }}>
+              <h4 style={{ color: "#e2e8f0", marginBottom: "1rem" }}>
+                Notification Channels
+              </h4>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.75rem",
+                }}
+              >
+                {["email", "sms", "whatsapp", "slack"].map((channel) => (
+                  <label
+                    key={channel}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.5rem",
+                      color: "#e2e8f0",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      name="notificationChannels"
+                      value={channel}
+                      checked={notificationsSettings.notificationChannels.includes(
+                        channel
+                      )}
+                      onChange={handleNotificationsChange}
+                    />
+                    {channel.charAt(0).toUpperCase() + channel.slice(1)}
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div style={{ marginTop: "1.5rem" }}>
+              <h4 style={{ color: "#e2e8f0", marginBottom: "1rem" }}>
+                Webhook & n8n Integration
+              </h4>
+              <div style={fieldGroupStyle}>
+                <label style={labelStyle}>Outbound Webhook URL</label>
+                <input
+                  type="url"
+                  name="outboundWebhookUrl"
+                  placeholder="https://webhook.n8n.io/webhook/..."
+                  value={notificationsSettings.outboundWebhookUrl}
+                  onChange={handleNotificationsChange}
+                  style={inputStyle}
+                />
+                <p
+                  style={{
+                    fontSize: "0.8rem",
+                    color: "#94a3b8",
+                    marginTop: "0.5rem",
+                  }}
+                >
+                  n8n webhook or custom endpoint for event triggers.
+                </p>
+              </div>
+
+              <h4
+                style={{
+                  color: "#e2e8f0",
+                  marginBottom: "1rem",
+                  marginTop: "1.5rem",
+                }}
+              >
+                Webhook Events
+              </h4>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.75rem",
+                }}
+              >
+                <label
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    color: "#e2e8f0",
+                    cursor: "pointer",
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    name="sendEventNewLead"
+                    checked={notificationsSettings.sendEventNewLead}
+                    onChange={handleNotificationsChange}
+                  />
+                  Send event: New lead
+                </label>
+                <label
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    color: "#e2e8f0",
+                    cursor: "pointer",
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    name="sendEventNewAppointment"
+                    checked={notificationsSettings.sendEventNewAppointment}
+                    onChange={handleNotificationsChange}
+                  />
+                  Send event: New appointment
+                </label>
+                <label
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    color: "#e2e8f0",
+                    cursor: "pointer",
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    name="sendEventMissedCall"
+                    checked={notificationsSettings.sendEventMissedCall}
+                    onChange={handleNotificationsChange}
+                  />
+                  Send event: Missed call
+                </label>
+              </div>
+            </div>
+
+            <button
+              style={{ ...buttonStyle("primary"), marginTop: "1.5rem" }}
+              onClick={() => {
+                if (isToastActive) return;
+                setIsToastActive(true);
+                toast.success("Notifications and webhooks saved.", {
+                  position: "top-center",
+                  onClose: () => setIsToastActive(false),
+                });
+              }}
+              disabled={isToastActive}
+            >
+              <FaSave /> Save Settings
             </button>
           </div>
         )}

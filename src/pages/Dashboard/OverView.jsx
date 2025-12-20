@@ -33,24 +33,32 @@ export default function OverView() {
       detail: "from yesterday",
     },
     {
-      label: "AI Accuracy",
+      label: "This Week's Calls",
+      value: "156",
+      icon: <FaPhone />,
+      trend: "+12%",
+      trendUp: true,
+      detail: "from last week",
+    },
+    {
+      label: "Success Rate",
       value: "87%",
       icon: <FaBullseye />,
       trend: "+3%",
       trendUp: true,
-      detail: "from last week",
+      detail: "AI accuracy & resolution",
+    },
+    {
+      label: "Escalation Rate",
+      value: "12.5%",
+      icon: <FaUser />,
+      detail: "3 of 24 calls today",
     },
     {
       label: "Appointments Booked",
       value: "8",
       icon: <FaCalendarAlt />,
       detail: "2 via AI, 6 manual",
-    },
-    {
-      label: "Human Escalations",
-      value: "3",
-      icon: <FaUser />,
-      detail: "12.5% of calls",
     },
   ];
 

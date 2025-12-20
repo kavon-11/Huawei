@@ -27,6 +27,13 @@ function getInitialOnboardingData() {
       crmIntegration: false,
       analyticsEnabled: true,
     },
+    // NEW: Telephony & numbers configuration
+    telephony: {
+      provider: "twilio", // "twilio" | "telnyx" | "other-sip"
+      mainNumber: "", // E.164 format: +20XXXXXXXXXX
+      additionalNumbers: [], // array of E.164 numbers
+      allowSmsFollowUp: false,
+    },
     callRoutingPolicy: {
       hours: "",
       timeZone: "",
@@ -79,6 +86,16 @@ function getInitialOnboardingData() {
       dataPrivacy: "",
       retentionPolicy: "",
       consentText: "",
+    },
+    // NEW: Notification preferences & webhooks
+    notificationsAndIntegrations: {
+      notifyOnNewLead: true,
+      notifyOnNewBooking: true,
+      notificationChannels: ["email"], // "email" | "sms" | "whatsapp" | "slack"
+      outboundWebhookUrl: "", // n8n or custom webhook URL
+      sendEventNewLead: true,
+      sendEventNewAppointment: true,
+      sendEventMissedCall: true,
     },
   };
 }
