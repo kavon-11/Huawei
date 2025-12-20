@@ -27,14 +27,16 @@ export default function AboutUs() {
       <ScrollAnimatedText text="Our team of data scientists, engineers, and designers work at the intersection technology and strategy turning complex challenges into simple, AI powered solutions." />
 
       {/* STATS GRID */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <StatCard
             title="Seamless Integration"
             end={298}
             suffix="+"
             icon={<FaCheckCircle />}
             image={img1}
+            cardWidth="max-w-[520px]"
+            imageSize="w-48"
           />
           <StatCard
             title="AI Projects Delivered"
@@ -42,6 +44,8 @@ export default function AboutUs() {
             suffix="+"
             icon={<FaProjectDiagram />}
             image={img2}
+            cardWidth="max-w-[520px]"
+            imageSize="w-48"
           />
           <StatCard
             title="Handled by AI Bots"
@@ -49,6 +53,8 @@ export default function AboutUs() {
             suffix="%"
             icon={<FaRobot />}
             image={img3}
+            cardWidth="max-w-[520px]"
+            imageSize="w-48"
           />
           <StatCard
             title="Faster Time to Market"
@@ -56,6 +62,8 @@ export default function AboutUs() {
             suffix="X"
             icon={<FaRocket />}
             image={img4}
+            cardWidth="max-w-[520px]"
+            imageSize="w-48"
           />
         </div>
       </div>

@@ -8,9 +8,16 @@ export default function StatCard({
   icon,
   image,
   effect = true,
+  subtitle,
+  imagePosition = "left",
+  showCounter = true,
+  cardWidth = "max-w-[480px]",
+  imageSize = "w-36",
 }) {
   return (
-    <div className="relative w-full max-w-[480px] rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl px-6 py-4 text-white hover:bg-white/10 transition-colors duration-300">
+    <div
+      className={`relative w-full ${cardWidth} min-h-[480px] rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl px-8 py-6 text-white hover:bg-white/10 transition-colors duration-300 flex flex-col`}
+    >
       {effect && (
         <>
           <div
@@ -24,19 +31,35 @@ export default function StatCard({
         </>
       )}
 
-      <div className="relative z-10">
-        <div className="flex items-center text-lg font-semibold">
+      <div className="relative z-10 flex flex-col h-full">
+        <div className="flex items-center text-xl font-semibold mb-8">
           <span className="pr-12">{title}</span>
           <span className="ml-auto opacity-60">{icon || <FaArrowRight />}</span>
         </div>
 
-        <div className="mt-6 text-[40px] font-light leading-none">
-          <Counter end={end} suffix={suffix} />
-        </div>
+        {showCounter && end !== undefined && (
+          <div className="mb-8 text-[40px] font-light leading-none">
+            <Counter end={end} suffix={suffix} />
+          </div>
+        )}
+
+        {subtitle && (
+          <p className="mb-8 text-base text-white/70 leading-relaxed flex-grow">
+            {subtitle}
+          </p>
+        )}
 
         {image && (
-          <div className="mt-10">
-            <img src={image} alt={title} className="block w-36 h-auto" />
+          <div
+            className={`mt-auto pt-6 ${
+              imagePosition === "center" ? "flex justify-center" : ""
+            }`}
+          >
+            <img
+              src={image}
+              alt={title}
+              className={`block ${imageSize} h-auto`}
+            />
           </div>
         )}
       </div>

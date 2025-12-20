@@ -50,26 +50,32 @@ export default function Services() {
       <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
         <StatCard
           title="AI Strategy & Consulting"
-          end={120}
-          suffix="+"
           icon={<FaBolt />}
           image={img1}
+          subtitle="We assess your business, identify high impact AI opportunities, and guide you with a clear roadmap for implementation."
+          imagePosition="center"
+          showCounter={false}
+          imageSize="w-72"
         />
 
         <StatCard
           title="AI Integration & Deployment"
-          end={98}
-          suffix="%"
           icon={<FaLayerGroup />}
           image={img2}
+          subtitle="We assess your business, identify high impact AI opportunities, and guide you with a clear roadmap for implementation."
+          imagePosition="center"
+          showCounter={false}
+          imageSize="w-72"
         />
 
         <StatCard
           title="Custom AI Solutions"
-          end={300}
-          suffix="%"
           icon={<FaRobot />}
           image={img3}
+          subtitle="We assess your business, identify high impact AI opportunities, and guide you with a clear roadmap for implementation."
+          imagePosition="center"
+          showCounter={false}
+          imageSize="w-72"
         />
       </div>
       <Shape4 />
