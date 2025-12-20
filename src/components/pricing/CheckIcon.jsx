@@ -10,7 +10,7 @@ export default function CheckIcon() {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="lucide lucide-check size-4"
+      className="lucide lucide-check size-4 text-green-400 flex-shrink-0"
     >
       <path d="M20 6 9 17l-5-5"></path>
     </svg>

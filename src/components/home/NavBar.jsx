@@ -15,13 +15,13 @@ export default function NavBar({ mode = "dark" }) {
   };
 
   const navClass = isLight
-    ? "flex items-center gap-10 px-8 py-3 rounded-full border border-black/10 bg-black/5 backdrop-blur-xl shadow-[0_0_20px_rgba(0,0,0,0.05)] text-black"
-    : "flex items-center gap-10 px-8 py-3 rounded-full border border-white/10 bg-white/5 backdrop-blur-2xl shadow-[0_0_20px_rgba(255,255,255,0.05)] text-white";
+    ? "flex items-center gap-6 px-8 py-3 rounded-full border border-black/10 bg-black/5 backdrop-blur-xl shadow-[0_0_20px_rgba(0,0,0,0.05)] text-black whitespace-nowrap"
+    : "flex items-center gap-6 px-8 py-3 rounded-full border border-white/10 bg-white/5 backdrop-blur-2xl shadow-[0_0_20px_rgba(255,255,255,0.05)] text-white whitespace-nowrap";
 
   const hoverClass = isLight ? "hover:text-black/80" : "hover:text-white/80";
 
   return (
-    <nav className="font-manrope font-normal text-base">
+    <nav className="font-normal text-base">
       <ul className={navClass}>
         <li>
           <button
@@ -57,12 +57,21 @@ export default function NavBar({ mode = "dark" }) {
         </li>
         <li>
           <button
+            onClick={() => scrollToSection("pricing")}
+            className={`cursor-pointer ${hoverClass} transition`}
+          >
+            Pricing
+          </button>
+        </li>
+        <li>
+          <button
             onClick={() => scrollToSection("faq")}
             className={`cursor-pointer ${hoverClass} transition`}
           >
             FAQ
           </button>
         </li>
+
         <li>
           <button
             onClick={() => scrollToSection("contact")}

@@ -3,12 +3,14 @@ import CheckIcon from "./CheckIcon";
 export default function PricingFeatureList({ features, subtitle }) {
   return (
     <>
-      {subtitle && <p className="mb-2 text-lg font-semibold">{subtitle}</p>}
-      <ul className="mb-4 space-y-4">
+      {subtitle && (
+        <p className="mb-4 text-sm font-semibold text-gray-300">{subtitle}</p>
+      )}
+      <ul className="mb-4 space-y-3">
         {features.map((feature, index) => (
-          <li key={index} className="flex items-center gap-2">
+          <li key={index} className="flex items-center gap-3">
             <CheckIcon />
-            <span>{feature}</span>
+            <span className="text-gray-200 text-sm">{feature}</span>
           </li>
         ))}
       </ul>
