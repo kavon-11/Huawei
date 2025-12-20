@@ -14,11 +14,7 @@ body {
   font-family: "Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
   font-weight: 200;
-}
-
-::selection {
-  background-color: #a93e17;
-  color: #ffffff;
+  color: white;
 }
 
 /* svg:hover {

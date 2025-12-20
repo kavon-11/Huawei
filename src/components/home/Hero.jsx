@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 export default function Hero() {
   return (
     <section
-      className="  min-h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden 
+      className="  min-h-screen flex flex-col items-center justify-center text-center px-6 pt-52 overflow-hidden 
       bg-[url('/src/EchoAIAssets/hero-bg.webp')] bg-cover bg-center bg-no-repeat"
       style={{ backgroundColor: "#060606" }}
     >
@@ -22,30 +22,48 @@ export default function Hero() {
       <Shape4 />
 
       {/* Text + Buttons */}
-      <div className="relative z-10 max-w-3xl">
-        <h1 className="text-white text-5xl md:text-6xl font-bold leading-tight font-manrope">
+      <div className="relative z-10 max-w-5xl">
+        <h1 className="text-white text-5xl md:text-7xl font-semibold leading-tight ">
           Transform your business
           <br />
           with the <GradientText>power of AI</GradientText>
         </h1>
 
-        <p className="text-gray-300 mt-6 text-lg max-w-2xl mx-auto font-manrope">
+        <p className="text-gray-400 mt-6 text-lg font-normal max-w-4xl mx-auto mb-12 ">
           In a world where cyberattacks are becoming more sophisticated, your
           business deserves the best protection. Our expert team leverages
           cutting-edge technology.
         </p>
 
-        <div className="flex flex-wrap justify-center gap-4 mt-10">
+        <div className="flex flex-wrap justify-center gap-4">
           <Link to="/auth">
-            <button
-              className="px-7 py-3 rounded-full text-white transition hover:scale-105 font-manrope font-bold"
-              style={{
-                background: "linear-gradient(90deg, #A93E17 0%, #15399A 100%)",
-              }}
-            >
+            <button className="px-7 border border-[#A93E17] bg-black py-3 rounded-full text-white transition hover:scale-105  font-bold">
               Get Started Today
             </button>
           </Link>
+          <Link to="/auth">
+            <button
+              className="px-7 py-3 rounded-full text-white transition hover:scale-105  font-bold"
+              style={{
+                background: "linear-gradient(90deg, #15399A 0%, #A93E17 100%)",
+              }}
+            >
+              Join Now
+            </button>
+          </Link>
+        </div>
+      </div>
+
+      <div className="space-y-4 mt-20">
+        <p className="font-semibold text-xl text-gray-300">
+          Already chosen by the leaders
+        </p>
+        <div className="flex gap-2">
+          <img src="/src/EchoAIAssets/Writesonic.png" className="w-auto h-20" />
+          <img src="/src/EchoAIAssets/Writesonic.png" className="w-auto h-20" />
+          <img src="/src/EchoAIAssets/Writesonic.png" className="w-auto h-20" />
+          <img src="/src/EchoAIAssets/Writesonic.png" className="w-auto h-20" />
+          <img src="/src/EchoAIAssets/Writesonic.png" className="w-auto h-20" />
         </div>
       </div>
 
