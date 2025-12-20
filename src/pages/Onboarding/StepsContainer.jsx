@@ -14,6 +14,8 @@ export default function StepsContainer({
   data,
   setData,
 }) {
+  const isTallStep = currentStep === 3 || currentStep === 5;
+
   const steps = {
     1: Step1,
     2: Step2,
@@ -71,8 +73,12 @@ export default function StepsContainer({
   };
 
   return (
-    <div className="bg-gray-50 relative min-h-screen flex items-center justify-center">
-      <div className="w-full max-w-3xl px-6 py-12">
+    <div
+      className={`bg-gray-50 relative min-h-screen flex justify-center ${
+        isTallStep ? "items-start pt-24 pb-32" : "items-center"
+      }`}
+    >
+      <div className={`w-full max-w-3xl px-6 ${isTallStep ? "py-8" : "py-12"}`}>
         <div className="flex items-center flex-col gap-3 mb-10">
           <h3 className="text-2xl font-bold text-center">{stepMeta.title}</h3>
           <p className="text-gray-500 text-center">{stepMeta.description}</p>
