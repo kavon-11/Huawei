@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { FaGoogle } from "react-icons/fa6";
 import GradientText from "../components/GradientText";
 
 export default function Auth() {
@@ -66,14 +67,7 @@ export default function Auth() {
     >
       <div className="w-full max-w-md">
         {/* Header */}
-        <div className="text-center mb-10">
-          <Link to="/" className="inline-block mb-6">
-            <img
-              src="/src/EchoAIAssets/real-impact-image-2.png"
-              alt="Echo AI Logo"
-              className="w-16 h-16 mx-auto object-contain"
-            />
-          </Link>
+        <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
             {isSignUp ? (
               <>
@@ -87,18 +81,19 @@ export default function Auth() {
           </h2>
           <p className="text-white/70">
             {isSignUp
-              ? "Start your AI journey today"
-              : "Sign in to access your dashboard"}
+              ? "Start your AI voice journey today"
+              : "Sign in to your Echo AI dashboard"}
           </p>
         </div>
 
-        {/* Form */}
+        {/* Form Container */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-8"
+          className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 space-y-6"
         >
+          {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-5">
             {isSignUp && (
               <div className="grid grid-cols-2 gap-4">
@@ -184,7 +179,7 @@ export default function Auth() {
                     to="#"
                     className="text-sm text-orange-500 hover:text-orange-400 transition"
                   >
-                    Forgot?
+                    Forgot Password?
                   </Link>
                 )}
               </div>
@@ -205,7 +200,7 @@ export default function Auth() {
 
             <motion.button
               type="submit"
-              className="w-full py-3 px-4 rounded-full text-white font-bold text-sm transition-all"
+              className="w-full py-3 px-4 rounded-lg text-white font-bold text-sm transition-all"
               style={{
                 background: "linear-gradient(90deg, #A93E17 0%, #15399A 100%)",
               }}
@@ -216,7 +211,32 @@ export default function Auth() {
             </motion.button>
           </form>
 
-          <div className="mt-6 text-center">
+          {/* Social Divider */}
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex-1 h-px bg-white/10"></div>
+            <p className="text-xs text-white/50 font-medium uppercase tracking-wider">
+              Or continue with
+            </p>
+            <div className="flex-1 h-px bg-white/10"></div>
+          </div>
+
+          {/* Social Login Button */}
+          <motion.button
+            type="button"
+            onClick={() => {
+              console.log("Google login clicked");
+              // TODO: Implement Google OAuth
+            }}
+            className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white/80 hover:text-white transition-all"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <FaGoogle size={18} className="text-blue-500" />
+            <span className="text-sm font-medium">Continue with Google</span>
+          </motion.button>
+
+          {/* Toggle Auth Mode */}
+          <div className="text-center">
             <p className="text-white/60 text-sm">
               {isSignUp ? "Already have an account?" : "Don't have an account?"}{" "}
               <button
@@ -229,7 +249,8 @@ export default function Auth() {
             </p>
           </div>
 
-          <div className="mt-6 text-center">
+          {/* Back to Home */}
+          <div className="text-center pt-4 border-t border-white/10">
             <Link
               to="/"
               className="text-white/60 hover:text-white text-sm transition"
