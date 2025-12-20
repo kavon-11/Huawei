@@ -30,7 +30,7 @@ export default function Header({ mode = "dark" }) {
       <div className="flex items-center gap-3">
         <Link to="/dashboard">
           <button
-            className={`${textClass} px-6 py-3 rounded-full font-medium text-[16px] transition-all hover:scale-105`}
+            className={`${textClass} px-6 py-2 rounded-full font-medium text-[16px] transition-all hover:scale-105`}
             style={{
               background: isLight
                 ? "linear-gradient(90deg, #ff6b35 0%, #1e3a8a 100%)"

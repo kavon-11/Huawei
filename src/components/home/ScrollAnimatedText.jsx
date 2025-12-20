@@ -1,12 +1,12 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
-function ScrollAnimatedText({text}) {
+function ScrollAnimatedText({ text }) {
   const ref = useRef(null);
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 80%", "start 20%"],
+    offset: ["start 100%", "start 70%"],
   });
 
   const words = text.split(" ");
@@ -16,7 +16,7 @@ function ScrollAnimatedText({text}) {
       ref={ref}
       className="relative z-10 max-w-5xl mx-auto text-center mb-20 px-6"
     >
-      <p className="font-manrope text-[32px] md:text-[44px] leading-tight">
+      <p className="  text-[32px] md:text-[44px] leading-tight">
         {words.map((word, index) => {
           const start = index / words.length;
           const end = (index + 1) / words.length;
@@ -35,7 +35,7 @@ function ScrollAnimatedText({text}) {
                 opacity,
                 fontWeight,
               }}
-              className="inline-block mr-2 text-white"
+              className="inline-block  mr-2 text-white"
             >
               {word}
             </motion.span>
