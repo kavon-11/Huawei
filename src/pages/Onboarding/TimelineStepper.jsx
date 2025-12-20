@@ -1,31 +1,11 @@
 import { FaQuestionCircle } from "react-icons/fa";
+import { ONBOARDING_STEPS } from "./onboardingSteps";
 
 export default function TimelineStepper({
   currentStep = 1,
   completedSteps = [],
 }) {
-  const steps = [
-    {
-      title: "Choose a shop system",
-      description: "What is the system of your store",
-    },
-    {
-      title: "Provide Industry",
-      description: "What is your industry of store",
-    },
-    {
-      title: "Provide domain",
-      description: "Provide your primary domain",
-    },
-    {
-      title: "Connect google accounts",
-      description: "Google ads, google analytics, google tag manager, etc...",
-    },
-    {
-      title: "Add product url",
-      description: "Dummy text of the printing",
-    },
-  ];
+  const steps = ONBOARDING_STEPS;
 
   return (
     <div className="flex flex-col justify-between ">
