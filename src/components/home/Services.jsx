@@ -9,6 +9,7 @@ import GradientText from "../GradientText";
 import Shape4 from "../shapes/shape4";
 
 import ScrollAnimatedText from "./ScrollAnimatedText";
+import SectionBadge from "../SectionBadge";
 
 export default function Services() {
   const { scrollYProgress } = useScroll();
@@ -29,19 +30,7 @@ export default function Services() {
       <div className="absolute inset-0 bg-gradient-to-b from-[#060606] via-black/40 to-[#060606]"></div>
 
       {/* Badge */}
-      <div className="relative z-10 flex justify-center mb-6">
-        <span
-          className="
-            inline-flex items-center gap-2
-            px-6 py-2 rounded-full
-            border border-white/10
-            bg-white/5 backdrop-blur
-            text-xs text-white/80
-          "
-        >
-          ✦ OUR SERVICES ✦
-        </span>
-      </div>
+      <SectionBadge text="Our Services" />
 
       {/* Title */}
       <motion.h2

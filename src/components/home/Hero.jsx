@@ -42,13 +42,22 @@ export default function Hero() {
             </button>
           </Link>
           <Link to="/auth">
-            <button
-              className="px-7 py-3 rounded-full text-white transition hover:scale-105  font-bold"
-              style={{
-                background: "linear-gradient(90deg, #15399A 0%, #A93E17 100%)",
-              }}
-            >
-              Join Now
+            <button className="px-7 py-3 rounded-full text-white font-bold relative overflow-hidden group transition-all duration-500">
+              <span
+                className="absolute inset-0 transition-all duration-700 ease-in-out"
+                style={{
+                  background:
+                    "linear-gradient(90deg, #15399A 0%, #A93E17 100%)",
+                }}
+              ></span>
+              <span
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out"
+                style={{
+                  background:
+                    "linear-gradient(90deg, #A93E17 0%, #15399A 100%)",
+                }}
+              ></span>
+              <span className="relative z-10">Join Now</span>
             </button>
           </Link>
         </div>

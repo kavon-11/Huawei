@@ -1,9 +1,9 @@
 import ScrollAnimatedText from "./ScrollAnimatedText";
 import StatCard from "./StatCard";
-import img1 from "../../EchoAIAssets/about-item-image-1.png"
-import img2 from "../../EchoAIAssets/about-item-image-2.png"
-import img3 from "../../EchoAIAssets/about-item-image-3.png"
-import img4 from "../../EchoAIAssets/about-item-image-4.png"
+import img1 from "../../EchoAIAssets/about-item-image-1.png";
+import img2 from "../../EchoAIAssets/about-item-image-2.png";
+import img3 from "../../EchoAIAssets/about-item-image-3.png";
+import img4 from "../../EchoAIAssets/about-item-image-4.png";
 import {
   FaCheckCircle,
   FaProjectDiagram,
@@ -12,8 +12,7 @@ import {
 } from "react-icons/fa";
 import Shape2 from "../shapes/shape2";
 import Shape4 from "../shapes/shape4";
-
-
+import SectionBadge from "../SectionBadge";
 
 export default function AboutUs() {
   return (
@@ -22,22 +21,7 @@ export default function AboutUs() {
       style={{ backgroundColor: "#060606" }}
     >
       {/* ABOUT BADGE */}
-      <div className="relative z-10 flex justify-center mb-10">
-        <h1
-          className="
-            inline-flex items-center gap-2
-            font-manrope font-semibold text-[18px]
-            px-8 py-3
-            rounded-full
-            border border-white/10
-            bg-white/5 backdrop-blur-xl
-            shadow-[0_0_20px_rgba(255,255,255,0.05)]
-            text-white
-          "
-        >
-          ✦ About Us ✦
-        </h1>
-      </div>
+      <SectionBadge text="About Us" />
 
       {/* MAIN TEXT */}
       <ScrollAnimatedText text="Our team of data scientists, engineers, and designers work at the intersection technology and strategy turning complex challenges into simple, AI powered solutions." />
