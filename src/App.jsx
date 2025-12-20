@@ -61,6 +61,10 @@ const router = createBrowserRouter([
     element: <Auth />,
   },
   {
+    path: "pricing",
+    element: <Pricing />,
+  },
+  {
     index: true,
     element: <Home />,
   },

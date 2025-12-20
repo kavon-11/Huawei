@@ -6,6 +6,7 @@ import Services from "@/components/home/Services.jsx";
 import StickyVideoLayout from "@/components/home/StickyVideoLayout.jsx";
 import FAQ from "@/components/home/FAQ.jsx";
 import Footer from "@/components/home/Footer.jsx";
+import Pricing from "./Pricing.jsx";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <div id="services">
         <Services />
       </div>
+      <Pricing />
       <StickyVideoLayout />
       <div id="faq">
         <FAQ />
