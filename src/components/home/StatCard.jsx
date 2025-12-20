@@ -13,10 +13,12 @@ export default function StatCard({
   showCounter = true,
   cardWidth = "max-w-[480px]",
   imageSize = "w-36",
+  minHeight = "min-h-[480px]",
+  compactLayout = false,
 }) {
   return (
     <div
-      className={`relative w-full ${cardWidth} min-h-[480px] rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl px-8 py-6 text-white hover:bg-white/10 transition-colors duration-300 flex flex-col`}
+      className={`relative w-full ${cardWidth} ${minHeight} rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl px-8 py-6 text-white hover:bg-white/10 transition-colors duration-300 flex flex-col`}
     >
       {effect && (
         <>
@@ -44,14 +46,18 @@ export default function StatCard({
         )}
 
         {subtitle && (
-          <p className="mb-8 text-base text-white/70 leading-relaxed flex-grow">
+          <p
+            className={`text-base text-white/70 leading-relaxed ${
+              compactLayout ? "mb-4" : "mb-8 flex-grow"
+            }`}
+          >
             {subtitle}
           </p>
         )}
 
         {image && (
           <div
-            className={`mt-auto pt-6 ${
+            className={`${compactLayout ? "" : "mt-auto"} pt-6 ${
               imagePosition === "center" ? "flex justify-center" : ""
             }`}
           >

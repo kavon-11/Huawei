@@ -37,6 +37,8 @@ export default function AboutUs() {
             image={img1}
             cardWidth="max-w-[520px]"
             imageSize="w-48"
+            minHeight="min-h-auto"
+            compactLayout={true}
           />
           <StatCard
             title="AI Projects Delivered"
@@ -46,6 +48,8 @@ export default function AboutUs() {
             image={img2}
             cardWidth="max-w-[520px]"
             imageSize="w-48"
+            minHeight="min-h-auto"
+            compactLayout={true}
           />
           <StatCard
             title="Handled by AI Bots"
@@ -55,6 +59,8 @@ export default function AboutUs() {
             image={img3}
             cardWidth="max-w-[520px]"
             imageSize="w-48"
+            minHeight="min-h-auto"
+            compactLayout={true}
           />
           <StatCard
             title="Faster Time to Market"
@@ -64,6 +70,8 @@ export default function AboutUs() {
             image={img4}
             cardWidth="max-w-[520px]"
             imageSize="w-48"
+            minHeight="min-h-auto"
+            compactLayout={true}
           />
         </div>
       </div>
