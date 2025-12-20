@@ -1,7 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useEffect, useRef } from "react";
-import Lenis from "@studio-freight/lenis";
 
 import Auth from "./pages/Login";
 import Error from "./pages/Error";
@@ -16,6 +14,7 @@ import Analytics from "./pages/Dashboard/Analytics";
 import Settings from "./pages/Dashboard/Settings";
 import LiveCalls from "./pages/Dashboard/LiveCalls";
 import MainOnboarding from "./pages/Onboarding/MainOnBoarding";
+import Pricing from "./pages/Pricing";
 
 const queryClient = new QueryClient();
 
