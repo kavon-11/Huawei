@@ -1,6 +1,7 @@
 import videoSrc from "../../EchoAIAssets/nextmind-how-work-video.mp4";
-import { FaBrain, FaDatabase, FaCog,  FaAward } from "react-icons/fa";
+import { FaBrain, FaDatabase, FaCog, FaAward } from "react-icons/fa";
 import GradientText from "../GradientText";
+import SectionBadge from "../SectionBadge";
 
 const steps = [
   {
@@ -26,7 +27,7 @@ const steps = [
     title: "Continuous Improvement",
     desc: "We monitor performance and refine models to ensure lasting impact.",
     icon: FaAward,
-  }
+  },
 ];
 
 export default function StickyVideoLayout() {
@@ -39,12 +40,10 @@ export default function StickyVideoLayout() {
         {/* LEFT — CONTENT */}
         <div className="space-y-10">
           {/* Badge */}
-          <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 text-sm text-white/80">
-            ✦ HOW IT WORK ✦
-          </span>
+          <SectionBadge text="HOW IT WORK" align="left" />
 
           {/* Title */}
-          <h2 className="text-4xl font-semibold leading-tight">
+          <h2 className="text-5xl font-semibold leading-tight">
             Our process for smarter <br />
             <GradientText>AI solutions</GradientText>
           </h2>
@@ -56,20 +55,23 @@ export default function StickyVideoLayout() {
               return (
                 <div
                   key={step.step}
-                  className="rounded-2xl bg-white/5 border border-white/10 p-6 flex gap-6"
+                  className="rounded-2xl bg-white/5 border border-white/10 p-8 flex items-center gap-8"
                 >
                   {/* Icon */}
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-orange-500/20 text-orange-500 text-xl">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-orange-500/20 text-orange-500 text-3xl flex-shrink-0">
                     <IconComponent />
                   </div>
 
+                  {/* Separator */}
+                  <div className="w-px h-20 bg-white/10 flex-shrink-0"></div>
+
                   {/* Text */}
-                  <div>
-                    <p className="text-xs text-white/50 mb-1">
+                  <div className="flex-1">
+                    <p className="text-sm text-white/50 mb-2">
                       STEP {step.step}
                     </p>
-                    <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
-                    <p className="text-white/70 text-sm leading-relaxed">
+                    <h3 className="text-xl font-semibold mb-3">{step.title}</h3>
+                    <p className="text-white/70 text-base leading-relaxed">
                       {step.desc}
                     </p>
                   </div>
@@ -93,7 +95,7 @@ export default function StickyVideoLayout() {
           </div>
 
           {/* Caption */}
-          <p className="mt-6 text-sm text-white/60">
+          <p className="mt-6 text-base font-semibold text-white/70 text-center">
             We help businesses design, build, and deploy intelligent solutions
             that drive real results.{" "}
             <span className="text-orange-500 cursor-pointer">Contact Now</span>

@@ -1,6 +1,8 @@
-export default function SectionBadge({ text }) {
+export default function SectionBadge({ text, align = "center" }) {
+  const alignmentClass = align === "left" ? "justify-start" : "justify-center";
+
   return (
-    <div className="relative z-10 flex justify-center mb-10">
+    <div className={`relative z-10 flex ${alignmentClass} mb-10`}>
       <h1
         className="
             inline-flex items-center gap-2
