@@ -874,7 +874,7 @@ export default function KnowledgeBase() {
                   style={{
                     display: "block",
                     marginBottom: "0.5rem",
-                    fontWeight: "600",
+                    fontWeight: "60",
                     color: "#cbd5f5",
                   }}
                 >
