@@ -27,6 +27,8 @@ import {
   FaChartBar,
   FaFilter,
 } from "react-icons/fa";
+import DashboardCard from "../../components/DashboardCard";
+import GradientText from "../../components/GradientText";
 
 // Mock Data
 const CALL_VOLUME_DATA = [
@@ -53,7 +55,7 @@ const ACCURACY_DATA = [
   { name: "Callback", accuracy: 95 },
 ];
 
-const COLORS = ["#3b82f6", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6"];
+const COLORS = ["#15399A", "#A93E17", "#10b981", "#f59e0b", "#8b5cf6"];
 
 const REPORTS_HISTORY = [
   {
@@ -75,354 +77,168 @@ export default function Analytics() {
   const [reportType, setReportType] = useState("Weekly Summary");
   const [reportFormat, setReportFormat] = useState("PDF");
 
-  // Styles
-  const containerStyle = {
-    padding: "1rem",
-    backgroundColor: "#0f172a",
-    minHeight: "100vh",
-    color: "#e2e8f0",
-    fontFamily: "'Inter', sans-serif",
-  };
-
-  const headerStyle = {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: "2rem",
-    flexWrap: "wrap",
-    gap: "1rem",
-  };
-
-  const controlGroupStyle = {
-    display: "flex",
-    gap: "1rem",
-    alignItems: "center",
-    backgroundColor: "#1e293b",
-    padding: "0.5rem 1rem",
-    borderRadius: "8px",
-    border: "1px solid #334155",
-  };
-
-  const selectStyle = {
-    backgroundColor: "#1e293b", // Changed from transparent to match control group
-    color: "#e2e8f0",
-    border: "none",
-    outline: "none",
-    fontSize: "0.9rem",
-    cursor: "pointer",
-    padding: "0.25rem", // Added padding
-    borderRadius: "4px", // Added border radius
-  };
-
-  const gridStyle = {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-    gap: "1.5rem",
-    marginBottom: "2rem",
-  };
-
-  const cardStyle = {
-    backgroundColor: "#1e293b",
-    borderRadius: "12px",
-    padding: "1.5rem",
-    border: "1px solid #334155",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-  };
-
-  const chartGridStyle = {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 500px), 1fr))",
-    gap: "1.5rem",
-    marginBottom: "2rem",
-  };
-
-  const chartCardStyle = {
-    ...cardStyle,
-    minHeight: "400px",
-  };
-
-  const sectionHeaderStyle = {
-    fontSize: "1.2rem",
-    fontWeight: "600",
-    color: "#f8fafc",
-    marginBottom: "1rem",
-    display: "flex",
-    alignItems: "center",
-    gap: "0.5rem",
-  };
-
-  const statValueStyle = {
-    fontSize: "2rem",
-    fontWeight: "700",
-    color: "#f8fafc",
-    margin: "0.5rem 0",
-  };
-
-  const trendStyle = (isUp, isGood = true) => {
-    const isPositive = isUp === isGood; // Up is good for accuracy, bad for escalation
-    return {
-      display: "flex",
-      alignItems: "center",
-      gap: "0.25rem",
-      fontSize: "0.85rem",
-      color: isPositive ? "#4ade80" : "#f87171",
-      fontWeight: "600",
-    };
-  };
-
-  const inputStyle = {
-    padding: "0.6rem",
-    borderRadius: "8px",
-    border: "1px solid #334155",
-    backgroundColor: "#0f172a",
-    color: "white",
-    fontSize: "0.9rem",
-    outline: "none",
-    width: "100%",
-  };
-
-  const buttonStyle = {
-    padding: "0.6rem 1.2rem",
-    backgroundColor: "#3b82f6",
-    color: "white",
-    border: "none",
-    borderRadius: "8px",
-    cursor: "pointer",
-    fontWeight: "600",
-    fontSize: "0.9rem",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: "0.5rem",
-  };
-
   return (
-    <div style={containerStyle}>
-      <header style={headerStyle}>
+    <div
+      className="p-8 font-manrope"
+      style={{ backgroundColor: "#060606", minHeight: "100vh" }}
+    >
+      <header className="flex justify-between items-center mb-8 flex-wrap gap-4">
         <div>
-          <h1
-            style={{
-              fontSize: "1.8rem",
-              fontWeight: "700",
-              color: "#f8fafc",
-              margin: 0,
-            }}
-          >
-            Analytics & Reports
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
+            Analytics & <GradientText>Reports</GradientText>
           </h1>
-          <p style={{ color: "#94a3b8", marginTop: "0.5rem" }}>
+          <p className="text-gray-400">
             Track AI performance and business metrics.
           </p>
         </div>
-        <div style={controlGroupStyle}>
-          <FaCalendarAlt color="#94a3b8" />
+        <div className="flex gap-4 items-center rounded-full border border-white/10 bg-white/5 backdrop-blur-xl px-6 py-3">
+          <FaCalendarAlt className="text-gray-400" />
           <select
             value={dateRange}
             onChange={(e) => setDateRange(e.target.value)}
-            style={selectStyle}
+            className="bg-transparent text-white border-none outline-none cursor-pointer"
           >
-            <option style={{ backgroundColor: "#1e293b" }}>Last 7 days</option>
-            <option style={{ backgroundColor: "#1e293b" }}>Last 30 days</option>
-            <option style={{ backgroundColor: "#1e293b" }}>Last 90 days</option>
-            <option style={{ backgroundColor: "#1e293b" }}>Custom Range</option>
+            <option className="bg-[#060606]">Last 7 days</option>
+            <option className="bg-[#060606]">Last 30 days</option>
+            <option className="bg-[#060606]">Last 90 days</option>
+            <option className="bg-[#060606]">Custom Range</option>
           </select>
         </div>
       </header>
 
       {/* Section 1: Performance Metrics Cards */}
-      <div style={gridStyle}>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         {/* Card 1: AI Accuracy */}
-        <div style={cardStyle}>
+        <DashboardCard>
           <div>
-            <p style={{ color: "#94a3b8", fontSize: "0.85rem", margin: 0 }}>
-              Overall AI Accuracy
-            </p>
-            <div style={statValueStyle}>87%</div>
+            <p className="text-gray-400 text-sm mb-1">Overall AI Accuracy</p>
+            <div className="text-4xl font-bold text-white my-2">87%</div>
           </div>
-          <div style={trendStyle(true, true)}>
+          <div className="flex items-center gap-1 text-sm text-green-400 font-semibold">
             <FaArrowUp /> +3% from last period
           </div>
-          <div
-            style={{
-              marginTop: "1rem",
-              height: "4px",
-              backgroundColor: "#334155",
-              borderRadius: "2px",
-              overflow: "hidden",
-            }}
-          >
+          <div className="mt-4 h-1 bg-white/10 rounded-full overflow-hidden">
             <div
-              style={{
-                width: "87%",
-                height: "100%",
-                backgroundColor: "#10b981",
-              }}
+              className="h-full bg-gradient-to-r from-[#15399A] to-[#A93E17]"
+              style={{ width: "87%" }}
             />
           </div>
-        </div>
+        </DashboardCard>
 
         {/* Card 2: Intent Distribution */}
-        <div style={cardStyle}>
+        <DashboardCard>
           <div>
-            <p style={{ color: "#94a3b8", fontSize: "0.85rem", margin: 0 }}>
-              Intents Detected
-            </p>
-            <div style={statValueStyle}>5</div>
+            <p className="text-gray-400 text-sm mb-1">Intents Detected</p>
+            <div className="text-4xl font-bold text-white my-2">5</div>
           </div>
-          <div
-            style={{
-              fontSize: "0.85rem",
-              color: "#cbd5f5",
-              display: "flex",
-              flexDirection: "column",
-              gap: "0.25rem",
-            }}
-          >
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div className="text-sm text-gray-300 flex flex-col gap-1 mt-4">
+            <div className="flex justify-between">
               <span>Schedule:</span> <span>45%</span>
             </div>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div className="flex justify-between">
               <span>FAQ:</span> <span>35%</span>
             </div>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div className="flex justify-between">
               <span>Callback:</span> <span>20%</span>
             </div>
           </div>
-        </div>
+        </DashboardCard>
 
         {/* Card 3: Call Volume */}
-        <div style={cardStyle}>
+        <DashboardCard>
           <div>
-            <p style={{ color: "#94a3b8", fontSize: "0.85rem", margin: 0 }}>
-              Total Calls
-            </p>
-            <div style={statValueStyle}>156</div>
+            <p className="text-gray-400 text-sm mb-1">Total Calls</p>
+            <div className="text-4xl font-bold text-white my-2">156</div>
           </div>
-          <div style={trendStyle(true, true)}>
+          <div className="flex items-center gap-1 text-sm text-green-400 font-semibold">
             <FaArrowUp /> +12 from last period
           </div>
-          <p
-            style={{
-              fontSize: "0.8rem",
-              color: "#94a3b8",
-              marginTop: "0.5rem",
-            }}
-          >
+          <p className="text-sm text-gray-400 mt-4">
             120 Completed, 36 Escalated
           </p>
-        </div>
+        </DashboardCard>
 
         {/* Card 4: Escalation Rate */}
-        <div style={cardStyle}>
+        <DashboardCard>
           <div>
-            <p style={{ color: "#94a3b8", fontSize: "0.85rem", margin: 0 }}>
-              Escalation Rate
-            </p>
-            <div style={statValueStyle}>23%</div>
+            <p className="text-gray-400 text-sm mb-1">Escalation Rate</p>
+            <div className="text-4xl font-bold text-white my-2">23%</div>
           </div>
-          <div style={trendStyle(false, true)}>
-            {" "}
-            {/* Down is good for escalation */}
+          <div className="flex items-center gap-1 text-sm text-green-400 font-semibold">
             <FaArrowDown /> -2% from last period
           </div>
-          <div
-            style={{
-              marginTop: "1rem",
-              height: "4px",
-              backgroundColor: "#334155",
-              borderRadius: "2px",
-              overflow: "hidden",
-            }}
-          >
-            <div
-              style={{
-                width: "23%",
-                height: "100%",
-                backgroundColor: "#f59e0b",
-              }}
-            />
+          <div className="mt-4 h-1 bg-white/10 rounded-full overflow-hidden">
+            <div className="h-full bg-yellow-500" style={{ width: "23%" }} />
           </div>
-        </div>
+        </DashboardCard>
       </div>
 
       {/* Section 2: Charts */}
-      <div style={chartGridStyle}>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         {/* Chart 1: Call Volume Trend */}
-        <div style={chartCardStyle}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginBottom: "1rem",
-            }}
-          >
-            <h3 style={sectionHeaderStyle}>
+        <DashboardCard className="min-h-[400px]">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-xl font-semibold text-white flex items-center gap-2">
               <FaChartLine /> Call Volume Trend
             </h3>
-            <select
-              style={{
-                ...selectStyle,
-                backgroundColor: "#0f172a",
-                padding: "0.25rem",
-                borderRadius: "4px",
-              }}
-            >
-              <option>Daily</option>
-              <option>Weekly</option>
-              <option>Monthly</option>
+            <select className="bg-transparent text-white border border-white/10 rounded-lg px-3 py-1 text-sm outline-none cursor-pointer">
+              <option className="bg-[#060606]">Daily</option>
+              <option className="bg-[#060606]">Weekly</option>
+              <option className="bg-[#060606]">Monthly</option>
             </select>
           </div>
-          <ResponsiveContainer width="100%" height="100%">
+          <ResponsiveContainer width="100%" height={300}>
             <LineChart data={CALL_VOLUME_DATA}>
               <CartesianGrid
                 strokeDasharray="3 3"
-                stroke="#334155"
+                stroke="rgba(255,255,255,0.1)"
                 vertical={false}
               />
               <XAxis
                 dataKey="date"
-                stroke="#94a3b8"
-                tick={{ fill: "#94a3b8", fontSize: 12 }}
+                stroke="rgba(255,255,255,0.3)"
+                tick={{ fill: "rgba(255,255,255,0.6)", fontSize: 12 }}
                 axisLine={false}
                 tickLine={false}
-                dy={10}
               />
               <YAxis
-                stroke="#94a3b8"
-                tick={{ fill: "#94a3b8", fontSize: 12 }}
+                stroke="rgba(255,255,255,0.3)"
+                tick={{ fill: "rgba(255,255,255,0.6)", fontSize: 12 }}
                 axisLine={false}
                 tickLine={false}
               />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: "#1e293b",
-                  border: "1px solid #334155",
-                  borderRadius: "8px",
-                  color: "#f8fafc",
+                  backgroundColor: "rgba(6,6,6,0.95)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  borderRadius: "12px",
+                  color: "#fff",
                 }}
-                itemStyle={{ color: "#3b82f6" }}
               />
               <Line
                 type="monotone"
                 dataKey="calls"
-                stroke="#3b82f6"
+                stroke="url(#gradientLine)"
                 strokeWidth={3}
-                dot={{ r: 4, fill: "#3b82f6" }}
+                dot={{ r: 4, fill: "#A93E17" }}
                 activeDot={{ r: 6 }}
               />
+              <defs>
+                <linearGradient id="gradientLine" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stopColor="#15399A" />
+                  <stop offset="100%" stopColor="#A93E17" />
+                </linearGradient>
+              </defs>
             </LineChart>
           </ResponsiveContainer>
-        </div>
+        </DashboardCard>
 
         {/* Chart 2: Intent Distribution */}
-        <div style={chartCardStyle}>
-          <h3 style={sectionHeaderStyle}>
+        <DashboardCard className="min-h-[400px]">
+          <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
             <FaChartPie /> Intent Distribution
           </h3>
-          <ResponsiveContainer width="100%" height="100%">
+          <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
                 data={INTENT_DATA}
@@ -443,34 +259,34 @@ export default function Analytics() {
               </Pie>
               <Tooltip
                 contentStyle={{
-                  backgroundColor: "#1e293b",
-                  border: "1px solid #334155",
-                  borderRadius: "8px",
-                  color: "#f8fafc",
+                  backgroundColor: "rgba(6,6,6,0.95)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  borderRadius: "12px",
+                  color: "#fff",
                 }}
               />
               <Legend verticalAlign="bottom" height={36} iconType="circle" />
             </PieChart>
           </ResponsiveContainer>
-        </div>
+        </DashboardCard>
 
         {/* Chart 3: AI Accuracy by Intent */}
-        <div style={chartCardStyle}>
-          <h3 style={sectionHeaderStyle}>
+        <DashboardCard className="min-h-[400px]">
+          <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
             <FaChartBar /> Accuracy by Intent
           </h3>
-          <ResponsiveContainer width="100%" height="100%">
+          <ResponsiveContainer width="100%" height={300}>
             <BarChart data={ACCURACY_DATA} layout="vertical">
               <CartesianGrid
                 strokeDasharray="3 3"
-                stroke="#334155"
+                stroke="rgba(255,255,255,0.1)"
                 horizontal={false}
               />
               <XAxis
                 type="number"
                 domain={[0, 100]}
-                stroke="#94a3b8"
-                tick={{ fill: "#94a3b8", fontSize: 12 }}
+                stroke="rgba(255,255,255,0.3)"
+                tick={{ fill: "rgba(255,255,255,0.6)", fontSize: 12 }}
                 axisLine={false}
                 tickLine={false}
               />
@@ -478,18 +294,18 @@ export default function Analytics() {
                 dataKey="name"
                 type="category"
                 width={80}
-                stroke="#94a3b8"
-                tick={{ fill: "#94a3b8", fontSize: 12 }}
+                stroke="rgba(255,255,255,0.3)"
+                tick={{ fill: "rgba(255,255,255,0.6)", fontSize: 12 }}
                 axisLine={false}
                 tickLine={false}
               />
               <Tooltip
                 cursor={{ fill: "rgba(255,255,255,0.05)" }}
                 contentStyle={{
-                  backgroundColor: "#1e293b",
-                  border: "1px solid #334155",
-                  borderRadius: "8px",
-                  color: "#f8fafc",
+                  backgroundColor: "rgba(6,6,6,0.95)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  borderRadius: "12px",
+                  color: "#fff",
                 }}
               />
               <Bar dataKey="accuracy" radius={[0, 4, 4, 0]} barSize={20}>
@@ -508,27 +324,19 @@ export default function Analytics() {
               </Bar>
             </BarChart>
           </ResponsiveContainer>
-        </div>
+        </DashboardCard>
 
         {/* Chart 4: Appointment Conversion Funnel */}
-        <div style={chartCardStyle}>
-          <h3 style={sectionHeaderStyle}>
+        <DashboardCard className="min-h-[400px]">
+          <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
             <FaFilter /> Appointment Funnel
           </h3>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "1.5rem",
-              justifyContent: "center",
-              height: "100%",
-            }}
-          >
+          <div className="flex flex-col gap-6 justify-center h-full">
             {[
               {
                 label: "Total Calls",
                 value: 156,
-                color: "#3b82f6",
+                color: "#15399A",
                 width: "100%",
               },
               {
@@ -540,42 +348,21 @@ export default function Analytics() {
               {
                 label: "Booked by AI",
                 value: 62,
-                color: "#10b981",
+                color: "#A93E17",
                 width: "55%",
               },
             ].map((step, i) => (
-              <div key={i} style={{ position: "relative" }}>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    marginBottom: "0.5rem",
-                    fontSize: "0.9rem",
-                    color: "#e2e8f0",
-                  }}
-                >
+              <div key={i}>
+                <div className="flex justify-between mb-2 text-sm text-gray-300">
                   <span>{step.label}</span>
-                  <span style={{ fontWeight: "700" }}>{step.value}</span>
+                  <span className="font-bold">{step.value}</span>
                 </div>
-                <div
-                  style={{
-                    height: "24px",
-                    backgroundColor: "#334155",
-                    borderRadius: "4px",
-                    overflow: "hidden",
-                  }}
-                >
+                <div className="h-6 bg-white/10 rounded-lg overflow-hidden">
                   <div
+                    className="h-full flex items-center justify-end pr-2 text-xs font-semibold"
                     style={{
                       width: step.width,
-                      height: "100%",
                       backgroundColor: step.color,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "flex-end",
-                      paddingRight: "0.5rem",
-                      fontSize: "0.75rem",
-                      fontWeight: "600",
                     }}
                   >
                     {i === 2 && "71% Success"}
@@ -584,122 +371,55 @@ export default function Analytics() {
               </div>
             ))}
           </div>
-        </div>
+        </DashboardCard>
       </div>
 
       {/* Section 3: Business Metrics Summary */}
-      <div
-        style={{
-          ...cardStyle,
-          marginBottom: "2rem",
-          flexDirection: "row",
-          flexWrap: "wrap",
-          gap: "2rem",
-          alignItems: "center",
-        }}
-      >
-        <div style={{ flex: "1 1 200px" }}>
-          <h3 style={{ ...sectionHeaderStyle, marginBottom: "0.5rem" }}>
+      <DashboardCard className="mb-8 flex flex-row flex-wrap gap-8 items-center">
+        <div className="flex-1 min-w-[200px]">
+          <h3 className="text-xl font-semibold text-white mb-2">
             Weekly Summary
           </h3>
-          <p style={{ color: "#94a3b8", fontSize: "0.9rem", margin: 0 }}>
+          <p className="text-gray-400 text-sm">
             Key performance indicators for this week.
           </p>
         </div>
-        <div
-          style={{
-            display: "flex",
-            gap: "2rem",
-            flexWrap: "wrap",
-            flex: "3 1 400px",
-          }}
-        >
+        <div className="flex gap-8 flex-wrap flex-[3_1_400px]">
           <div>
-            <p style={{ color: "#94a3b8", fontSize: "0.8rem", margin: 0 }}>
-              Appointments Booked
-            </p>
-            <p
-              style={{
-                fontSize: "1.2rem",
-                fontWeight: "700",
-                color: "#f8fafc",
-                margin: "0.25rem 0",
-              }}
-            >
-              62
-            </p>
+            <p className="text-gray-400 text-sm mb-1">Appointments Booked</p>
+            <p className="text-2xl font-bold text-white">62</p>
           </div>
           <div>
-            <p style={{ color: "#94a3b8", fontSize: "0.8rem", margin: 0 }}>
-              Customer Satisfaction
-            </p>
-            <p
-              style={{
-                fontSize: "1.2rem",
-                fontWeight: "700",
-                color: "#f8fafc",
-                margin: "0.25rem 0",
-              }}
-            >
-              87%
-            </p>
+            <p className="text-gray-400 text-sm mb-1">Customer Satisfaction</p>
+            <p className="text-2xl font-bold text-white">87%</p>
           </div>
           <div>
-            <p style={{ color: "#94a3b8", fontSize: "0.8rem", margin: 0 }}>
-              Avg Call Duration
-            </p>
-            <p
-              style={{
-                fontSize: "1.2rem",
-                fontWeight: "700",
-                color: "#f8fafc",
-                margin: "0.25rem 0",
-              }}
-            >
-              2m 15s
-            </p>
+            <p className="text-gray-400 text-sm mb-1">Avg Call Duration</p>
+            <p className="text-2xl font-bold text-white">2m 15s</p>
           </div>
           <div>
-            <p style={{ color: "#94a3b8", fontSize: "0.8rem", margin: 0 }}>
-              Peak Time
-            </p>
-            <p
-              style={{
-                fontSize: "1.2rem",
-                fontWeight: "700",
-                color: "#f8fafc",
-                margin: "0.25rem 0",
-              }}
-            >
-              2-3 PM
-            </p>
+            <p className="text-gray-400 text-sm mb-1">Peak Time</p>
+            <p className="text-2xl font-bold text-white">2-3 PM</p>
           </div>
         </div>
-      </div>
+      </DashboardCard>
 
       {/* Section 4: Reports */}
-      <div style={gridStyle}>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Generate Report Form */}
-        <div style={cardStyle}>
-          <h3 style={sectionHeaderStyle}>Generate Report</h3>
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
-          >
+        <DashboardCard>
+          <h3 className="text-xl font-semibold text-white mb-4">
+            Generate Report
+          </h3>
+          <div className="flex flex-col gap-4">
             <div>
-              <label
-                style={{
-                  display: "block",
-                  marginBottom: "0.5rem",
-                  color: "#cbd5f5",
-                  fontSize: "0.9rem",
-                }}
-              >
+              <label className="block mb-2 text-gray-300 text-sm">
                 Report Type
               </label>
               <select
                 value={reportType}
                 onChange={(e) => setReportType(e.target.value)}
-                style={inputStyle}
+                className="w-full px-3 py-2 rounded-lg border border-white/10 bg-[#060606] text-white text-sm outline-none"
               >
                 <option>Weekly Summary</option>
                 <option>Monthly Detailed</option>
@@ -707,113 +427,62 @@ export default function Analytics() {
               </select>
             </div>
             <div>
-              <label
-                style={{
-                  display: "block",
-                  marginBottom: "0.5rem",
-                  color: "#cbd5f5",
-                  fontSize: "0.9rem",
-                }}
-              >
-                Format
-              </label>
-              <div style={{ display: "flex", gap: "1rem" }}>
+              <label className="block mb-2 text-gray-300 text-sm">Format</label>
+              <div className="flex gap-4">
                 {["PDF", "CSV", "Email"].map((fmt) => (
                   <label
                     key={fmt}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.5rem",
-                      color: "#e2e8f0",
-                      cursor: "pointer",
-                      fontSize: "0.9rem",
-                    }}
+                    className="flex items-center gap-2 text-gray-300 cursor-pointer text-sm"
                   >
                     <input
                       type="radio"
                       name="format"
                       checked={reportFormat === fmt}
                       onChange={() => setReportFormat(fmt)}
+                      className="accent-[#A93E17]"
                     />
                     {fmt}
                   </label>
                 ))}
               </div>
             </div>
-            <button style={{ ...buttonStyle, marginTop: "0.5rem" }}>
+            <button className="mt-2 px-6 py-3 rounded-full text-white font-semibold flex items-center justify-center gap-2 bg-gradient-to-r from-[#15399A] to-[#A93E17] hover:opacity-90 transition">
               <FaDownload /> Generate Report
             </button>
           </div>
-        </div>
+        </DashboardCard>
 
         {/* Previous Reports List */}
-        <div style={cardStyle}>
-          <h3 style={sectionHeaderStyle}>Recent Reports</h3>
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}
-          >
+        <DashboardCard>
+          <h3 className="text-xl font-semibold text-white mb-4">
+            Recent Reports
+          </h3>
+          <div className="flex flex-col gap-3">
             {REPORTS_HISTORY.map((report) => (
               <div
                 key={report.id}
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  padding: "0.75rem",
-                  backgroundColor: "#0f172a",
-                  borderRadius: "8px",
-                  border: "1px solid #334155",
-                }}
+                className="flex justify-between items-center p-3 bg-[#060606] rounded-lg border border-white/10"
               >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.75rem",
-                  }}
-                >
+                <div className="flex items-center gap-3">
                   {report.type === "PDF" ? (
-                    <FaFilePdf color="#ef4444" />
+                    <FaFilePdf className="text-red-500 text-xl" />
                   ) : (
-                    <FaFileCsv color="#10b981" />
+                    <FaFileCsv className="text-green-500 text-xl" />
                   )}
                   <div>
-                    <p
-                      style={{
-                        margin: 0,
-                        color: "#e2e8f0",
-                        fontSize: "0.9rem",
-                        fontWeight: "500",
-                      }}
-                    >
+                    <p className="text-gray-200 text-sm font-medium">
                       {report.name}
                     </p>
-                    <p
-                      style={{
-                        margin: 0,
-                        color: "#94a3b8",
-                        fontSize: "0.75rem",
-                      }}
-                    >
-                      {report.date}
-                    </p>
+                    <p className="text-gray-400 text-xs">{report.date}</p>
                   </div>
                 </div>
-                <button
-                  style={{
-                    background: "transparent",
-                    border: "none",
-                    color: "#3b82f6",
-                    cursor: "pointer",
-                  }}
-                >
+                <button className="text-[#A93E17] hover:text-[#15399A] transition">
                   <FaDownload />
                 </button>
               </div>
             ))}
           </div>
-        </div>
+        </DashboardCard>
       </div>
     </div>
   );

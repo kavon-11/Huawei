@@ -12,6 +12,8 @@ import {
   FaArrowLeft,
   FaCloudUploadAlt,
 } from "react-icons/fa";
+import DashboardCard from "../../components/DashboardCard";
+import GradientText from "../../components/GradientText";
 
 // Mock Data
 const INITIAL_FAQS = [

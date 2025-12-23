@@ -8,6 +8,8 @@ import {
   FaChevronDown,
   FaChevronUp,
 } from "react-icons/fa";
+import DashboardCard from "../../components/DashboardCard";
+import GradientText from "../../components/GradientText";
 
 export default function AIConf() {
   const [activeTab, setActiveTab] = useState("basic");

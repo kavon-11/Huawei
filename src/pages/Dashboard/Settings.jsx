@@ -21,6 +21,8 @@ import {
   FaPhone,
   FaBell,
 } from "react-icons/fa";
+import DashboardCard from "../../components/DashboardCard";
+import GradientText from "../../components/GradientText";
 
 export default function Settings() {
   const [activeTab, setActiveTab] = useState("account");

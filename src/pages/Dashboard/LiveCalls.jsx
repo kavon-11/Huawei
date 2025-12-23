@@ -12,6 +12,8 @@ import {
   FaPause,
   FaTimes,
 } from "react-icons/fa";
+import DashboardCard from "../../components/DashboardCard";
+import GradientText from "../../components/GradientText";
 
 // Mock Data Generator
 const generateMockTranscript = (count) => {

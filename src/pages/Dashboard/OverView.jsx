@@ -131,13 +131,16 @@ export default function OverView() {
   }));
 
   return (
-    <div className="p-8 font-manrope">
+    <div
+      className="p-8 font-manrope"
+      style={{ backgroundColor: "#060606", minHeight: "100vh" }}
+    >
       {/* Header */}
       <header className="mb-8">
         <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
           Welcome back, <GradientText>User</GradientText>
         </h1>
-        <p className="text-white/60">{currentDate}</p>
+        <p className="text-gray-400">{currentDate}</p>
       </header>
 
       {/* Stats Grid */}
@@ -146,10 +149,10 @@ export default function OverView() {
           <DashboardCard key={index}>
             <div className="flex justify-between items-start mb-4">
               <div>
-                <p className="text-white/60 text-sm mb-1">{stat.label}</p>
+                <p className="text-gray-400 text-sm mb-1">{stat.label}</p>
                 <h2 className="text-3xl font-bold text-white">{stat.value}</h2>
               </div>
-              <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500/20 to-blue-500/20 text-orange-500 text-xl">
+              <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-[#A93E17]/20 to-[#15399A]/20 text-[#A93E17] text-xl">
                 {stat.icon}
               </div>
             </div>
@@ -163,7 +166,7 @@ export default function OverView() {
                   {stat.trendUp ? "↑" : "↓"} {stat.trend}
                 </span>
               )}
-              <span className="text-white/50">{stat.detail}</span>
+              <span className="text-gray-400">{stat.detail}</span>
             </div>
           </DashboardCard>
         ))}
@@ -180,16 +183,16 @@ export default function OverView() {
             <table className="w-full">
               <thead>
                 <tr className="text-left border-b border-white/10">
-                  <th className="pb-3 text-white/60 font-medium text-sm">
+                  <th className="pb-3 text-gray-400 font-medium text-sm">
                     Time
                   </th>
-                  <th className="pb-3 text-white/60 font-medium text-sm">
+                  <th className="pb-3 text-gray-400 font-medium text-sm">
                     Caller
                   </th>
-                  <th className="pb-3 text-white/60 font-medium text-sm">
+                  <th className="pb-3 text-gray-400 font-medium text-sm">
                     Intent
                   </th>
-                  <th className="pb-3 text-white/60 font-medium text-sm">
+                  <th className="pb-3 text-gray-400 font-medium text-sm">
                     Status
                   </th>
                 </tr>
@@ -201,11 +204,11 @@ export default function OverView() {
                     className="border-b border-white/5 hover:bg-white/5 cursor-pointer transition"
                     onClick={() => navigate("/dashboard/history")}
                   >
-                    <td className="py-3 text-white/80 text-sm">{call.time}</td>
-                    <td className="py-3 text-white/80 text-sm">
+                    <td className="py-3 text-gray-300 text-sm">{call.time}</td>
+                    <td className="py-3 text-gray-300 text-sm">
                       {call.caller}
                     </td>
-                    <td className="py-3 text-white/80 text-sm">
+                    <td className="py-3 text-gray-300 text-sm">
                       {call.intent}
                     </td>
                     <td className="py-3">
@@ -237,7 +240,7 @@ export default function OverView() {
               >
                 <div>
                   <p className="font-semibold text-white">{apt.name}</p>
-                  <p className="text-sm text-white/60 mt-1">
+                  <p className="text-sm text-gray-400 mt-1">
                     {apt.time} • {apt.type}
                   </p>
                 </div>
@@ -266,13 +269,13 @@ export default function OverView() {
                 />
                 <XAxis
                   dataKey="name"
-                  stroke="rgba(255,255,255,0.5)"
+                  stroke="rgba(255,255,255,0.3)"
                   tick={{ fill: "rgba(255,255,255,0.6)", fontSize: 12 }}
                   tickLine={false}
                   axisLine={false}
                 />
                 <YAxis
-                  stroke="rgba(255,255,255,0.5)"
+                  stroke="rgba(255,255,255,0.3)"
                   tick={{ fill: "rgba(255,255,255,0.6)", fontSize: 12 }}
                   tickLine={false}
                   axisLine={false}
@@ -280,9 +283,9 @@ export default function OverView() {
                 />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: "rgba(0,0,0,0.9)",
+                    backgroundColor: "rgba(6,6,6,0.95)",
                     border: "1px solid rgba(255,255,255,0.1)",
-                    borderRadius: "8px",
+                    borderRadius: "12px",
                     color: "#fff",
                   }}
                   itemStyle={{ color: "#A93E17" }}
@@ -303,8 +306,8 @@ export default function OverView() {
                 />
                 <defs>
                   <linearGradient id="gradient" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stopColor="#A93E17" />
-                    <stop offset="100%" stopColor="#15399A" />
+                    <stop offset="0%" stopColor="#15399A" />
+                    <stop offset="100%" stopColor="#A93E17" />
                   </linearGradient>
                 </defs>
               </LineChart>
