@@ -1,6 +1,6 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   FaThLarge,
   FaHistory,
@@ -10,6 +10,8 @@ import {
 } from "react-icons/fa";
 
 export default function SideBar({ isOpen, setIsOpen }) {
+  const location = useLocation();
+
   // Helper to animate text labels
   const showLabel = {
     hidden: { opacity: 0, width: 0, display: "none" },
@@ -122,7 +124,7 @@ export default function SideBar({ isOpen, setIsOpen }) {
 
         {/* Menu Items */}
         {menuItems.map((item, idx) => {
-          const isActive = window.location.pathname === item.to;
+          const isActive = location.pathname === item.to;
           return (
             <Link
               key={idx}

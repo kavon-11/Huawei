@@ -215,10 +215,10 @@ export default function AIConf() {
   // --- Styles ---
   const containerStyle = {
     padding: "1rem",
-    backgroundColor: "#0f172a",
+    backgroundColor: "#060606",
     minHeight: "100vh",
     color: "#e2e8f0",
-    fontFamily: "'Inter', sans-serif",
+    fontFamily: "'Manrope', sans-serif",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -246,7 +246,9 @@ export default function AIConf() {
 
   const tabStyle = (isActive) => ({
     padding: "0.75rem 1rem",
-    backgroundColor: isActive ? "#3b82f6" : "transparent",
+    background: isActive
+      ? "linear-gradient(to right, #15399A, #A93E17)"
+      : "transparent",
     color: isActive ? "white" : "#94a3b8",
     border: "none",
     borderRadius: "8px",
@@ -259,13 +261,14 @@ export default function AIConf() {
   });
 
   const sectionStyle = {
-    backgroundColor: "#1e293b",
+    backgroundColor: "rgba(255, 255, 255, 0.05)",
     borderRadius: "12px",
     padding: "1.5rem", // Reduced padding for mobile
-    border: "1px solid #334155",
+    border: "1px solid rgba(255, 255, 255, 0.1)",
     width: "100%",
     maxWidth: "800px",
     boxSizing: "border-box",
+    backdropFilter: "blur(12px)",
   };
 
   const fieldGroupStyle = {
@@ -277,15 +280,15 @@ export default function AIConf() {
     display: "block",
     marginBottom: "0.5rem",
     fontWeight: "600",
-    color: "#cbd5f5",
+    color: "#e2e8f0",
   };
 
   const inputStyle = {
     width: "100%",
     padding: "0.75rem",
     borderRadius: "8px",
-    border: "1px solid #334155",
-    backgroundColor: "#0f172a",
+    border: "1px solid rgba(255, 255, 255, 0.1)",
+    backgroundColor: "rgba(255, 255, 255, 0.05)",
     color: "white",
     fontSize: "0.95rem",
     outline: "none",
@@ -299,7 +302,7 @@ export default function AIConf() {
 
   const buttonStyle = {
     padding: "0.75rem 1.5rem",
-    backgroundColor: "#3b82f6",
+    background: "linear-gradient(to right, #15399A, #A93E17)",
     color: "white",
     border: "none",
     borderRadius: "8px",
@@ -314,7 +317,7 @@ export default function AIConf() {
 
   const previewButtonStyle = {
     ...buttonStyle,
-    backgroundColor: "#334155",
+    background: "rgba(255, 255, 255, 0.1)",
     fontSize: "0.8rem",
     padding: "0.5rem 1rem",
     marginTop: "0.5rem",

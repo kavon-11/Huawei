@@ -230,10 +230,10 @@ export default function KnowledgeBase() {
   // --- Styles ---
   const containerStyle = {
     padding: "1rem", // Reduced padding for mobile
-    backgroundColor: "#0f172a",
+    backgroundColor: "#060606",
     minHeight: "100vh",
     color: "#e2e8f0",
-    fontFamily: "'Inter', sans-serif",
+    fontFamily: "'Manrope', sans-serif",
   };
 
   const headerStyle = {
@@ -263,22 +263,23 @@ export default function KnowledgeBase() {
   };
 
   const cardStyle = {
-    backgroundColor: "#1e293b",
+    backgroundColor: "rgba(255, 255, 255, 0.05)",
     borderRadius: "12px",
-    border: "1px solid #334155",
+    border: "1px solid rgba(255, 255, 255, 0.1)",
     overflow: "hidden",
     display: "flex",
     flexDirection: "column",
     height: "fit-content",
     width: "100%", // Ensure it takes full width of grid cell
+    backdropFilter: "blur(12px)",
   };
 
   const inputStyle = {
     width: "100%",
     padding: "0.75rem",
     borderRadius: "8px",
-    border: "1px solid #334155",
-    backgroundColor: "#0f172a",
+    border: "1px solid rgba(255, 255, 255, 0.1)",
+    backgroundColor: "rgba(255, 255, 255, 0.05)",
     color: "white",
     fontSize: "0.9rem",
     outline: "none",
@@ -286,12 +287,12 @@ export default function KnowledgeBase() {
 
   const buttonStyle = (variant = "primary") => ({
     padding: "0.6rem 1.2rem",
-    backgroundColor:
+    background:
       variant === "primary"
-        ? "#3b82f6"
+        ? "linear-gradient(to right, #15399A, #A93E17)"
         : variant === "danger"
         ? "#ef4444"
-        : "#334155",
+        : "rgba(255, 255, 255, 0.1)",
     color: "white",
     border: "none",
     borderRadius: "8px",
