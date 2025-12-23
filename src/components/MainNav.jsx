@@ -8,7 +8,11 @@ export default function RootLayout() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="flex h-screen overflow-hidden" data-lenis-prevent>
+    <div
+      className="flex h-screen overflow-hidden"
+      data-lenis-prevent
+      style={{ backgroundColor: "#060606" }}
+    >
       {/* Sidebar Wrapper with Framer Motion */}
       <motion.div
         initial={{ width: "4rem" }} // Start collapsed (w-16 equivalent)
@@ -19,20 +23,25 @@ export default function RootLayout() {
           stiffness: 100,
           damping: 20,
         }}
-        className="bg-white dark:bg-gray-900 border-r dark:border-gray-700 z-10 flex-shrink-0"
+        className="border-r border-white/10 z-10 flex-shrink-0"
+        style={{ backgroundColor: "#060606" }}
       >
         <SideBar isOpen={isOpen} setIsOpen={setIsOpen} />
       </motion.div>
 
       {/* Right area: header on top, content fills remaining space */}
       <div className="flex-1 flex flex-col min-w-0">
-        <header className="bg-[#0f172a] text-white">
+        <header
+          className="border-b border-white/10"
+          style={{ backgroundColor: "#060606" }}
+        >
           <Header />
         </header>
 
         <main
-          className="flex-1 bg-[#111827] overflow-y-auto p-4"
+          className="flex-1 overflow-y-auto"
           data-lenis-prevent
+          style={{ backgroundColor: "#060606" }}
         >
           <Outlet />
         </main>

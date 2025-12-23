@@ -50,16 +50,14 @@ export default function SideBar({ isOpen, setIsOpen }) {
   ];
 
   return (
-    <div className="flex flex-col h-full py-8 overflow-y-auto overflow-x-hidden bg-white dark:bg-gray-900 w-full">
-      <nav className="flex flex-col flex-1 space-y-6 px-2">
+    <div className="flex flex-col h-full py-8 overflow-y-auto overflow-x-hidden w-full font-manrope">
+      <nav className="flex flex-col flex-1 space-y-2 px-3">
         {/* Logo & Toggle Area */}
-        <div className="flex items-center justify-between px-2 mb-4">
+        <div className="flex items-center justify-between px-2 mb-8">
           <div className="flex items-center gap-2 overflow-hidden">
-            <img
-              className="w-auto h-6 flex-shrink-0"
-              src="https://merakiui.com/images/logo.svg"
-              alt="Logo"
-            />
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#15399A] to-[#A93E17] flex items-center justify-center flex-shrink-0">
+              <span className="text-white font-bold text-lg">E</span>
+            </div>
             <AnimatePresence>
               {isOpen && (
                 <motion.span
@@ -67,9 +65,9 @@ export default function SideBar({ isOpen, setIsOpen }) {
                   initial="hidden"
                   animate="visible"
                   exit="hidden"
-                  className="font-bold text-gray-700 dark:text-white whitespace-nowrap"
+                  className="font-bold text-white whitespace-nowrap text-lg"
                 >
-                  Meraki UI
+                  EchoAI
                 </motion.span>
               )}
             </AnimatePresence>
@@ -79,14 +77,14 @@ export default function SideBar({ isOpen, setIsOpen }) {
           {isOpen && (
             <button
               onClick={() => setIsOpen(false)}
-              className="p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500"
+              className="p-1.5 rounded-lg hover:bg-white/5 text-gray-400 hover:text-white transition"
             >
               <motion.div whileTap={{ scale: 0.9 }}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
-                  strokeWidth={1.5}
+                  strokeWidth={2}
                   stroke="currentColor"
                   className="w-5 h-5"
                 >
@@ -105,13 +103,13 @@ export default function SideBar({ isOpen, setIsOpen }) {
         {!isOpen && (
           <button
             onClick={() => setIsOpen(true)}
-            className="mx-auto p-1.5 text-gray-500 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+            className="mx-auto p-2 text-gray-400 rounded-lg hover:bg-white/5 hover:text-white transition mb-6"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              strokeWidth={1.5}
+              strokeWidth={2}
               stroke="currentColor"
               className="w-6 h-6"
             >
@@ -125,80 +123,52 @@ export default function SideBar({ isOpen, setIsOpen }) {
         )}
 
         {/* Menu Items */}
-        {menuItems.map((item, idx) => (
-          <Link
-            key={idx}
-            to={item.to}
-            className={`flex items-center p-2 text-gray-700 transition-colors duration-200 rounded-lg hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800 ${
-              !isOpen ? "justify-center" : ""
-            }`}
-          >
-            <div className="flex-shrink-0">{item.icon}</div>
-            <AnimatePresence>
-              {isOpen && (
-                <motion.span
-                  variants={showLabel}
-                  initial="hidden"
-                  animate="visible"
-                  exit="hidden"
-                  className="ml-3 whitespace-nowrap"
-                >
-                  {item.label}
-                </motion.span>
-              )}
-            </AnimatePresence>
-          </Link>
-        ))}
+        {menuItems.map((item, idx) => {
+          const isActive = window.location.pathname === item.to;
+          return (
+            <Link
+              key={idx}
+              to={item.to}
+              className={`flex items-center px-3 py-3 rounded-xl transition-all duration-200 group ${
+                !isOpen ? "justify-center" : ""
+              } ${
+                isActive
+                  ? "bg-gradient-to-r from-[#15399A] to-[#A93E17] text-white shadow-lg"
+                  : "text-gray-400 hover:bg-white/5 hover:text-white"
+              }`}
+            >
+              <div className="flex-shrink-0">{item.icon}</div>
+              <AnimatePresence>
+                {isOpen && (
+                  <motion.span
+                    variants={showLabel}
+                    initial="hidden"
+                    animate="visible"
+                    exit="hidden"
+                    className="ml-3 whitespace-nowrap font-medium"
+                  >
+                    {item.label}
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </Link>
+          );
+        })}
       </nav>
 
-      <div className="flex flex-col space-y-6 px-2">
-        {/* Settings */}
-        <Link
-          to="/settings"
-          className={`flex items-center p-2 text-gray-700 transition-colors duration-200 rounded-lg hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800 ${
-            !isOpen ? "justify-center" : ""
-          }`}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="w-6 h-6 flex-shrink-0"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M16.712 4.33a9.027 9.027 0 011.652 1.306c.51.51.944 1.064 1.306 1.652M16.712 4.33l-3.448 4.138m3.448-4.138a9.014 9.014 0 00-9.424 0M19.67 7.288l-4.138 3.448m4.138-3.448a9.014 9.014 0 010 9.424m-4.138-5.976a3.736 3.736 0 00-.88-1.388 3.737 3.737 0 00-1.388-.88m2.268 2.268a3.765 3.765 0 010 2.528m-2.268-4.796a3.765 3.765 0 00-2.528 0m4.796 4.796c-.181.506-.475.982-.88 1.388a3.736 3.736 0 01-1.388.88m2.268-2.268l4.138 3.448m0 0a9.027 9.027 0 01-1.306 1.652c-.51.51-1.064.944-1.652 1.306m0 0l-3.448-4.138m3.448 4.138a9.014 9.014 0 01-9.424 0m5.976-4.138a3.765 3.765 0 01-2.528 0m0 0a3.736 3.736 0 01-1.388-.88 3.737 3.737 0 01-.88-1.388m2.268 2.268L7.288 19.67m0 0a9.024 9.024 0 01-1.652-1.306 9.027 9.027 0 01-1.306-1.652m0 0l4.138-3.448M4.33 16.712a9.014 9.014 0 010-9.424m4.138 5.976a3.765 3.765 0 010-2.528m0 0c.181-.506.475-.982.88-1.388a3.736 3.736 0 011.388-.88m-2.268 2.268L4.33 7.288m6.406 1.18L7.288 4.33m0 0a9.024 9.024 0 00-1.652 1.306A9.025 9.025 0 004.33 7.288"
-            />
-          </svg>
-          <AnimatePresence>
-            {isOpen && (
-              <motion.span
-                variants={showLabel}
-                initial="hidden"
-                animate="visible"
-                exit="hidden"
-                className="ml-3 whitespace-nowrap"
-              >
-                Settings
-              </motion.span>
-            )}
-          </AnimatePresence>
-        </Link>
+      <div className="flex flex-col space-y-3 px-3">
+        {/* Divider */}
+        <div className="h-px bg-white/10 my-2"></div>
 
-        {/* Avatar */}
-        <a
-          className={`flex items-center gap-2 ${
-            !isOpen ? "justify-center" : ""
+        {/* User Profile Card */}
+        <div
+          className={`flex items-center gap-3 p-3 rounded-xl border border-white/10 bg-white/5 backdrop-blur-xl ${
+            !isOpen ? "justify-center p-2" : ""
           }`}
         >
-          <img
-            className="object-cover w-8 h-8 rounded-full"
-            src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=facearea&facepad=4&w=880&h=880&q=100"
-            alt="User"
-          />
+          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#15399A] to-[#A93E17] flex items-center justify-center flex-shrink-0">
+            <span className="text-white font-semibold text-sm">JD</span>
+          </div>
           <AnimatePresence>
             {isOpen && (
               <motion.div
@@ -206,18 +176,18 @@ export default function SideBar({ isOpen, setIsOpen }) {
                 initial="hidden"
                 animate="visible"
                 exit="hidden"
-                className="flex flex-col"
+                className="flex flex-col overflow-hidden"
               >
-                <p className=" text-sm font-medium text-gray-700 dark:text-gray-200">
+                <p className="text-sm font-semibold text-white truncate">
                   John Doe
                 </p>
-                <span className="text-xs text-gray-500 dark:text-gray-400">
-                  View Profile
+                <span className="text-xs text-gray-400 truncate">
+                  john@example.com
                 </span>
               </motion.div>
             )}
           </AnimatePresence>
-        </a>
+        </div>
       </div>
     </div>
   );
