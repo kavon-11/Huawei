@@ -54,73 +54,71 @@ export default function SideBar({ isOpen, setIsOpen }) {
       <nav className="flex flex-col flex-1 space-y-2 px-3">
         {/* Logo & Toggle Area */}
         <div className="flex items-center justify-between px-2 mb-8">
-          <div className="flex items-center gap-2 overflow-hidden">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#15399A] to-[#A93E17] flex items-center justify-center flex-shrink-0">
-              <span className="text-white font-bold text-lg">E</span>
-            </div>
-            <AnimatePresence>
-              {isOpen && (
+          {isOpen ? (
+            <>
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#15399A] to-[#A93E17] flex items-center justify-center flex-shrink-0">
+                  <span className="text-white font-bold text-lg">E</span>
+                </div>
                 <motion.span
-                  variants={showLabel}
-                  initial="hidden"
-                  animate="visible"
-                  exit="hidden"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ delay: 0.1 }}
                   className="font-bold text-white whitespace-nowrap text-lg"
                 >
                   EchoAI
                 </motion.span>
-              )}
-            </AnimatePresence>
-          </div>
-
-          {/* Toggle Arrow Button */}
-          {isOpen && (
-            <button
-              onClick={() => setIsOpen(false)}
-              className="p-1.5 rounded-lg hover:bg-white/5 text-gray-400 hover:text-white transition"
-            >
-              <motion.div whileTap={{ scale: 0.9 }}>
+              </div>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="p-1.5 rounded-lg hover:bg-white/5 text-gray-400 hover:text-white transition"
+              >
+                <motion.div whileTap={{ scale: 0.9 }}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2}
+                    stroke="currentColor"
+                    className="w-5 h-5"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15.75 19.5L8.25 12l7.5-7.5"
+                    />
+                  </svg>
+                </motion.div>
+              </button>
+            </>
+          ) : (
+            <div className="w-full flex flex-col items-center gap-4">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#15399A] to-[#A93E17] flex items-center justify-center">
+                <span className="text-white font-bold text-lg">E</span>
+              </div>
+              <button
+                onClick={() => setIsOpen(true)}
+                className="p-2 text-gray-400 rounded-lg hover:bg-white/5 hover:text-white transition"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth={2}
                   stroke="currentColor"
-                  className="w-5 h-5"
+                  className="w-6 h-6"
                 >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="M15.75 19.5L8.25 12l7.5-7.5"
+                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
                   />
                 </svg>
-              </motion.div>
-            </button>
+              </button>
+            </div>
           )}
         </div>
-
-        {/* Collapsed Toggle Button */}
-        {!isOpen && (
-          <button
-            onClick={() => setIsOpen(true)}
-            className="mx-auto p-2 text-gray-400 rounded-lg hover:bg-white/5 hover:text-white transition mb-6"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M8.25 4.5l7.5 7.5-7.5 7.5"
-              />
-            </svg>
-          </button>
-        )}
 
         {/* Menu Items */}
         {menuItems.map((item, idx) => {
@@ -161,33 +159,32 @@ export default function SideBar({ isOpen, setIsOpen }) {
         <div className="h-px bg-white/10 my-2"></div>
 
         {/* User Profile Card */}
-        <div
-          className={`flex items-center gap-3 p-3 rounded-xl border border-white/10 bg-white/5 backdrop-blur-xl ${
-            !isOpen ? "justify-center p-2" : ""
-          }`}
-        >
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#15399A] to-[#A93E17] flex items-center justify-center flex-shrink-0">
-            <span className="text-white font-semibold text-sm">JD</span>
+        {isOpen ? (
+          <div className="flex items-center gap-3 p-3 rounded-xl border border-white/10 bg-white/5 backdrop-blur-xl">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#15399A] to-[#A93E17] flex items-center justify-center flex-shrink-0">
+              <span className="text-white font-semibold text-sm">JD</span>
+            </div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.1 }}
+              className="flex flex-col min-w-0 flex-1"
+            >
+              <p className="text-sm font-semibold text-white truncate">
+                John Doe
+              </p>
+              <span className="text-xs text-gray-400 truncate">
+                john@example.com
+              </span>
+            </motion.div>
           </div>
-          <AnimatePresence>
-            {isOpen && (
-              <motion.div
-                variants={showLabel}
-                initial="hidden"
-                animate="visible"
-                exit="hidden"
-                className="flex flex-col overflow-hidden"
-              >
-                <p className="text-sm font-semibold text-white truncate">
-                  John Doe
-                </p>
-                <span className="text-xs text-gray-400 truncate">
-                  john@example.com
-                </span>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+        ) : (
+          <div className="flex justify-center">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#15399A] to-[#A93E17] flex items-center justify-center">
+              <span className="text-white font-semibold text-sm">JD</span>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

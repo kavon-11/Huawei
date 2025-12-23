@@ -49,6 +49,10 @@ const router = createBrowserRouter([
         element: <LiveCalls />,
       },
       {
+        path: "settings",
+        element: <Settings />,
+      },
+      {
         path: "*",
         element: <Error />,
       },
@@ -66,10 +70,6 @@ const router = createBrowserRouter([
   {
     index: true,
     element: <Home />,
-  },
-  {
-    path: "settings",
-    element: <Settings />,
   },
   {
     path: "onBoarding",
