@@ -7,48 +7,47 @@ import StepsContainer from "./StepsContainer";
 function getInitialOnboardingData() {
   return {
     businessProfile: {
-      name: "TechVista Solutions",
-      domain: "techvista.com",
-      timezone: "America/New_York (UTC-5)",
-      currency: "USD",
-      industry: "E-commerce",
-      notes: "Leading provider of innovative tech solutions",
-      shopSystem: "Shopify",
+      name: "SkyAlex Dental Clinic",
+      domain: "skyalexdental.com",
+      timezone: "Africa/Cairo",
+      currency: "EGP",
+      industry: "Healthcare",
+      notes: "Premier dental care in Alexandria, Egypt",
+      shopSystem: "Healthcare",
     },
     contactInfo: {
-      primaryContactName: "Sarah Johnson",
-      email: "sarah.johnson@techvista.com",
-      phone: "+1 (555) 123-4567",
+      primaryContactName: "Dr. Ahmed Samir",
+      email: "info@skyalexdental.com",
+      phone: "+20 10 1234 5678",
       preferredContactMethod: "email",
     },
     onboardingCapabilities: {
       voiceEnabled: true,
-      chatEnabled: true,
+      chatEnabled: false,
       crmIntegration: true,
       analyticsEnabled: true,
     },
     // NEW: Telephony & numbers configuration
     telephony: {
       provider: "twilio", // "twilio" | "telnyx" | "other-sip"
-      mainNumber: "+1 (555) 987-6543", // E.164 format: +20XXXXXXXXXX
-      additionalNumbers: ["+1 (555) 987-6544", "+1 (555) 987-6545"], // array of E.164 numbers
+      mainNumber: "+20 10 5555 9999", // E.164 format: +20XXXXXXXXXX
+      additionalNumbers: [], // array of E.164 numbers
       allowSmsFollowUp: true,
     },
     callRoutingPolicy: {
-      hours: "Monday - Friday: 9AM - 6PM, Saturday: 10AM - 4PM",
-      timeZone: "America/New_York (UTC-5)",
-      languages: "English, Spanish",
-      fallbackRoute: "Transfer to voicemail after hours",
-      escalationGroup: "support@techvista.com",
+      hours: "Sat–Thu 10:00–20:00",
+      timeZone: "Africa/Cairo",
+      languages: "Arabic, English",
+      fallbackRoute: "Forward to +20 10 1234 5678 after 3 failed attempts",
+      escalationGroup: "Front Desk Team",
     },
     receptionistPersona: {
-      name: "Alex",
-      voiceModel: "Female (American)",
-      tone: "Professional and Friendly",
+      name: "Echo",
+      voiceModel: "echo-warm",
+      tone: "friendly",
       greetingScript:
-        "Thank you for calling TechVista Solutions! I'm Alex, your AI assistant. How can I help you today?",
-      holdMessage:
-        "Thank you for your patience. Your call is important to us. Someone will be with you shortly.",
+        "Hi, thank you for calling SkyAlex Dental Clinic. How can I help you today?",
+      holdMessage: "Thanks, one moment while I check that for you.",
     },
     callGoalsAndCaptureRules: {
       mainOutcomes: {
@@ -60,43 +59,43 @@ function getInitialOnboardingData() {
       requiredFields: {
         name: true,
         phone: true,
-        email: true,
+        email: false,
         reasonForCall: true,
         budget: false,
       },
       neverDoRules:
-        "Do not provide pricing without manager approval. Do not guarantee delivery dates. Do not discuss competitor products.",
+        "Do not give medical diagnosis. Do not quote exact treatment prices; only ranges.",
       escalationConditions: {
         angryCaller: true,
         legalIssue: true,
         emergency: true,
         vipNumbers: true,
       },
-      vipNumbers: "+1 (555) 111-2222, +1 (555) 333-4444",
+      vipNumbers: "+20 10 0000 1111",
     },
     knowledge: {
-      websiteUrl: "https://www.techvista.com",
+      websiteUrl: "https://skyalexdental.com",
       files: [],
       ingestionMethod: "web_scrape",
     },
     schedulingAndCrm: {
-      calendarIntegration: "google_calendar",
-      crmSystem: "salesforce",
-      appointmentTypes: "Product Demo, Technical Support, Sales Consultation",
-      bufferTimes: "15 minutes between appointments",
+      calendarIntegration: "google",
+      crmSystem: "hubspot",
+      appointmentTypes: "Check-up, Teeth Whitening, Braces Consultation",
+      bufferTimes: "10 min before / 10 min after",
     },
     complianceAndPolicies: {
-      dataPrivacy: "We comply with GDPR and CCPA regulations",
-      retentionPolicy: "Call recordings retained for 90 days",
+      dataPrivacy: "We store call summaries and bookings for care quality.",
+      retentionPolicy: "Keep call logs for 90 days",
       consentText:
-        "This call may be recorded for quality and training purposes",
+        "This call may be recorded for quality and training purposes.",
     },
     // NEW: Notification preferences & webhooks
     notificationsAndIntegrations: {
       notifyOnNewLead: true,
       notifyOnNewBooking: true,
-      notificationChannels: ["email", "slack"], // "email" | "sms" | "whatsapp" | "slack"
-      outboundWebhookUrl: "https://webhook.site/your-webhook-url", // n8n or custom webhook URL
+      notificationChannels: ["email"], // "email" | "sms" | "whatsapp" | "slack"
+      outboundWebhookUrl: "https://n8n.demo.local/webhook/skyalex", // n8n or custom webhook URL
       sendEventNewLead: true,
       sendEventNewAppointment: true,
       sendEventMissedCall: true,

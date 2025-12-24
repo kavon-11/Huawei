@@ -6,7 +6,7 @@ import GradientText from "../components/GradientText";
 
 export default function Auth() {
   const navigate = useNavigate();
-  const [isSignUp, setIsSignUp] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(true);
   const [formData, setFormData] = useState({
     email: "info@skyalexdental.com",
     password: "password123",
@@ -49,8 +49,13 @@ export default function Auth() {
     e.preventDefault();
     if (validate()) {
       console.log(isSignUp ? "Signing up" : "Logging in", formData);
-      // Navigate to dashboard after successful login/signup
-      navigate("/dashboard");
+      if (isSignUp) {
+        // After signup, switch to login mode
+        setIsSignUp(false);
+      } else {
+        // After login, navigate to onboarding
+        navigate("/onboarding");
+      }
     }
   };
 

@@ -28,7 +28,7 @@ export default function Header({ mode = "dark" }) {
       </div>
 
       <div className="flex items-center gap-3">
-        <Link to="/dashboard">
+        <Link to="/auth">
           <button
             className={`${textClass} px-6 py-2 rounded-full font-medium text-[16px] transition-all hover:scale-105`}
             style={{

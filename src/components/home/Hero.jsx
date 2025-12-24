@@ -63,22 +63,22 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="space-y-4 mt-20">
+      <div className="space-y-6 mt-20">
         <p className="font-semibold text-xl text-gray-300">
           Already chosen by the leaders
         </p>
         <div className="flex gap-10">
-          <img src="/src/EchoAIAssets/AudioLogo.png" className="w-auto h-44" />
-          <img src="/src/EchoAIAssets/BlackLogo.png" className="w-auto h-44" />
+          <img src="/src/EchoAIAssets/AudioLogo.png" className="w-auto h-24" />
+          <img src="/src/EchoAIAssets/BlackLogo.png" className="w-auto h-24" />
           <img
             src="/src/EchoAIAssets/digitallogo.png"
-            className="w-auto h-44"
+            className="w-auto h-24"
           />
           <img
             src="/src/EchoAIAssets/Handoverlogo.png"
-            className="w-auto h-44"
+            className="w-auto h-24"
           />
-          <img src="/src/EchoAIAssets/LuxuryLogo.png" className="w-auto h-44" />
+          <img src="/src/EchoAIAssets/LuxuryLogo.png" className="w-auto h-24" />
         </div>
       </div>
 
