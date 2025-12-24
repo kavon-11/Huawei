@@ -345,10 +345,10 @@ export default function Settings() {
   // --- Styles ---
   const containerStyle = {
     padding: "1rem",
-    backgroundColor: "#0f172a",
+    backgroundColor: "#060606",
     minHeight: "100vh",
     color: "#e2e8f0",
-    fontFamily: "'Inter', sans-serif",
+    fontFamily: "'Manrope', sans-serif",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -365,7 +365,7 @@ export default function Settings() {
     display: "flex",
     gap: "0.5rem",
     marginBottom: "2rem",
-    borderBottom: "1px solid #334155",
+    borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
     paddingBottom: "0.5rem",
     overflowX: "auto",
     width: "100%",
@@ -376,9 +376,11 @@ export default function Settings() {
 
   const tabStyle = (isActive) => ({
     padding: "0.75rem 1rem",
-    backgroundColor: isActive ? "#3b82f6" : "transparent",
+    background: isActive
+      ? "linear-gradient(135deg, #15399A 0%, #A93E17 100%)"
+      : "transparent",
     color: isActive ? "white" : "#94a3b8",
-    border: "none",
+    border: isActive ? "none" : "1px solid rgba(255, 255, 255, 0.1)",
     borderRadius: "8px",
     cursor: "pointer",
     fontWeight: "600",
@@ -392,14 +394,15 @@ export default function Settings() {
   });
 
   const sectionStyle = {
-    backgroundColor: "#1e293b",
+    backgroundColor: "rgba(255, 255, 255, 0.05)",
     borderRadius: "12px",
     padding: "1.5rem",
-    border: "1px solid #334155",
+    border: "1px solid rgba(255, 255, 255, 0.1)",
     width: "100%",
     maxWidth: "800px",
     boxSizing: "border-box",
     marginBottom: "1.5rem",
+    backdropFilter: "blur(10px)",
   };
 
   const fieldGroupStyle = {
@@ -418,8 +421,8 @@ export default function Settings() {
     width: "100%",
     padding: "0.75rem",
     borderRadius: "8px",
-    border: "1px solid #334155",
-    backgroundColor: "#0f172a",
+    border: "1px solid rgba(255, 255, 255, 0.1)",
+    backgroundColor: "rgba(255, 255, 255, 0.05)",
     color: "white",
     fontSize: "0.95rem",
     outline: "none",
@@ -428,14 +431,15 @@ export default function Settings() {
 
   const buttonStyle = (variant = "primary") => ({
     padding: "0.6rem 1.2rem",
-    backgroundColor:
+    background:
       variant === "primary"
-        ? "#3b82f6"
+        ? "linear-gradient(135deg, #15399A 0%, #A93E17 100%)"
         : variant === "danger"
         ? "#ef4444"
-        : "#334155",
+        : "rgba(255, 255, 255, 0.05)",
     color: "white",
-    border: "none",
+    border:
+      variant === "secondary" ? "1px solid rgba(255, 255, 255, 0.1)" : "none",
     borderRadius: "8px",
     cursor: "pointer",
     fontWeight: "600",
@@ -456,13 +460,13 @@ export default function Settings() {
     textAlign: "left",
     padding: "0.75rem",
     color: "#94a3b8",
-    borderBottom: "1px solid #334155",
-    backgroundColor: "#1e293b",
+    borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+    backgroundColor: "rgba(255, 255, 255, 0.03)",
   };
 
   const tdStyle = {
     padding: "0.75rem",
-    borderBottom: "1px solid #334155",
+    borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
     color: "#e2e8f0",
   };
 
@@ -651,9 +655,9 @@ export default function Settings() {
                       justifyContent: "space-between",
                       alignItems: "center",
                       padding: "1rem",
-                      backgroundColor: "#0f172a",
+                      backgroundColor: "rgba(255, 255, 255, 0.05)",
                       borderRadius: "8px",
-                      border: "1px solid #334155",
+                      border: "1px solid rgba(255, 255, 255, 0.1)",
                     }}
                   >
                     <div>
@@ -824,7 +828,7 @@ export default function Settings() {
                 <div
                   style={{
                     paddingLeft: "1.5rem",
-                    borderLeft: "2px solid #3b82f6",
+                    borderLeft: "2px solid #15399A",
                   }}
                 >
                   <div style={fieldGroupStyle}>
@@ -923,9 +927,9 @@ export default function Settings() {
                   key={int.id}
                   style={{
                     padding: "1.5rem",
-                    backgroundColor: "#0f172a",
+                    backgroundColor: "rgba(255, 255, 255, 0.05)",
                     borderRadius: "8px",
-                    border: "1px solid #334155",
+                    border: "1px solid rgba(255, 255, 255, 0.1)",
                   }}
                 >
                   <div
@@ -997,7 +1001,7 @@ export default function Settings() {
                       style={{
                         marginTop: "1rem",
                         paddingTop: "1rem",
-                        borderTop: "1px solid #1e293b",
+                        borderTop: "1px solid rgba(255, 255, 255, 0.1)",
                         fontSize: "0.85rem",
                         color: "#94a3b8",
                       }}
@@ -1028,7 +1032,7 @@ export default function Settings() {
                           style={{
                             background: "none",
                             border: "none",
-                            color: "#3b82f6",
+                            color: "#15399A",
                             cursor: "pointer",
                             padding: 0,
                           }}
@@ -1040,7 +1044,7 @@ export default function Settings() {
                             style={{
                               background: "none",
                               border: "none",
-                              color: "#3b82f6",
+                              color: "#15399A",
                               cursor: "pointer",
                               padding: 0,
                             }}
@@ -1132,9 +1136,9 @@ export default function Settings() {
               <div
                 style={{
                   padding: "0.75rem",
-                  backgroundColor: "#1e293b",
+                  backgroundColor: "rgba(255, 255, 255, 0.05)",
                   borderRadius: "6px",
-                  border: "1px solid #334155",
+                  border: "1px solid rgba(255, 255, 255, 0.1)",
                   color: "#cbd5f5",
                   fontSize: "0.85rem",
                   wordBreak: "break-all",
@@ -1568,7 +1572,7 @@ export default function Settings() {
                                   style={{
                                     background: "none",
                                     border: "none",
-                                    color: "#3b82f6",
+                                    color: "#15399A",
                                     cursor: "pointer",
                                   }}
                                 >
@@ -1717,9 +1721,9 @@ export default function Settings() {
                   flexWrap: "wrap",
                   gap: "1rem",
                   padding: "1.5rem",
-                  backgroundColor: "#0f172a",
+                  backgroundColor: "rgba(255, 255, 255, 0.05)",
                   borderRadius: "8px",
-                  border: "1px solid #334155",
+                  border: "1px solid rgba(255, 255, 255, 0.1)",
                 }}
               >
                 <div>
@@ -1773,7 +1777,7 @@ export default function Settings() {
                   <div
                     style={{
                       height: "8px",
-                      backgroundColor: "#334155",
+                      backgroundColor: "rgba(255, 255, 255, 0.1)",
                       borderRadius: "4px",
                       overflow: "hidden",
                     }}
@@ -1782,7 +1786,8 @@ export default function Settings() {
                       style={{
                         width: "49%",
                         height: "100%",
-                        backgroundColor: "#3b82f6",
+                        background:
+                          "linear-gradient(90deg, #15399A 0%, #A93E17 100%)",
                       }}
                     />
                   </div>
@@ -1803,7 +1808,7 @@ export default function Settings() {
                   <div
                     style={{
                       height: "8px",
-                      backgroundColor: "#334155",
+                      backgroundColor: "rgba(255, 255, 255, 0.1)",
                       borderRadius: "4px",
                       overflow: "hidden",
                     }}
@@ -1812,7 +1817,8 @@ export default function Settings() {
                       style={{
                         width: "40%",
                         height: "100%",
-                        backgroundColor: "#3b82f6",
+                        background:
+                          "linear-gradient(90deg, #15399A 0%, #A93E17 100%)",
                       }}
                     />
                   </div>
@@ -1830,9 +1836,9 @@ export default function Settings() {
                   alignItems: "center",
                   gap: "1rem",
                   padding: "1rem",
-                  backgroundColor: "#0f172a",
+                  backgroundColor: "rgba(255, 255, 255, 0.05)",
                   borderRadius: "8px",
-                  border: "1px solid #334155",
+                  border: "1px solid rgba(255, 255, 255, 0.1)",
                 }}
               >
                 <FaCreditCard size={24} color="#cbd5f5" />
@@ -1892,7 +1898,7 @@ export default function Settings() {
                       justifyContent: "space-between",
                       alignItems: "center",
                       padding: "0.75rem",
-                      borderBottom: "1px solid #334155",
+                      borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
                     }}
                   >
                     <div>
@@ -1919,7 +1925,7 @@ export default function Settings() {
                       style={{
                         background: "none",
                         border: "none",
-                        color: "#3b82f6",
+                        color: "#15399A",
                         cursor: "pointer",
                       }}
                     >
