@@ -59,10 +59,11 @@ export default function Header() {
       <div className="flex items-center justify-between px-8 py-4">
         {/* Logo/Brand */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#15399A] to-[#A93E17] flex items-center justify-center">
-            <span className="text-white font-bold text-xl">E</span>
-          </div>
-          <span className="text-white font-bold text-xl">EchoAI</span>
+          <img
+            src="/src/EchoAIAssets/echo.png"
+            alt="EchoAI Logo"
+            className="w-36 h-auto"
+          />
         </div>
 
         {/* Right Section */}

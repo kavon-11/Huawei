@@ -59,18 +59,11 @@ export default function SideBar({ isOpen, setIsOpen }) {
           {isOpen ? (
             <>
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#15399A] to-[#A93E17] flex items-center justify-center flex-shrink-0">
-                  <span className="text-white font-bold text-lg">E</span>
-                </div>
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ delay: 0.1 }}
-                  className="font-bold text-white whitespace-nowrap text-lg"
-                >
-                  EchoAI
-                </motion.span>
+                <img
+                  src="/src/EchoAIAssets/echo.png"
+                  alt="EchoAI Logo"
+                  className="w-28 h-auto"
+                />
               </div>
               <button
                 onClick={() => setIsOpen(false)}
@@ -96,9 +89,11 @@ export default function SideBar({ isOpen, setIsOpen }) {
             </>
           ) : (
             <div className="w-full flex flex-col items-center gap-4">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#15399A] to-[#A93E17] flex items-center justify-center">
-                <span className="text-white font-bold text-lg">E</span>
-              </div>
+              <img
+                src="/src/EchoAIAssets/faviconlogo.png"
+                alt="EchoAI"
+                className="w-10 h-auto"
+              />
               <button
                 onClick={() => setIsOpen(true)}
                 className="p-2 text-gray-400 rounded-lg hover:bg-white/5 hover:text-white transition"
