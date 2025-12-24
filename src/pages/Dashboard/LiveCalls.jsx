@@ -388,7 +388,7 @@ export default function LiveCalls() {
                       color: "#cbd5f5",
                     }}
                   >
-                    {call.intent}
+                    {formatIntentName(call.intent)}
                   </span>
                 </div>
                 <div

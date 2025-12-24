@@ -11,6 +11,14 @@ import {
 import DashboardCard from "../../components/DashboardCard";
 import GradientText from "../../components/GradientText";
 
+// Helper function to format intent names for display
+const formatIntentName = (name) => {
+  return name
+    .split("_")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
+
 export default function AIConf() {
   const [activeTab, setActiveTab] = useState("basic");
 
@@ -281,6 +289,7 @@ export default function AIConf() {
     marginBottom: "0.5rem",
     fontWeight: "600",
     color: "#e2e8f0",
+    fontSize: "0.95rem",
   };
 
   const inputStyle = {
@@ -704,8 +713,14 @@ export default function AIConf() {
                       }}
                     >
                       {intent.expanded ? <FaChevronUp /> : <FaChevronDown />}
-                      <span style={{ fontWeight: "600", color: "#e2e8f0" }}>
-                        {intent.name}
+                      <span
+                        style={{
+                          fontWeight: "600",
+                          color: "#e2e8f0",
+                          fontSize: "1rem",
+                        }}
+                      >
+                        {formatIntentName(intent.name)}
                       </span>
                     </div>
                     <div

@@ -16,6 +16,14 @@ import DashboardCard from "../../components/DashboardCard";
 import GradientText from "../../components/GradientText";
 import Badge from "../../components/Badge";
 
+// Helper function to format intent names for display
+const formatIntentName = (name) => {
+  return name
+    .split("_")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
+
 // Mock Data
 const MOCK_CALLS = [
   {
@@ -292,7 +300,7 @@ export default function CallHistory() {
             <option value="All">All Intents</option>
             {INTENTS.map((i) => (
               <option key={i} value={i}>
-                {i}
+                {formatIntentName(i)}
               </option>
             ))}
           </select>
@@ -349,7 +357,7 @@ export default function CallHistory() {
                       {call.duration}
                     </td>
                     <td className="py-3 text-gray-300 text-sm">
-                      {call.intent}
+                      {formatIntentName(call.intent)}
                     </td>
                     <td className="py-3">
                       <div className="flex items-center gap-2">
@@ -542,7 +550,7 @@ export default function CallHistory() {
                                     </option>
                                     {INTENTS.map((i) => (
                                       <option key={i} value={i}>
-                                        {i}
+                                        {formatIntentName(i)}
                                       </option>
                                     ))}
                                   </select>

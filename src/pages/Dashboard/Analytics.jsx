@@ -259,13 +259,30 @@ export default function Analytics() {
               </Pie>
               <Tooltip
                 contentStyle={{
-                  backgroundColor: "rgba(6,6,6,0.95)",
-                  border: "1px solid rgba(255,255,255,0.1)",
+                  backgroundColor: "rgba(10, 10, 10, 0.98)",
+                  border: "1px solid rgba(255,255,255,0.2)",
                   borderRadius: "12px",
-                  color: "#fff",
+                  padding: "12px",
+                  boxShadow: "0 4px 6px rgba(0,0,0,0.3)",
+                }}
+                itemStyle={{
+                  color: "#ffffff",
+                  fontSize: "14px",
+                  fontWeight: "500",
+                }}
+                labelStyle={{
+                  color: "#ffffff",
+                  fontSize: "14px",
+                  fontWeight: "600",
+                  marginBottom: "4px",
                 }}
               />
-              <Legend verticalAlign="bottom" height={36} iconType="circle" />
+              <Legend
+                verticalAlign="bottom"
+                height={36}
+                iconType="circle"
+                wrapperStyle={{ color: "#e2e8f0", fontSize: "14px" }}
+              />
             </PieChart>
           </ResponsiveContainer>
         </DashboardCard>
@@ -302,10 +319,22 @@ export default function Analytics() {
               <Tooltip
                 cursor={{ fill: "rgba(255,255,255,0.05)" }}
                 contentStyle={{
-                  backgroundColor: "rgba(6,6,6,0.95)",
-                  border: "1px solid rgba(255,255,255,0.1)",
+                  backgroundColor: "rgba(10, 10, 10, 0.98)",
+                  border: "1px solid rgba(255,255,255,0.2)",
                   borderRadius: "12px",
-                  color: "#fff",
+                  padding: "12px",
+                  boxShadow: "0 4px 6px rgba(0,0,0,0.3)",
+                }}
+                itemStyle={{
+                  color: "#ffffff",
+                  fontSize: "14px",
+                  fontWeight: "500",
+                }}
+                labelStyle={{
+                  color: "#ffffff",
+                  fontSize: "14px",
+                  fontWeight: "600",
+                  marginBottom: "4px",
                 }}
               />
               <Bar dataKey="accuracy" radius={[0, 4, 4, 0]} barSize={20}>

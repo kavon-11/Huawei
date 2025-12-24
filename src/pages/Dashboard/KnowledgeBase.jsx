@@ -15,6 +15,14 @@ import {
 import DashboardCard from "../../components/DashboardCard";
 import GradientText from "../../components/GradientText";
 
+// Helper function to format intent names for display
+const formatIntentName = (name) => {
+  return name
+    .split("_")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
+
 // Mock Data
 const INITIAL_FAQS = [
   {
@@ -790,7 +798,8 @@ export default function KnowledgeBase() {
                   display: "block",
                   marginBottom: "0.5rem",
                   fontWeight: "600",
-                  color: "#cbd5f5",
+                  color: "#e2e8f0",
+                  fontSize: "0.95rem",
                 }}
               >
                 Question <span style={{ color: "#ef4444" }}>*</span>
@@ -812,7 +821,8 @@ export default function KnowledgeBase() {
                   display: "block",
                   marginBottom: "0.5rem",
                   fontWeight: "600",
-                  color: "#cbd5f5",
+                  color: "#e2e8f0",
+                  fontSize: "0.95rem",
                 }}
               >
                 Answer <span style={{ color: "#ef4444" }}>*</span>
@@ -854,7 +864,8 @@ export default function KnowledgeBase() {
                     display: "block",
                     marginBottom: "0.5rem",
                     fontWeight: "600",
-                    color: "#cbd5f5",
+                    color: "#e2e8f0",
+                    fontSize: "0.95rem",
                   }}
                 >
                   Category
@@ -877,8 +888,9 @@ export default function KnowledgeBase() {
                   style={{
                     display: "block",
                     marginBottom: "0.5rem",
-                    fontWeight: "60",
-                    color: "#cbd5f5",
+                    fontWeight: "600",
+                    color: "#e2e8f0",
+                    fontSize: "0.95rem",
                   }}
                 >
                   Intent Tag
@@ -891,7 +903,7 @@ export default function KnowledgeBase() {
                 >
                   {INTENTS.map((intent) => (
                     <option key={intent} value={intent}>
-                      {intent}
+                      {formatIntentName(intent)}
                     </option>
                   ))}
                 </select>
