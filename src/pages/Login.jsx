@@ -8,10 +8,10 @@ export default function Auth() {
   const navigate = useNavigate();
   const [isSignUp, setIsSignUp] = useState(false);
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    firstName: "",
-    lastName: "",
+    email: "demo@echoai.com",
+    password: "password123",
+    firstName: "John",
+    lastName: "Doe",
   });
   const [errors, setErrors] = useState({});
 
@@ -57,7 +57,12 @@ export default function Auth() {
   const toggleMode = () => {
     setIsSignUp(!isSignUp);
     setErrors({});
-    setFormData({ email: "", password: "", firstName: "", lastName: "" });
+    setFormData({
+      email: "demo@echoai.com",
+      password: "password123",
+      firstName: "John",
+      lastName: "Doe",
+    });
   };
 
   return (
