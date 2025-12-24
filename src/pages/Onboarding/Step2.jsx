@@ -19,13 +19,15 @@ export default function Step2({ data, updateSectionField }) {
     "Other",
   ];
 
+  const inputClass =
+    "w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-white/30 transition";
+  const labelClass = "block text-sm font-medium text-white mb-2";
+
   return (
     <div className="space-y-10">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Primary contact name
-          </label>
+          <label className={labelClass}>Primary contact name</label>
           <input
             value={c.primaryContactName ?? ""}
             onChange={(e) =>
@@ -36,12 +38,12 @@ export default function Step2({ data, updateSectionField }) {
               )
             }
             placeholder="Mustafa Ali"
-            className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm focus:outline-none focus:border-black transition"
+            className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-white/30 transition"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-white mb-2">
             Email
           </label>
           <input
@@ -51,12 +53,12 @@ export default function Step2({ data, updateSectionField }) {
               updateSectionField("contactInfo", "email", e.target.value)
             }
             placeholder="you@company.com"
-            className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm focus:outline-none focus:border-black transition"
+            className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-white/30 transition"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-white mb-2">
             Phone (optional)
           </label>
           <input
@@ -65,12 +67,12 @@ export default function Step2({ data, updateSectionField }) {
               updateSectionField("contactInfo", "phone", e.target.value)
             }
             placeholder="+20 10 0000 0000"
-            className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm focus:outline-none focus:border-black transition"
+            className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-white/30 transition"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-white mb-2">
             Preferred contact method
           </label>
           <select
@@ -82,7 +84,13 @@ export default function Step2({ data, updateSectionField }) {
                 e.target.value
               )
             }
-            className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm focus:outline-none focus:border-black transition"
+            className="w-full rounded-lg border border-white/10 bg-white/5 px-4 pe-10 py-3 text-sm text-white focus:outline-none focus:border-white/30 transition appearance-none [&>option]:bg-[#060606] [&>option]:text-white"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`,
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "right 0.75rem center",
+              backgroundSize: "1.25rem 1.25rem",
+            }}
           >
             {contactMethods.map((m) => (
               <option key={m.value} value={m.value}>
@@ -95,7 +103,7 @@ export default function Step2({ data, updateSectionField }) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-white mb-2">
             Timezone
           </label>
           <input
@@ -104,15 +112,15 @@ export default function Step2({ data, updateSectionField }) {
               updateSectionField("businessProfile", "timezone", e.target.value)
             }
             placeholder="Africa/Cairo"
-            className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm focus:outline-none focus:border-black transition"
+            className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-white/30 transition"
           />
-          <p className="text-xs text-gray-500 mt-2">
+          <p className="text-xs text-gray-400 mt-2">
             Tip: use IANA format (e.g. Africa/Cairo).
           </p>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-white mb-2">
             Currency
           </label>
           <select
@@ -120,7 +128,13 @@ export default function Step2({ data, updateSectionField }) {
             onChange={(e) =>
               updateSectionField("businessProfile", "currency", e.target.value)
             }
-            className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm focus:outline-none focus:border-black transition"
+            className="w-full rounded-lg border border-white/10 bg-white/5 px-4 pe-10 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-white/30 transition appearance-none [&>option]:bg-[#060606] [&>option]:text-white"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`,
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "right 0.75rem center",
+              backgroundSize: "1.25rem 1.25rem",
+            }}
           >
             <option value="" disabled>
               Select a currency

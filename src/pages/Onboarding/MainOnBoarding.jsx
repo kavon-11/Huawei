@@ -7,92 +7,96 @@ import StepsContainer from "./StepsContainer";
 function getInitialOnboardingData() {
   return {
     businessProfile: {
-      name: "",
-      domain: "",
-      timezone: "",
-      currency: "",
-      industry: "",
-      notes: "",
-      shopSystem: "",
+      name: "TechVista Solutions",
+      domain: "techvista.com",
+      timezone: "America/New_York (UTC-5)",
+      currency: "USD",
+      industry: "E-commerce",
+      notes: "Leading provider of innovative tech solutions",
+      shopSystem: "Shopify",
     },
     contactInfo: {
-      primaryContactName: "",
-      email: "",
-      phone: "",
+      primaryContactName: "Sarah Johnson",
+      email: "sarah.johnson@techvista.com",
+      phone: "+1 (555) 123-4567",
       preferredContactMethod: "email",
     },
     onboardingCapabilities: {
       voiceEnabled: true,
-      chatEnabled: false,
-      crmIntegration: false,
+      chatEnabled: true,
+      crmIntegration: true,
       analyticsEnabled: true,
     },
     // NEW: Telephony & numbers configuration
     telephony: {
       provider: "twilio", // "twilio" | "telnyx" | "other-sip"
-      mainNumber: "", // E.164 format: +20XXXXXXXXXX
-      additionalNumbers: [], // array of E.164 numbers
-      allowSmsFollowUp: false,
+      mainNumber: "+1 (555) 987-6543", // E.164 format: +20XXXXXXXXXX
+      additionalNumbers: ["+1 (555) 987-6544", "+1 (555) 987-6545"], // array of E.164 numbers
+      allowSmsFollowUp: true,
     },
     callRoutingPolicy: {
-      hours: "",
-      timeZone: "",
-      languages: "",
-      fallbackRoute: "",
-      escalationGroup: "",
+      hours: "Monday - Friday: 9AM - 6PM, Saturday: 10AM - 4PM",
+      timeZone: "America/New_York (UTC-5)",
+      languages: "English, Spanish",
+      fallbackRoute: "Transfer to voicemail after hours",
+      escalationGroup: "support@techvista.com",
     },
     receptionistPersona: {
-      name: "",
-      voiceModel: "",
-      tone: "",
-      greetingScript: "",
-      holdMessage: "",
+      name: "Alex",
+      voiceModel: "Female (American)",
+      tone: "Professional and Friendly",
+      greetingScript:
+        "Thank you for calling TechVista Solutions! I'm Alex, your AI assistant. How can I help you today?",
+      holdMessage:
+        "Thank you for your patience. Your call is important to us. Someone will be with you shortly.",
     },
     callGoalsAndCaptureRules: {
       mainOutcomes: {
         leadCapture: true,
-        appointmentBooking: false,
-        supportTriage: false,
+        appointmentBooking: true,
+        supportTriage: true,
         faqsOnly: false,
       },
       requiredFields: {
         name: true,
         phone: true,
-        email: false,
+        email: true,
         reasonForCall: true,
         budget: false,
       },
-      neverDoRules: "",
+      neverDoRules:
+        "Do not provide pricing without manager approval. Do not guarantee delivery dates. Do not discuss competitor products.",
       escalationConditions: {
         angryCaller: true,
         legalIssue: true,
         emergency: true,
-        vipNumbers: false,
+        vipNumbers: true,
       },
-      vipNumbers: "",
+      vipNumbers: "+1 (555) 111-2222, +1 (555) 333-4444",
     },
     knowledge: {
-      websiteUrl: "",
+      websiteUrl: "https://www.techvista.com",
       files: [],
       ingestionMethod: "web_scrape",
     },
     schedulingAndCrm: {
-      calendarIntegration: "none",
-      crmSystem: "none",
-      appointmentTypes: "",
-      bufferTimes: "",
+      calendarIntegration: "google_calendar",
+      crmSystem: "salesforce",
+      appointmentTypes: "Product Demo, Technical Support, Sales Consultation",
+      bufferTimes: "15 minutes between appointments",
     },
     complianceAndPolicies: {
-      dataPrivacy: "",
-      retentionPolicy: "",
-      consentText: "",
+      dataPrivacy: "We comply with GDPR and CCPA regulations",
+      retentionPolicy: "Call recordings retained for 90 days",
+      consentText:
+        "This call may be recorded for quality and training purposes",
     },
     // NEW: Notification preferences & webhooks
     notificationsAndIntegrations: {
       notifyOnNewLead: true,
       notifyOnNewBooking: true,
-      notificationChannels: ["email"], // "email" | "sms" | "whatsapp" | "slack"
-      outboundWebhookUrl: "", // n8n or custom webhook URL
+      notificationChannels: ["email", "slack"], // "email" | "sms" | "whatsapp" | "slack"
+      outboundWebhookUrl: "https://webhook.site/your-webhook-url", // n8n or custom webhook URL
       sendEventNewLead: true,
       sendEventNewAppointment: true,
       sendEventMissedCall: true,
@@ -190,8 +194,11 @@ export default function MainOnboarding() {
 
   return (
     <>
-      <Header mode="light" />
-      <section className="bg-white min-h-screen grid grid-cols-[2fr_1fr] gap-8">
+      <Header mode="dark" />
+      <section
+        style={{ backgroundColor: "#060606" }}
+        className="min-h-screen grid grid-cols-[2fr_1fr] gap-8"
+      >
         <StepsContainer
           currentStep={currentStep}
           onNextStep={handleNextStep}

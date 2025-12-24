@@ -9,7 +9,7 @@ export default function TimelineStepper({
 
   return (
     <div className="flex flex-col justify-between ">
-      <ol className="relative border-s border-gray-200 mt-32 h-fit mx-16">
+      <ol className="relative border-s border-white/20 mt-32 h-fit mx-16">
         {steps.map((step, idx) => {
           const stepNumber = idx + 1;
           const isCurrent = currentStep === stepNumber;
@@ -19,10 +19,16 @@ export default function TimelineStepper({
             isCurrent || isCompleted ? "opacity-100" : "opacity-50";
 
           const circleClass = isCompleted
-            ? "bg-green-500 text-white"
+            ? "text-white"
             : isCurrent
-            ? "bg-black text-white"
-            : "bg-gray-300 text-gray-900";
+            ? "text-white"
+            : "bg-white/10 text-gray-400";
+
+          const circleStyle = isCompleted
+            ? { background: "linear-gradient(to right, #15399A, #A93E17)" }
+            : isCurrent
+            ? { background: "linear-gradient(to right, #15399A, #A93E17)" }
+            : {};
 
           return (
             <li
@@ -32,7 +38,8 @@ export default function TimelineStepper({
               } ms-7 ${itemOpacity}`}
             >
               <span
-                className={`absolute flex items-center justify-center w-8 h-8 ${circleClass} rounded-full -start-4 ring-4 ring-white`}
+                className={`absolute flex items-center justify-center w-8 h-8 ${circleClass} rounded-full -start-4 ring-4`}
+                style={{ ...circleStyle, ringColor: "#060606" }}
               >
                 {isCompleted ? (
                   <svg
@@ -60,11 +67,11 @@ export default function TimelineStepper({
               <h3
                 className={`${
                   isCurrent ? "font-semibold" : "font-medium"
-                } leading-tight`}
+                } leading-tight text-white`}
               >
                 {step.title}
               </h3>
-              <p className="text-sm">{step.description}</p>
+              <p className="text-sm text-gray-400">{step.description}</p>
             </li>
           );
         })}
@@ -72,13 +79,18 @@ export default function TimelineStepper({
 
       {/* Contact Us */}
       <div className="flex flex-col items-center m-10 mx-16">
-        <FaQuestionCircle className="w-12 h-12 text-neutral-tertiary mb-4" />
-        <h3 className="font-medium leading-tight mb-2">Need Help?</h3>
-        <p className="text-sm text-center mb-4">
+        <FaQuestionCircle className="w-12 h-12 text-gray-400 mb-4" />
+        <h3 className="font-medium leading-tight mb-2 text-white">
+          Need Help?
+        </h3>
+        <p className="text-sm text-center mb-4 text-gray-400">
           If you're having any issues, feel free to contact us. We're here to
           assist you every step of the way.
         </p>
-        <button className="bg-black text-white px-4 py-2 rounded">
+        <button
+          style={{ background: "linear-gradient(to right, #15399A, #A93E17)" }}
+          className="text-white px-6 py-2 rounded-lg font-semibold hover:opacity-90 transition"
+        >
           Contact Us
         </button>
       </div>

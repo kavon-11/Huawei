@@ -74,14 +74,17 @@ export default function StepsContainer({
 
   return (
     <div
-      className={`bg-gray-50 relative min-h-screen flex justify-center ${
+      style={{ backgroundColor: "#060606" }}
+      className={`relative min-h-screen flex justify-center ${
         isTallStep ? "items-start pt-24 pb-32" : "items-center"
       }`}
     >
       <div className={`w-full max-w-3xl px-6 ${isTallStep ? "py-8" : "py-12"}`}>
         <div className="flex items-center flex-col gap-3 mb-10">
-          <h3 className="text-2xl font-bold text-center">{stepMeta.title}</h3>
-          <p className="text-gray-500 text-center">{stepMeta.description}</p>
+          <h3 className="text-2xl font-bold text-center text-white">
+            {stepMeta.title}
+          </h3>
+          <p className="text-gray-400 text-center">{stepMeta.description}</p>
         </div>
         <ActiveStep
           data={data}
@@ -95,7 +98,7 @@ export default function StepsContainer({
         type="button"
         onClick={onBackStep}
         disabled={currentStep <= 1}
-        className="absolute bottom-10 left-10 bg-black text-white px-6 py-3 rounded disabled:opacity-50"
+        className="absolute bottom-10 left-10 text-white px-6 py-3 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 transition disabled:opacity-50"
       >
         Back
       </button>
@@ -104,7 +107,12 @@ export default function StepsContainer({
         type="button"
         onClick={handlePrimaryCta}
         disabled={!canProceed}
-        className="absolute bottom-10 right-10 bg-black text-white px-6 py-3 rounded disabled:opacity-50"
+        style={{
+          background: canProceed
+            ? "linear-gradient(to right, #15399A, #A93E17)"
+            : "rgba(255, 255, 255, 0.1)",
+        }}
+        className="absolute bottom-10 right-10 text-white px-6 py-3 rounded-lg font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {currentStep >= 5 ? "Finish" : "Next Step"}
       </button>

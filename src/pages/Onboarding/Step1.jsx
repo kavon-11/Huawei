@@ -28,7 +28,7 @@ export default function Step1({ data, updateSectionField }) {
           {systems.map((label) => (
             <label
               key={label}
-              className="flex flex-col items-center gap-5 p-4 border border-gray-200 rounded-lg hover:border-black cursor-pointer"
+              className="flex flex-col items-center gap-5 p-4 border border-white/10 rounded-lg hover:border-white/30 cursor-pointer bg-white/5 backdrop-blur-xl transition"
             >
               <input
                 type="radio"
@@ -45,18 +45,18 @@ export default function Step1({ data, updateSectionField }) {
                 alt="Shop system"
                 className="w-40 h-auto opacity-90"
               />
-              <h3 className="text-base text-gray-600">{label}</h3>
+              <h3 className="text-base text-gray-300">{label}</h3>
             </label>
           ))}
         </div>
-        <p className="text-sm text-gray-500 mt-4">
+        <p className="text-sm text-gray-400 mt-4">
           Choose the platform that powers your store. You can change this later.
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-white mb-2">
             Business name
           </label>
           <input
@@ -65,12 +65,12 @@ export default function Step1({ data, updateSectionField }) {
               updateSectionField("businessProfile", "name", e.target.value)
             }
             placeholder="Acme Store"
-            className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm focus:outline-none focus:border-black transition"
+            className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-white/30 transition"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-white mb-2">
             Primary domain
           </label>
           <input
@@ -79,15 +79,15 @@ export default function Step1({ data, updateSectionField }) {
               updateSectionField("businessProfile", "domain", e.target.value)
             }
             placeholder="example.com"
-            className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm focus:outline-none focus:border-black transition"
+            className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-white/30 transition"
           />
-          <p className="text-xs text-gray-500 mt-2">
+          <p className="text-xs text-gray-400 mt-2">
             Use the domain customers visit (no http/https needed).
           </p>
         </div>
 
         <div className="md:col-span-2">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-white mb-2">
             Industry
           </label>
           <select
@@ -95,7 +95,13 @@ export default function Step1({ data, updateSectionField }) {
             onChange={(e) =>
               updateSectionField("businessProfile", "industry", e.target.value)
             }
-            className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm focus:outline-none focus:border-black transition"
+            className="w-full rounded-lg border border-white/10 bg-white/5 px-4 pe-10 py-3 text-sm text-white focus:outline-none focus:border-white/30 transition appearance-none [&>option]:bg-[#060606] [&>option]:text-white"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`,
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "right 0.75rem center",
+              backgroundSize: "1.25rem 1.25rem",
+            }}
           >
             <option value="" disabled>
               Select an industry
