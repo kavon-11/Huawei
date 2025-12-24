@@ -17,9 +17,9 @@ export default function Header({ mode = "dark" }) {
       >
         <img
           id="logo"
-          src="/src/EchoAIAssets/image-removebg-preview.png"
+          src="/src/EchoAIAssets/echo.png"
           alt="Echo AI Logo"
-          className="w-auto h-14"
+          className="w-44 h-auto"
         />
       </div>
 

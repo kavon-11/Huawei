@@ -67,12 +67,18 @@ export default function Hero() {
         <p className="font-semibold text-xl text-gray-300">
           Already chosen by the leaders
         </p>
-        <div className="flex gap-2">
-          <img src="/src/EchoAIAssets/Writesonic.png" className="w-auto h-20" />
-          <img src="/src/EchoAIAssets/Writesonic.png" className="w-auto h-20" />
-          <img src="/src/EchoAIAssets/Writesonic.png" className="w-auto h-20" />
-          <img src="/src/EchoAIAssets/Writesonic.png" className="w-auto h-20" />
-          <img src="/src/EchoAIAssets/Writesonic.png" className="w-auto h-20" />
+        <div className="flex gap-10">
+          <img src="/src/EchoAIAssets/AudioLogo.png" className="w-auto h-44" />
+          <img src="/src/EchoAIAssets/BlackLogo.png" className="w-auto h-44" />
+          <img
+            src="/src/EchoAIAssets/digitallogo.png"
+            className="w-auto h-44"
+          />
+          <img
+            src="/src/EchoAIAssets/Handoverlogo.png"
+            className="w-auto h-44"
+          />
+          <img src="/src/EchoAIAssets/LuxuryLogo.png" className="w-auto h-44" />
         </div>
       </div>
 
