@@ -10,7 +10,7 @@ export default function Auth() {
   const [formData, setFormData] = useState({
     email: "demo@echoai.com",
     password: "password123",
-    firstName: "John",
+    firstName: "Mustafa",
     lastName: "Doe",
   });
   const [errors, setErrors] = useState({});
@@ -60,8 +60,8 @@ export default function Auth() {
     setFormData({
       email: "demo@echoai.com",
       password: "password123",
-      firstName: "John",
-      lastName: "Doe",
+      firstName: "Mustafa",
+      lastName: "Ashraf",
     });
   };
 
@@ -116,7 +116,7 @@ export default function Auth() {
                     value={formData.firstName}
                     onChange={handleChange}
                     className="w-full rounded-lg bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:border-orange-500/50 focus:ring-2 focus:ring-orange-500/20 transition"
-                    placeholder="John"
+                    placeholder="Mustafa"
                   />
                   {errors.firstName && (
                     <p className="text-red-400 text-xs mt-1">
