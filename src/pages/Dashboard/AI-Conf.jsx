@@ -24,19 +24,22 @@ export default function AIConf() {
 
   // --- Tab 1: Basic Settings State ---
   const [basicSettings, setBasicSettings] = useState({
-    aiName: "Reception Bot",
+    aiName: "Echo (SkyAlex)",
     personality: "Professional",
-    welcomeMessage: "Thank you for calling Restaurant XYZ, how can I help?",
-    closingMessage: "Thank you for calling, have a great day!",
-    afterHoursMessage: "We're currently closed. We'll reopen at 9 AM tomorrow.",
+    welcomeMessage:
+      "Thank you for calling SkyAlex Dental Clinic, how can I help you today?",
+    closingMessage:
+      "Thank you for calling SkyAlex Dental Clinic, have a great day.",
+    afterHoursMessage:
+      "We're currently closed. We'll reopen at 10 AM tomorrow.",
     businessHours: {
-      monday: { open: "09:00", close: "17:00", active: true },
-      tuesday: { open: "09:00", close: "17:00", active: true },
-      wednesday: { open: "09:00", close: "17:00", active: true },
-      thursday: { open: "09:00", close: "17:00", active: true },
-      friday: { open: "09:00", close: "17:00", active: true },
-      saturday: { open: "10:00", close: "15:00", active: true },
-      sunday: { open: "09:00", close: "17:00", active: false },
+      monday: { open: "10:00", close: "20:00", active: false },
+      tuesday: { open: "10:00", close: "20:00", active: false },
+      wednesday: { open: "10:00", close: "20:00", active: true },
+      thursday: { open: "10:00", close: "20:00", active: true },
+      friday: { open: "10:00", close: "20:00", active: false },
+      saturday: { open: "10:00", close: "20:00", active: true },
+      sunday: { open: "10:00", close: "20:00", active: true },
     },
   });
 
@@ -52,39 +55,42 @@ export default function AIConf() {
     {
       id: 1,
       name: "schedule_appointment",
-      keywords: "book, appointment, reserve, schedule",
-      response: "I can help schedule an appointment. What date works for you?",
+      keywords: "book, appointment, reserve, schedule, teeth whitening",
+      response:
+        "I can help schedule an appointment. What service are you interested in?",
       active: true,
       expanded: false,
     },
     {
       id: 2,
       name: "answer_faq",
-      keywords: "hours, menu, price, location",
+      keywords: "hours, services, price, location, insurance",
       response: "[Answer from knowledge base]",
       active: true,
       expanded: false,
     },
     {
       id: 3,
-      name: "order_food",
-      keywords: "order, delivery, takeout",
-      response: "I can help with that. What would you like to order?",
+      name: "dental_services",
+      keywords: "whitening, braces, cleaning, checkup, extraction",
+      response:
+        "We offer a full range of dental services. Would you like to book a consultation?",
       active: true,
       expanded: false,
     },
     {
       id: 4,
-      name: "technical_support",
-      keywords: "problem, issue, help, broken",
-      response: "Let me connect you with our technical team.",
+      name: "emergency_care",
+      keywords: "pain, emergency, urgent, toothache, broken tooth",
+      response:
+        "I understand this is urgent. Let me connect you with our emergency team right away.",
       active: true,
       expanded: false,
     },
     {
       id: 5,
       name: "callback",
-      keywords: "call me back, speak to someone, human",
+      keywords: "call me back, speak to someone, human, dentist",
       response: "Of course! I'll have someone call you back shortly.",
       active: true,
       expanded: false,
@@ -105,8 +111,8 @@ export default function AIConf() {
   const [callGoals, setCallGoals] = useState({
     mainOutcomes: {
       leadCapture: true,
-      appointmentBooking: false,
-      supportTriage: false,
+      appointmentBooking: true,
+      supportTriage: true,
       faqsOnly: false,
     },
     requiredFields: {
@@ -117,14 +123,14 @@ export default function AIConf() {
       budget: false,
     },
     neverDoRules:
-      "Do not provide medical advice, do not confirm financial terms without a manager.",
+      "No medical diagnosis. No exact prices. Always suggest in-person consultation.",
     escalationConditions: {
       angryCaller: true,
       legalIssue: true,
       emergency: true,
       vipNumbers: false,
     },
-    vipNumbers: "+2010...",
+    vipNumbers: "+20 10 0000 1111",
   });
 
   // --- Handlers ---

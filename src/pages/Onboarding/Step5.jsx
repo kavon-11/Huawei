@@ -69,7 +69,7 @@ export default function Step5({
             onChange={(e) =>
               updateSectionField("knowledge", "websiteUrl", e.target.value)
             }
-            placeholder="https://example.com"
+            placeholder="https://skyalexdental.com"
             className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-white/30 transition"
           />
           <p className="text-xs text-gray-400 mt-2">
@@ -172,7 +172,7 @@ export default function Step5({
                   e.target.value
                 )
               }
-              placeholder="Demo, Consultation"
+              placeholder="Check-up, Teeth Whitening, Braces Consultation"
               className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-white/30 transition"
             />
           </div>
@@ -246,7 +246,7 @@ export default function Step5({
                 e.target.value
               )
             }
-            placeholder="Any sensitive data or restrictions we should know about"
+            placeholder="We store call summaries and bookings for care quality."
             rows={3}
             className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-white/30 transition"
           />

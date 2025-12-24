@@ -115,7 +115,7 @@ export default function Step1({ data, updateSectionField }) {
             onChange={(e) =>
               updateSectionField("businessProfile", "name", e.target.value)
             }
-            placeholder="Acme Store"
+            placeholder="SkyAlex Dental Clinic"
             className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-white/30 transition"
           />
         </div>
@@ -129,7 +129,7 @@ export default function Step1({ data, updateSectionField }) {
             onChange={(e) =>
               updateSectionField("businessProfile", "domain", e.target.value)
             }
-            placeholder="example.com"
+            placeholder="skyalexdental.com"
             className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-white/30 transition"
           />
           <p className="text-xs text-gray-400 mt-2">

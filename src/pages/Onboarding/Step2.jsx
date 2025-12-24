@@ -37,7 +37,7 @@ export default function Step2({ data, updateSectionField }) {
                 e.target.value
               )
             }
-            placeholder="Mustafa Ali"
+            placeholder="Dr. Ahmed Samir"
             className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-white/30 transition"
           />
         </div>
@@ -52,7 +52,7 @@ export default function Step2({ data, updateSectionField }) {
             onChange={(e) =>
               updateSectionField("contactInfo", "email", e.target.value)
             }
-            placeholder="you@company.com"
+            placeholder="info@skyalexdental.com"
             className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-white/30 transition"
           />
         </div>
@@ -66,7 +66,7 @@ export default function Step2({ data, updateSectionField }) {
             onChange={(e) =>
               updateSectionField("contactInfo", "phone", e.target.value)
             }
-            placeholder="+20 10 0000 0000"
+            placeholder="+20 10 1234 5678"
             className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-white/30 transition"
           />
         </div>

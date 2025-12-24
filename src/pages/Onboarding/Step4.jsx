@@ -101,7 +101,7 @@ export default function Step4({ data, updateSectionField }) {
                 e.target.value
               )
             }
-            placeholder="Hi! Thanks for calling Acme Store. How can I help you today?"
+            placeholder="Hi, thank you for calling SkyAlex Dental Clinic. How can I help you today?"
             rows={4}
             className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-white/30 transition"
           />
@@ -123,7 +123,7 @@ export default function Step4({ data, updateSectionField }) {
                 e.target.value
               )
             }
-            placeholder="Thanks — one moment while I check that for you."
+            placeholder="Thanks, one moment while I check that for you."
             rows={3}
             className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-white/30 transition"
           />

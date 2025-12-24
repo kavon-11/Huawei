@@ -29,7 +29,7 @@ const INITIAL_FAQS = [
     id: 1,
     question: "What are your opening hours?",
     answer:
-      "We are open Mon-Fri from 9 AM to 10 PM, and weekends from 10 AM to 11 PM.",
+      "We are open Saturday to Thursday from 10 AM to 8 PM. We're closed on Fridays.",
     category: "General",
     intent: "answer_faq",
     active: true,
@@ -37,56 +37,59 @@ const INITIAL_FAQS = [
   },
   {
     id: 2,
-    question: "Do you offer vegan options?",
-    answer: "Yes, we have a dedicated vegan section on our menu.",
-    category: "Menu",
+    question: "Do you offer teeth whitening?",
+    answer:
+      "Yes, we offer professional teeth whitening services. Sessions take about 60 minutes and results last 6-12 months.",
+    category: "Services",
     intent: "answer_faq",
     active: true,
     usageCount: 89,
   },
   {
     id: 3,
-    question: "How can I book a table?",
+    question: "How can I book an appointment?",
     answer:
-      "You can book a table through our website or by asking me right now.",
-    category: "Reservations",
+      "You can book an appointment through our website, by phone, or by asking me right now.",
+    category: "Appointments",
     intent: "schedule_appointment",
     active: true,
     usageCount: 210,
   },
   {
     id: 4,
-    question: "Is there parking nearby?",
-    answer: "Yes, there is a free parking lot behind the building.",
+    question: "Where is the clinic located?",
+    answer:
+      "We're located at 123 Corniche St, Alexandria, Egypt. Free parking is available.",
     category: "Location",
     intent: "answer_faq",
-    active: false,
+    active: true,
     usageCount: 12,
   },
   {
     id: 5,
-    question: "Do you do delivery?",
-    answer: "We deliver within a 5-mile radius via our partners.",
-    category: "Services",
-    intent: "order_food",
+    question: "Do you accept insurance?",
+    answer:
+      "Yes, we accept most major dental insurance plans. Please bring your insurance card to your appointment.",
+    category: "Payments",
+    intent: "answer_faq",
     active: true,
-    usageCount: 300,
+    usageCount: 75,
   },
 ];
 
 const CATEGORIES = [
   "General",
-  "Menu",
-  "Reservations",
-  "Location",
   "Services",
-  "Technical",
+  "Appointments",
+  "Location",
+  "Payments",
+  "Emergency",
 ];
 const INTENTS = [
   "answer_faq",
   "schedule_appointment",
-  "order_food",
-  "technical_support",
+  "dental_services",
+  "emergency_care",
   "callback",
 ];
 

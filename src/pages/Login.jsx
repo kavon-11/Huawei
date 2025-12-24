@@ -8,10 +8,10 @@ export default function Auth() {
   const navigate = useNavigate();
   const [isSignUp, setIsSignUp] = useState(false);
   const [formData, setFormData] = useState({
-    email: "demo@echoai.com",
+    email: "info@skyalexdental.com",
     password: "password123",
-    firstName: "Mustafa",
-    lastName: "Doe",
+    firstName: "Ahmed",
+    lastName: "Samir",
   });
   const [errors, setErrors] = useState({});
 
@@ -58,10 +58,10 @@ export default function Auth() {
     setIsSignUp(!isSignUp);
     setErrors({});
     setFormData({
-      email: "demo@echoai.com",
+      email: "info@skyalexdental.com",
       password: "password123",
-      firstName: "Mustafa",
-      lastName: "Ashraf",
+      firstName: "Ahmed",
+      lastName: "Samir",
     });
   };
 
@@ -116,7 +116,7 @@ export default function Auth() {
                     value={formData.firstName}
                     onChange={handleChange}
                     className="w-full rounded-lg bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:border-orange-500/50 focus:ring-2 focus:ring-orange-500/20 transition"
-                    placeholder="Mustafa"
+                    placeholder="Ahmed"
                   />
                   {errors.firstName && (
                     <p className="text-red-400 text-xs mt-1">
@@ -138,7 +138,7 @@ export default function Auth() {
                     value={formData.lastName}
                     onChange={handleChange}
                     className="w-full rounded-lg bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:border-orange-500/50 focus:ring-2 focus:ring-orange-500/20 transition"
-                    placeholder="Doe"
+                    placeholder="Samir"
                   />
                   {errors.lastName && (
                     <p className="text-red-400 text-xs mt-1">

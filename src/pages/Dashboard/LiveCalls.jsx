@@ -58,9 +58,12 @@ export default function LiveCalls() {
       lastAiText: "We close at 9 PM today.",
       transcript: [
         { speaker: "Caller", text: "Hello." },
-        { speaker: "AI", text: "Hello! Thanks for calling Tasty Bites." },
+        {
+          speaker: "AI",
+          text: "Hello! Thanks for calling SkyAlex Dental Clinic.",
+        },
         { speaker: "Caller", text: "When do you close today?" },
-        { speaker: "AI", text: "We close at 9 PM today." },
+        { speaker: "AI", text: "We close at 8 PM today." },
       ],
     },
   ]);

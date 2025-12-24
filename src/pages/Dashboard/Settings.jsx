@@ -29,9 +29,9 @@ export default function Settings() {
 
   // --- Tab 1: Account Settings State ---
   const [accountForm, setAccountForm] = useState({
-    name: "John Doe",
-    email: "john@example.com",
-    phone: "+1 (555) 123-4567",
+    name: "Dr. Ahmed Samir",
+    email: "ahmed@skyalexdental.com",
+    phone: "+20 10 1234 5678",
     currentPassword: "",
     newPassword: "",
     confirmPassword: "",
@@ -54,15 +54,15 @@ export default function Settings() {
 
   // --- Tab 2: Business Settings State ---
   const [businessForm, setBusinessForm] = useState({
-    name: "Tasty Bites",
-    type: "Restaurant",
-    phone: "+1 (555) 321-9876",
-    email: "hello@tastybites.com",
-    address: "123 Main St, New York, NY",
-    timezone: "America/New_York",
+    name: "SkyAlex Dental Clinic",
+    type: "Healthcare",
+    phone: "+20 10 1234 5678",
+    email: "hello@skyalexdental.com",
+    address: "123 Corniche St, Alexandria, Egypt",
+    timezone: "Africa/Cairo",
     language: "English",
     emailNotifications: true,
-    notificationEmail: "alerts@tastybites.com",
+    notificationEmail: "alerts@skyalexdental.com",
     notifyEscalation: true,
     notifyErrors: true,
     notifySummary: false,
@@ -90,7 +90,7 @@ export default function Settings() {
       id: "email",
       name: "Email Notifications",
       connected: true,
-      email: "john@example.com",
+      email: "ahmed@skyalexdental.com",
       verified: true,
       icon: <FaEnvelope />,
     },
@@ -99,8 +99,8 @@ export default function Settings() {
   // --- Tab 3b: Telephony Settings State (NEW) ---
   const [telephonySettings, setTelephonySettings] = useState({
     provider: "twilio", // "twilio" | "telnyx" | "other-sip"
-    mainNumber: "+20100000000", // E.164 format
-    additionalNumbers: ["+20200000001"], // Optional additional numbers
+    mainNumber: "+20 10 5555 9999", // E.164 format
+    additionalNumbers: [], // Optional additional numbers
     allowSmsFollowUp: true,
   });
 
@@ -108,21 +108,26 @@ export default function Settings() {
   const [teamMembers, setTeamMembers] = useState([
     {
       id: 1,
-      name: "John Doe",
-      email: "john@example.com",
+      name: "Dr. Ahmed Samir",
+      email: "ahmed@skyalexdental.com",
       role: "Admin",
       status: "Active",
     },
     {
       id: 2,
-      name: "Jane Smith",
-      email: "jane@example.com",
+      name: "Layla Hassan",
+      email: "layla@skyalexdental.com",
       role: "Editor",
       status: "Active",
     },
   ]);
   const [invitations, setInvitations] = useState([
-    { id: 1, email: "mike@example.com", role: "Viewer", status: "Pending" },
+    {
+      id: 1,
+      email: "receptionist@skyalexdental.com",
+      role: "Viewer",
+      status: "Pending",
+    },
   ]);
   const [newMember, setNewMember] = useState({ email: "", role: "Viewer" });
 
@@ -731,6 +736,7 @@ export default function Settings() {
                     onChange={handleBusinessChange}
                     style={inputStyle}
                   >
+                    <option>Healthcare</option>
                     <option>Restaurant</option>
                     <option>Retail</option>
                     <option>Service</option>
@@ -774,6 +780,7 @@ export default function Settings() {
                     onChange={handleBusinessChange}
                     style={inputStyle}
                   >
+                    <option value="Africa/Cairo">Cairo Time</option>
                     <option value="America/New_York">Eastern Time</option>
                     <option value="America/Los_Angeles">Pacific Time</option>
                   </select>

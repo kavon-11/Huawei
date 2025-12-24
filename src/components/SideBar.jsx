@@ -159,7 +159,7 @@ export default function SideBar({ isOpen, setIsOpen }) {
         {isOpen ? (
           <div className="flex items-center gap-3 p-3 rounded-xl border border-white/10 bg-white/5 backdrop-blur-xl">
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#15399A] to-[#A93E17] flex items-center justify-center flex-shrink-0">
-              <span className="text-white font-semibold text-sm">JD</span>
+              <span className="text-white font-semibold text-sm">AS</span>
             </div>
             <motion.div
               initial={{ opacity: 0 }}
@@ -168,17 +168,17 @@ export default function SideBar({ isOpen, setIsOpen }) {
               className="flex flex-col min-w-0 flex-1"
             >
               <p className="text-sm font-semibold text-white truncate">
-                John Doe
+                Dr. Ahmed Samir
               </p>
               <span className="text-xs text-gray-400 truncate">
-                john@example.com
+                ahmed@skyalexdental.com
               </span>
             </motion.div>
           </div>
         ) : (
           <div className="flex justify-center">
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#15399A] to-[#A93E17] flex items-center justify-center">
-              <span className="text-white font-semibold text-sm">JD</span>
+              <span className="text-white font-semibold text-sm">AS</span>
             </div>
           </div>
         )}

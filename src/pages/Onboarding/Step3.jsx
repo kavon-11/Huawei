@@ -194,7 +194,7 @@ export default function Step3({ data, updateSectionField }) {
               onChange={(e) =>
                 updateSectionField("callRoutingPolicy", "hours", e.target.value)
               }
-              placeholder="Mon–Fri 09:00–18:00"
+              placeholder="Sat–Thu 10:00–20:00"
               className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-white/30 transition"
             />
           </div>
@@ -233,7 +233,7 @@ export default function Step3({ data, updateSectionField }) {
                   e.target.value
                 )
               }
-              placeholder="Forward to +20..., voicemail, or queue"
+              placeholder="Forward to +20 10 1234 5678 after 3 failed attempts"
               className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-white/30 transition"
             />
           </div>
@@ -251,7 +251,7 @@ export default function Step3({ data, updateSectionField }) {
                   e.target.value
                 )
               }
-              placeholder="Sales, Support, or a team email"
+              placeholder="Front Desk Team"
               className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-white/30 transition"
             />
           </div>
@@ -531,7 +531,7 @@ export default function Step3({ data, updateSectionField }) {
                     e.target.value
                   )
                 }
-                placeholder="Topics the assistant must not answer, or cases that must always escalate"
+                placeholder="Do not give medical diagnosis. Do not quote exact treatment prices; only ranges."
                 rows={6}
                 className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-white/30 transition"
               />
@@ -548,7 +548,7 @@ export default function Step3({ data, updateSectionField }) {
                       e.target.value
                     )
                   }
-                  placeholder="One per line: +2010..., +9715..."
+                  placeholder="+20 10 0000 1111"
                   rows={3}
                   className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-white/30 transition"
                 />
