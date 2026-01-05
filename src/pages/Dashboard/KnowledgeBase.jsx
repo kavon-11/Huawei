@@ -262,14 +262,8 @@ export default function KnowledgeBase() {
 
   const gridLayout = {
     display: "grid",
-    gridTemplateColumns: "1fr", // Default to single column (mobile first)
     gap: "2rem",
-    // We will use a style block or class for desktop media query if possible,
-    // but since we are using inline styles, let's rely on the fact that
-    // on desktop we want side-by-side.
-    // A common trick with inline styles for responsive grid is minmax.
-    // gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))" is already good,
-    // but let's ensure the container doesn't overflow.
+    // Responsive grid layout that adapts from mobile to desktop
     gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 400px), 1fr))",
   };
 
